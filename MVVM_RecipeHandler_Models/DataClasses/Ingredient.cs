@@ -117,6 +117,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         {
             get
             {
+               // asdsasdsad
                 return this.ingredientName;
                 //this iis a comment
             }
