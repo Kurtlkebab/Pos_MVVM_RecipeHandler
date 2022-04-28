@@ -118,6 +118,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             get
             {
                 return this.ingredientName;
+                //this iis a comment
             }
 
             set
