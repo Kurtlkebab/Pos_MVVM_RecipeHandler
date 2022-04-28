@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MVVM_RecipeHandler.Views.InspectCurrentRecipeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVM_RecipeHandler.Views"
+              xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+              d:DataContext="{d:DesignInstance Type=viewmodels:InspectCurrentRecipeViewModel}">
+    <StackPanel>
+        <Label>RecipeName</Label>
+        <Label Content="{Binding SelectedRecipe.RecipeName}"></Label>
+        <Label>RecipeDescription</Label>
+        <Label Content="{Binding SelectedRecipe.RecipeDescription}"></Label>
+        <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}" Grid.Column="0" Grid.Row="1">
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                        <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Image Width="200" Height="200" Source="{Binding SelectedRecipe.PictureURL }"></Image>
+    </StackPanel>
+</UserControl>

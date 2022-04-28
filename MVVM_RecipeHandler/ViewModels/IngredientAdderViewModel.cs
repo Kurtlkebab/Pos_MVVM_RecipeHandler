@@ -1,0 +1,126 @@
+﻿using Microsoft.Practices.Prism.Events;
+using MVVM_RecipeHandler.Events;
+using MVVM_RecipeHandler_Common.Command;
+using MVVM_RecipeHandler_Models.DataClasses;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace MVVM_RecipeHandler.ViewModels
+{
+    /// <summary>
+    /// Displays the students data in a list.
+    /// Derives from <see cref="ViewModelBase"/> class.
+    /// </summary>
+    public class IngredientAdderViewModel : ViewModelBase
+    {
+        #region ------------- Fields, Constants, Delegates ------------------------
+        /// <summary>
+        /// new Ingredient from textbox.
+        /// </summary>
+        public string newIngredient;
+        #endregion
+
+        #region ------------- Constructor, Destructor, Dispose, Clone -------------
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IngredientAdderViewModel"/> class.
+        /// </summary>
+        /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
+        public IngredientAdderViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        {
+            // load ingredient data from db
+            this.LoadIngredients();
+
+            // hookup command to assoiated methode
+            this.AddIngredientCommand = new ActionCommand(this.AddIngredientCommandExecute, this.AddIngredientCommandCanExecute);
+
+            // subscribe to event
+            EventAggregator.GetEvent<IngredientDataChangedEvent>().Subscribe(this.OnIngredientDataChange, ThreadOption.UIThread);
+        }
+        #endregion
+
+        #region ------------- Properties, Indexer ---------------------------------
+        /// <summary>
+        /// Gets or sets the list with all Ingredient data.
+        /// </summary>
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
+
+        /// <summary>
+        /// Gets the Add Ingredient button command.
+        /// </summary>
+        public ICommand AddIngredientCommand { get; private set; }
+
+        /// <summary>
+        /// Gets and Sets the NewIngredient from Textbox
+        /// </summary>
+        public string NewIngredient { get;set; }
+        #endregion
+
+        #region ------------- Events ----------------------------------------------
+        /// <summary>
+        /// Event handler to notice changes in the current ingredient data.
+        /// </summary>
+        /// <param name="ingredient">Reference to the student data.</param>
+        public void OnIngredientDataChange(Ingredient ingredient)
+        {
+            if (ingredient.Id == -1)
+            {
+                ingredient.Id = this.Ingredients.Max(s => s.Id) + 1;
+                this.Ingredients.Add(ingredient);
+            }
+            else
+            {
+                var ingredientToUpdate = this.Ingredients.FirstOrDefault(s => s.Id == ingredient.Id);
+                ingredientToUpdate.IngredientName = ingredient.IngredientName;
+                ingredientToUpdate.Id = ingredient.Id;
+            }
+        }
+        #endregion
+
+        #region ------------- Private helper --------------------------------------
+        /// <summary>
+        /// Generate Ingredient data.
+        /// </summary>
+        private void LoadIngredients()
+        {
+            // init collection and add data from db
+            this.Ingredients = new ObservableCollection<Ingredient>();
+           
+        }
+        #endregion
+
+        #region ------------- Commands --------------------------------------------
+        /// <summary>
+        /// Determines, whether the add ingredients command can be executed.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
+        private bool AddIngredientCommandCanExecute(object parameter)
+        {
+            //if (this.Ingredients.Any(s => s.StudentChanged))
+            //{
+            //    return true;
+            //}
+
+            return true;
+        }
+
+        /// <summary>
+        /// Occurs, when the user clicks the "Add Ingredient" button.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        private void AddIngredientCommandExecute(object parameter)
+        {
+            Ingredient ingredient;                     
+            ingredient = new Ingredient(this.NewIngredient);
+            Ingredients.Add(ingredient);
+            // publish event when new ingredient is added
+            EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
+        }
+        #endregion
+    }
+}
