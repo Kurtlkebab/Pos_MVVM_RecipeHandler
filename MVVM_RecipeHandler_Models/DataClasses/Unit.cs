@@ -13,7 +13,12 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     public class Unit : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------
-      
+
+        /// <summary>
+        /// Id of the recipe.
+        /// </summary>
+        private int id;
+
         /// <summary>
         /// Amount of the Ingredient.
         /// </summary>
@@ -61,7 +66,26 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the id of the recipe.
+        /// </summary>
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
 
+            set
+            {
+                if (this.id != value)
+                {
+                    this.id = value;
+                    this.OnPropertyChanged(nameof(this.Id));
+                    this.StudentChanged = true;
+                }
+            }
+        }
         /// <summary>
         /// Gets a value indicating whether the properties have changed.
         /// </summary>
