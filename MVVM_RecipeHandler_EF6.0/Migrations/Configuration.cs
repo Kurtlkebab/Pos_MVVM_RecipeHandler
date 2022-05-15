@@ -42,6 +42,77 @@
            // RecipeSeed.Add(new Recipe("Trüffelgnochi2", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken",2," this is text") );
             //RecipeSeed.Add(new Recipe("Trüffelgnochi3", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken",3," this is text") );
             context.RecipesSet.AddRange(RecipeSeed);
+
+
+            List<Unit> UnitSeed = new List<Unit>();
+            UnitSeed.Add(new Unit("kg"));
+            UnitSeed.Add(new Unit("dag"));
+            UnitSeed.Add(new Unit("g"));
+            UnitSeed.Add(new Unit("Stück"));
+            UnitSeed.Add(new Unit("EL"));
+            UnitSeed.Add(new Unit("TL"));
+
+            context.UnitsSet.AddRange(UnitSeed);
+
+
+            List<Ingredient> IngredientSeed = new List<Ingredient>();
+            IngredientSeed.Add(new Ingredient("Schlagobers"));
+            IngredientSeed.Add(new Ingredient("Mehl"));
+            IngredientSeed.Add(new Ingredient("Eier"));
+            IngredientSeed.Add(new Ingredient("Zucker"));
+            IngredientSeed.Add(new Ingredient("Öl"));
+            IngredientSeed.Add(new Ingredient("Schnittlauch"));
+            IngredientSeed.Add(new Ingredient("Marmelade"));
+            IngredientSeed.Add(new Ingredient("Suppenwürfel"));
+            IngredientSeed.Add(new Ingredient("Trüffelöl"));
+            IngredientSeed.Add(new Ingredient("Salz"));
+            IngredientSeed.Add(new Ingredient("Pfeffer"));
+            IngredientSeed.Add(new Ingredient("Milch"));
+            IngredientSeed.Add(new Ingredient("Chinkiang Essig"));
+            IngredientSeed.Add(new Ingredient("Soja Sauce Hell"));
+            IngredientSeed.Add(new Ingredient("Doubanjiang"));
+            IngredientSeed.Add(new Ingredient("Knoblauch"));
+            IngredientSeed.Add(new Ingredient("Jungzwiebel"));
+            IngredientSeed.Add(new Ingredient("Ingwer"));
+            IngredientSeed.Add(new Ingredient("Sesam Öl"));
+            IngredientSeed.Add(new Ingredient("Hühnersuppe"));
+            IngredientSeed.Add(new Ingredient("Auberginen"));
+            IngredientSeed.Add(new Ingredient("Tomaten"));
+            IngredientSeed.Add(new Ingredient("Erdbeeren"));
+            IngredientSeed.Add(new Ingredient("Stärke"));
+            IngredientSeed.Add(new Ingredient("Kartoffeln"));
+            IngredientSeed.Add(new Ingredient("Apfel"));
+            IngredientSeed.Add(new Ingredient("Curry Roux"));
+            IngredientSeed.Add(new Ingredient("Ketchup"));
+            IngredientSeed.Add(new Ingredient("Karotten"));
+            IngredientSeed.Add(new Ingredient("Schwarzer Pfeffer"));
+            IngredientSeed.Add(new Ingredient("Zwiebel"));
+            IngredientSeed.Add(new Ingredient("Gurke"));
+            IngredientSeed.Add(new Ingredient("Salat"));
+            IngredientSeed.Add(new Ingredient("Honig"));
+            IngredientSeed.Add(new Ingredient("Sake"));
+            IngredientSeed.Add(new Ingredient("Hühnerbrust"));
+            IngredientSeed.Add(new Ingredient("Hühnerfleisch ausgelöst"));
+            IngredientSeed.Add(new Ingredient("Sesamsamen"));
+            IngredientSeed.Add(new Ingredient("Gurkerl"));
+            IngredientSeed.Add(new Ingredient("Hamburgerspeck"));
+            IngredientSeed.Add(new Ingredient("Mayonnaise"));
+            IngredientSeed.Add(new Ingredient("Burgerbun"));
+            IngredientSeed.Add(new Ingredient("Reispapier"));
+            IngredientSeed.Add(new Ingredient("Paprika edelsüß"));
+            IngredientSeed.Add(new Ingredient("Zimt"));
+            IngredientSeed.Add(new Ingredient("Birne"));
+            IngredientSeed.Add(new Ingredient("Rinderfaschiertes"));
+            IngredientSeed.Add(new Ingredient("Butter"));
+            IngredientSeed.Add(new Ingredient("Chili Öl"));
+            IngredientSeed.Add(new Ingredient("Minze"));
+            IngredientSeed.Add(new Ingredient("Koriander"));
+            IngredientSeed.Add(new Ingredient("Reisessig"));
+            IngredientSeed.Add(new Ingredient("Cheddar"));
+            IngredientSeed.Add(new Ingredient("Parmesan"));
+            IngredientSeed.Add(new Ingredient("Käse"));
+
+            context.IngredientsSet.AddRange(IngredientSeed);
             // execute sql command
             //  This method will be called after migrating to the latest version.
 
