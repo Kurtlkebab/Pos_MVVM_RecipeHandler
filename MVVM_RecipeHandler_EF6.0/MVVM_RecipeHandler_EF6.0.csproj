@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVVM_RecipeHandler\MVVM_RecipeHandler.csproj">
+      <Project>{3fafccf5-e9ad-4c2e-9bb5-7a7a2cb8b37d}</Project>
+      <Name>MVVM_RecipeHandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVVM_RecipeHandler_Models\MVVM_RecipeHandler_Models.csproj">
       <Project>{EC4BAA67-90AE-488E-B82B-23EE50404412}</Project>
       <Name>MVVM_RecipeHandler_Models</Name>
