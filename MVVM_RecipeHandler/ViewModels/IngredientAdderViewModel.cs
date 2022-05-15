@@ -5,6 +5,7 @@ using MVVM_RecipeHandler_Models.DataClasses;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,6 +121,15 @@ namespace MVVM_RecipeHandler.ViewModels
             Ingredients.Add(ingredient);
             // publish event when new ingredient is added
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
+            DbSet.Add(RecipeContext);
+
+            using (var context = new RecipeContext())
+            {
+             
+                context.Ingredients.Add(ingredient);
+
+                context.SaveChanges();
+            }
         }
         #endregion
     }
