@@ -198,7 +198,9 @@
       <Name>MVVM_RecipeHandler_Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Gnochi.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Download.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

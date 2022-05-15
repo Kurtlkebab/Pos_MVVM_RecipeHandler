@@ -125,6 +125,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.pictureURL != value)
                 {
                     this.pictureURL = value;
+                  //  this.pictureURL= BuildImgString(value);
                     this.OnPropertyChanged(nameof(this.pictureURL));
                     this.StudentChanged = true;
                 }
@@ -184,6 +185,14 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             memory.Close();
 
             return result;
+        }
+       
+        public string BuildImgString(string path)
+        {
+
+            Image img = Image.FromFile(path);
+            string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
+            return ImageString;
         }
 
     }
