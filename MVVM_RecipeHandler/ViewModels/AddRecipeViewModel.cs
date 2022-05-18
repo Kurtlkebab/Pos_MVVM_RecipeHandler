@@ -32,8 +32,11 @@ namespace MVVM_RecipeHandler.ViewModels
         /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public AddRecipeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+           
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.Units = new ObservableCollection<Unit>();
+
+
             Ingredient ing1 = new Ingredient("kas");
             Ingredient ing2 = new Ingredient("kas1");
             Unit un1 = new Unit("kg");
@@ -267,10 +270,31 @@ namespace MVVM_RecipeHandler.ViewModels
             MyRecipeItems.Add(rez1);
 
         }
+
+        public string ToTxt()
+        {
+            string forTxtFile;
+            forTxtFile = "Rezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + NewRecipe.PictureURL+"\n\n";
+            string IngredientsForTxt="Zutaten: \n";
+            foreach (Ingredient ing in NewRecipe.Ingredients)
+            {
+                IngredientsForTxt += "Zutatenname: "+ing.IngredientName+"\n";
+                if (ing.IngredientUnit != null)
+                {
+                    IngredientsForTxt += "Zutateneinheit: " + ing.IngredientName + "\n";
+                }
+                if (ing.Amount != null)
+                {
+                    IngredientsForTxt += "Menge: " + ing.Amount + "\n";
+                }
+            }
+            forTxtFile=forTxtFile + IngredientsForTxt;
+            return forTxtFile;
+        }
         #endregion
 
         #region ------------- Commands --------------------------------------------
-          /// <summary>
+        /// <summary>
         /// Determines, whether the add to recipe command can be executed.
         /// </summary>
         /// <param name="parameter">Data used by the command.</param>
@@ -343,6 +367,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddRecipeButtonCommandExecute(object parameter)
         {
             EventAggregator.GetEvent<newRecipeEvent>().Publish(NewRecipe);
+            ToTxt();
             
         }
         #endregion

@@ -121,14 +121,14 @@ namespace MVVM_RecipeHandler.ViewModels
             Ingredients.Add(ingredient);
             // publish event when new ingredient is added
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
-            DbSet.Add(RecipeContext);
+          //  DbSet.Add(RecipeContext);
 
-            using (var context = new RecipeContext())
+         //   using (var context = new RecipeContext())
             {
              
-                context.Ingredients.Add(ingredient);
+                //context.Ingredients.Add(ingredient);
 
-                context.SaveChanges();
+                //context.SaveChanges();
             }
         }
         #endregion

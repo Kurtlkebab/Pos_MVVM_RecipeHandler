@@ -33,7 +33,7 @@
                  </StackPanel>
                 
                 
-                <ContentControl Margin="10" Content="{Binding CurrentViewLeft}" Grid.RowSpan="2" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" />
+                <ContentControl Margin="10" Content="{Binding CurrentViewUpperLeft}" Grid.RowSpan="2" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" />
                 <ContentControl Margin="10" Content="{Binding CurrentViewRight}" Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" />
             
             
