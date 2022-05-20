@@ -152,7 +152,7 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             foreach (var item in MyRecipeItems)
             {
-                if (parameter == item.RecipeName)
+                if ((string)parameter == item.RecipeName)
                 {
                     SelectedRecipe = item;
                 }

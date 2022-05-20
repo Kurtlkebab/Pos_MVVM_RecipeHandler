@@ -374,7 +374,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 AddUnitsView cView = new AddUnitsView();
                 UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
                 cView.DataContext = cVm;
-
+                
 
                 this.CurrentViewRight = cView;
 

@@ -2,6 +2,7 @@
 using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_Models.DataClasses;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -275,7 +276,7 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             string forTxtFile;
             forTxtFile = "Rezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + NewRecipe.PictureURL+"\n\n";
-            string IngredientsForTxt="Zutaten: \n";
+            string IngredientsForTxt="Zutaten: " + Environment.NewLine;
             foreach (Ingredient ing in NewRecipe.Ingredients)
             {
                 IngredientsForTxt += "Zutatenname: "+ing.IngredientName+"\n";
@@ -367,7 +368,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddRecipeButtonCommandExecute(object parameter)
         {
             EventAggregator.GetEvent<newRecipeEvent>().Publish(NewRecipe);
-            ToTxt();
+           string ForTxtFile= ToTxt();
             
         }
         #endregion

@@ -56,6 +56,7 @@
             //RecipeSeed.Add(new Recipe("Trüffelgnochi3", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken",3," this is text") );
 
 
+            Recipe rec1= new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", 1, ImageString);
 
             RecipeSeed.Add(new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", 1, ImageString));
             RecipeSeed.Add(new Recipe("Eierspeis", "Pfanne auf mittlere bis hohe Hitze aufdrehen, Öl hinzufügen. Eier aufschlagen und mit einer Gabel verquirlen. Bis zum gewünschten Gargrad kochen (10 Sekunden bis 1 Mintue) und mit Salz Pfeffer und Schnittlauch servieren", 2, ImageString1));
