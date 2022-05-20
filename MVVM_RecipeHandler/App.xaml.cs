@@ -12,7 +12,7 @@ using System.Windows;
 namespace MVVM_RecipeHandler
 {
     /// <summary>
-    /// Interaktionslogik für "App.xaml"
+    /// Interaktion logic für "App"
     /// </summary>
     public partial class App : Application
     {

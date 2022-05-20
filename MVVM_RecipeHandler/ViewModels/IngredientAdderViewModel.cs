@@ -51,12 +51,12 @@ namespace MVVM_RecipeHandler.ViewModels
         public ObservableCollection<Ingredient> Ingredients { get; set; }
 
         /// <summary>
-        /// Gets the Add Ingredient button command.
+        /// Gets or sets the Add Ingredient button command.
         /// </summary>
         public ICommand AddIngredientCommand { get; private set; }
 
         /// <summary>
-        /// Gets and Sets the NewIngredient from Textbox
+        /// Gets or sets the NewIngredient from Textbox
         /// </summary>
         public string NewIngredient { get;set; }
         #endregion

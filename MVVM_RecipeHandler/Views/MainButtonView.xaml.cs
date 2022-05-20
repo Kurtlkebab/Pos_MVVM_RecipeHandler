@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interaktionslogik für MainView.xaml
+    /// Interaction logic for MainView
     /// </summary>
     public partial class MainButtonView : UserControl
     {

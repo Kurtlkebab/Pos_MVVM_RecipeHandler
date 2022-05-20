@@ -21,7 +21,7 @@ namespace MVVM_RecipeHandler.ViewModels
     {
         #region ------------- Fields, Constants, Delegates ------------------------
         /// <summary>
-        /// Openfile Dialog Comman
+        /// Gets or sets Open file Dialog Command
         /// </summary>
         public static RelayCommand OpenCommand { get; set; }
 
@@ -31,7 +31,7 @@ namespace MVVM_RecipeHandler.ViewModels
         public string base64String;
         
         /// <summary>
-        /// the selected filepatch of openfiledialog
+        /// the selected filepath of openfiledialog
         /// </summary>
         private string _selectedPath;
 
@@ -49,7 +49,7 @@ namespace MVVM_RecipeHandler.ViewModels
         public string Base64String { get; set; }
 
         /// <summary>
-        /// Gets or sets the SelectedPatch from OpenfileDialog
+        /// Gets or sets the SelectedPatch from Open file Dialog
         /// </summary>
         public string SelectedPath
         {

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interactionlogic for MainWindow
     /// </summary>
     public partial class MainWindow : Window
     {

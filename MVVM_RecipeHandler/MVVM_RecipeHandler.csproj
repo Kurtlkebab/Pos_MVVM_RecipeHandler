@@ -203,6 +203,10 @@
       <Project>{DC9ED03E-57E6-4DAF-ADE7-53560A5242A0}</Project>
       <Name>MVVM_RecipeHandler_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MVVM_RecipeHandler_EF6.0\MVVM_RecipeHandler_EF6.0.csproj">
+      <Project>{7fa653ee-e043-4331-98d5-d8df9fb21111}</Project>
+      <Name>MVVM_RecipeHandler_EF6.0</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVVM_RecipeHandler_Models\MVVM_RecipeHandler_Models.csproj">
       <Project>{EC4BAA67-90AE-488E-B82B-23EE50404412}</Project>
       <Name>MVVM_RecipeHandler_Models</Name>

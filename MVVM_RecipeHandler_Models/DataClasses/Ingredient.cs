@@ -36,12 +36,12 @@ namespace MVVM_RecipeHandler_Models.DataClasses
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Ingredient"/> class.
+        /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
         /// <param name="ingredientName"> name of ingredient</param>
         /// <param name="amount"> amount of ingredient</param>
         /// <param name="ingredientUnit">unit of ingredient</param>
-        public Ingredient(string ingredientName,string amount,string ingredientUnit)
+        public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
             this.IngredientName = ingredientName;
             this.Amount = amount;
@@ -50,7 +50,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         }
 
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Ingredient"/> class.
+        /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
         /// <param name="ingredientName"> name of ingredient</param>
         /// <param name="amount"> amount of ingredient</param>
@@ -63,7 +63,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         }
 
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Ingredient"/> class.
+        /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
         /// <param name="ingredientName"> name of ingredient</param>
         /// <param name="amount"> amount of ingredient</param>
@@ -80,7 +80,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         /// <param name="ingredientName"> name of ingredient</param>
         /// <param name="id">id of ingredient</param>
-        public Ingredient(int id,string ingredientName)
+        public Ingredient(int id, string ingredientName)
         {
             this.ingredientName = ingredientName;
             this.amount = " ";

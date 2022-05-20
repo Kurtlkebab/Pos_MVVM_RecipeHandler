@@ -214,9 +214,9 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Events ----------------------------------------------
         /// <summary>
-        /// Event handler to notice changes in the current ingredient data.
+        /// Event handler to notice changes in the current recipe data.
         /// </summary>
-        /// <param name="ingredient">Reference to the ingredient data.</param>
+        /// <param name="recipe">Reference to the ingredient data.</param>
         public void OnRecipeDataChanged(Recipe recipe)
         {
             this.MyRecipeItems.Add(recipe);
@@ -225,9 +225,9 @@ namespace MVVM_RecipeHandler.ViewModels
 
 
         /// <summary>
-        /// Event handler to notice changes in the current ingredient data.
+        /// Event handler to notice changes in the current unit data.
         /// </summary>
-        /// <param name="ingredient">Reference to the ingredient data.</param>
+        /// <param name="unit">Reference to the ingredient data.</param>
         public void OnUnitDataChanged(Unit unit)
         {
             this.Units.Add(unit);

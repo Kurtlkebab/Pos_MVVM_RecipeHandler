@@ -37,6 +37,18 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
+        public Recipe()
+        {
+            this.Ingredients = new ObservableCollection<Ingredient>();
+           
+        }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recipe"/> class.
+        /// </summary>
+        /// <param name="recipeDescription">short description of the recipe..</param>
+        /// <param name="recipeName">name of the recipe.</param>
         public Recipe(string recipeName, string recipeDescription)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
@@ -51,7 +63,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
         /// <param name="id">id of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription,int id,string pictureUrl)
+        public Recipe(string recipeName, string recipeDescription, int id, string pictureUrl)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;

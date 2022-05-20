@@ -40,7 +40,7 @@ namespace MVVM_RecipeHandler.ViewModels
           
             // hookup commands to assoiated methode
             this.SelectedButtonCommand = new ActionCommand
-                ((value) => { this.SelectedButtonCommandExecute(value);},this.SelectedButtonCommandCanExecute);
+                ((value) => { this.SelectedButtonCommandExecute(value);}, this.SelectedButtonCommandCanExecute);
            
         }
         #endregion
@@ -72,8 +72,9 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Gets or sets the list with all recipe data.
         /// </summary>
         public ObservableCollection<Recipe> MyRecipeItems { get; set; }
+
         /// <summary>
-        /// Gets the recipe from seelceted button command
+        /// Gets the recipe from selected button command
         /// </summary>
         public ICommand SelectedButtonCommand { get; }
 

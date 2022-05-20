@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MVVM_RecipeHandler_EF6._0
 {
-    class RecipeContext : DbContext
+    public class RecipeContext : DbContext
     {
         public RecipeContext():base("RecipeDatabase")
         {

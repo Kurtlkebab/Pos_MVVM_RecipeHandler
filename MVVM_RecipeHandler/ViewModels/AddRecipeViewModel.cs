@@ -47,7 +47,7 @@ namespace MVVM_RecipeHandler.ViewModels
            
             Units.Add(un1);
             Units.Add(un2);
-            newRecipe = new Recipe("adsad", "adsad2123" ,- 1, "adasdadadasdas");
+            newRecipe = new Recipe("adsad", "adsad2123" , - 1, "adasdadadasdas");
             newRecipe.Ingredients.Add(ing1);
             newRecipe.Ingredients.Add(ing2);
             // load ingredient data from db
@@ -101,9 +101,9 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Gets the Add recipe description+name command.
         /// </summary>
         public ICommand AddRecipeDescriptionNameCommand { get; }
- 
+
         /// <summary>
-        /// Gets and Sets the current edited new Recipe
+        /// Gets or sets the current edited new Recipe
         /// </summary>
         public Recipe NewRecipe
         {
@@ -347,7 +347,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddToRecipeButtonCommandExecute(object parameter)
         {
           
-            NewRecipe.Ingredients.Add(new Ingredient(SelectedIngredient,Amount,SelectedUnit));
+            NewRecipe.Ingredients.Add(new Ingredient(SelectedIngredient, Amount, SelectedUnit));
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interaktionslogik für AddIngredientsView.xaml
+    /// Interaction logic für AddIngredientsView
     /// </summary>
     public partial class AddIngredientsView : UserControl
     {
