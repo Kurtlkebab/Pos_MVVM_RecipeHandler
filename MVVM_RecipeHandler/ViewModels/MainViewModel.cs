@@ -182,25 +182,8 @@ namespace MVVM_RecipeHandler.ViewModels
                 IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
                 addIngredientsView.DataContext = vm;
                 this.CurrentViewLeft = addIngredientsView;
-                this.memoryView = addIngredientsView;
-                AddRecipeView addRView = new AddRecipeView();
-                AddRecipeViewModel Advm = new AddRecipeViewModel(EventAggregator);
-
-                MainButtonView mView = new MainButtonView();
-                MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
-                mView.DataContext = mVm;
-
-                InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
-                InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
-                iView.DataContext = iVm;
-
-                AddUnitsView uView= new AddUnitsView();
-                UnitAdderViewModel uAdderVm = new UnitAdderViewModel(EventAggregator);
-
-                addRView.DataContext = Advm;
-                uView.DataContext = uAdderVm;
-                this.CurrentViewLeft = mView;
-                this.CurrentViewBottom = iView;
+               
+               
 
             }
             else
@@ -265,14 +248,14 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddInspectCurrentRecipeViewCommandExecute(object parameter)
         {
-            if (this.CurrentViewLeft == null)
+            if (this.CurrentViewBottom == null)
             {
                 InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
                 InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
                 iView.DataContext = iVm;
 
-                iView.DataContext = iVm;
-                this.CurrentViewLeft = iView;
+                
+                this.CurrentViewBottom = iView;
 
             }
             else

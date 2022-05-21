@@ -4,28 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_RecipeHandler.Views"
-              xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels"
+              xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" xmlns:converter="clr-namespace:MVVM_RecipeHandler_Models.Converter;assembly=MVVM_RecipeHandler_Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
               d:DataContext="{d:DesignInstance Type=viewmodels:InspectCurrentRecipeViewModel}">
-    <StackPanel>
-        <Label>RecipeName</Label>
-        <Label Content="{Binding SelectedRecipe.RecipeName}"></Label>
-        <Label>RecipeDescription</Label>
-        <Label Content="{Binding SelectedRecipe.RecipeDescription}"></Label>
-        <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}" Grid.Column="0" Grid.Row="1">
+    <UserControl.Resources>
+        <converter:Base64ImageConverter x:Key="BTN_CONV"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Gray" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderThickness="2" Margin="10" >
+            <ScrollViewer  VerticalScrollBarVisibility="Auto">
+                <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                        <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <TextBlock Margin="10" TextWrapping="Wrap"  Text="{Binding SelectedRecipe.RecipeName}"></TextBlock>
 
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Image Width="200" Height="200" Source="{Binding SelectedRecipe.PictureURL }"></Image>
-    </StackPanel>
+                    <TextBlock   Margin="10" TextWrapping="Wrap"  Text="{Binding SelectedRecipe.RecipeDescription}"></TextBlock>
+
+                    <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}" >
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Border BorderBrush="Gray" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderThickness="2" Margin="10" >
+            <DockPanel Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1">
+                <Image  Source="{Binding SelectedRecipe.PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
+
+            </DockPanel>
+        </Border>
+
+    </Grid>
+
+
+
+   
 </UserControl>
