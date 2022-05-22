@@ -1,10 +1,8 @@
 ﻿using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Views;
 using MVVM_RecipeHandler_Common.Command;
-using MVVM_RecipeHandler_Models.DataClasses;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +15,10 @@ namespace MVVM_RecipeHandler.ViewModels
     /// Main ViewModel of the application.
     /// Derives from the <see cref="ViewModelBase"/> class.
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class AddAllViewModel : ViewModelBase
     {
         #region ------------- Fields, Constants, Delegates ------------------------
-        private UserControl memoryView;
+        private AddIngredientsView memoryView;
         /// <summary>
         /// View that is currently bound to the left ContentControl.
         /// </summary>
@@ -42,7 +40,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
         /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
-        public MainViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public AddAllViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             MainButtonView mView = new MainButtonView();
             MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
@@ -202,17 +200,17 @@ namespace MVVM_RecipeHandler.ViewModels
                 IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
                 addIngredientsView.DataContext = vm;
                 this.CurrentViewLeft = addIngredientsView;
-               
-               
+
+
 
             }
             else
             {
                 this.CurrentViewLeft = memoryView;
             }// init new students view and view model
-            
-            
-          
+
+
+
         }
 
         /// <summary>
@@ -239,7 +237,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
                 addRView.DataContext = Advm;
                 this.CurrentViewLeft = addRView;
-              
+
             }
             else
             {
@@ -274,7 +272,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
                 iView.DataContext = iVm;
 
-                
+
                 this.CurrentViewBottom = iView;
 
             }
@@ -345,8 +343,8 @@ namespace MVVM_RecipeHandler.ViewModels
                 ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
                 cView.DataContext = cVm;
 
-               
-                this.CurrentViewRight= cView;
+
+                this.CurrentViewRight = cView;
 
             }
             else
@@ -377,7 +375,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 AddUnitsView cView = new AddUnitsView();
                 UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
                 cView.DataContext = cVm;
-                
+
 
                 this.CurrentViewLeft = cView;
 

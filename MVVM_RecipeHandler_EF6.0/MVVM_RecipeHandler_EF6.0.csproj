@@ -60,6 +60,10 @@
     <Compile Include="Migrations\202205150938469_newMig.designer.cs">
       <DependentUpon>202205150938469_newMig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205221109242_newMigration.cs" />
+    <Compile Include="Migrations\202205221109242_newMigration.designer.cs">
+      <DependentUpon>202205221109242_newMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RecipeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVVM_RecipeHandler_Common\MVVM_RecipeHandler_Common.csproj">
+      <Project>{DC9ED03E-57E6-4DAF-ADE7-53560A5242A0}</Project>
+      <Name>MVVM_RecipeHandler_Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVVM_RecipeHandler_Models\MVVM_RecipeHandler_Models.csproj">
       <Project>{EC4BAA67-90AE-488E-B82B-23EE50404412}</Project>
       <Name>MVVM_RecipeHandler_Models</Name>
@@ -80,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205150938469_newMig.resx">
       <DependentUpon>202205150938469_newMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205221109242_newMigration.resx">
+      <DependentUpon>202205221109242_newMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -46,7 +46,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Gets or sets the Base64string built from image
         /// </summary>
-        public string Base64String { get; set; }
+        public string Base64String {get {return base64String ;} set { this.OnPropertyChanged(nameof(this.Base64String)); ; } }
 
         /// <summary>
         /// Gets or sets the SelectedPatch from Open file Dialog
@@ -57,10 +57,7 @@ namespace MVVM_RecipeHandler.ViewModels
             set
             {
                 _selectedPath = value;
-                Image img = Image.FromFile(value);
-                string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
-                EventAggregator.GetEvent<ImageStringDataChangedEvent>().Publish(ImageString);
-                this.OnPropertyChanged(nameof(this.Base64String));
+              
                 this.OnPropertyChanged(nameof(this.SelectedPath));
             }
         }
@@ -89,6 +86,23 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Private helper --------------------------------------
         
+        private void PublishImgString()
+        {
+            try
+            {
+                Image img = Image.FromFile(_selectedPath);
+                string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
+                EventAggregator.GetEvent<ImageStringDataChangedEvent>().Publish(ImageString);
+                base64String = ImageString;
+                this.OnPropertyChanged(nameof(this.Base64String));
+            }
+            catch(Exception ex)
+            {
+
+            }
+          
+        }
+
         /// <summary>
         /// Instantiate new RelayCommand
         /// </summary>
@@ -103,9 +117,11 @@ namespace MVVM_RecipeHandler.ViewModels
         private void ExecuteOpenFileDialog()
         {
             var dialog = new OpenFileDialog { InitialDirectory = _defaultPath };
+            dialog.Filter= "Image Files|*.jpg;*.jpeg";
             dialog.ShowDialog();
 
             SelectedPath = dialog.FileName;
+            PublishImgString();
         }
 
         /// <summary>

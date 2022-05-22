@@ -12,6 +12,9 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     public class Recipe : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------
+
+        private ObservableCollection<Ingredient> ingredients;
+
         /// <summary>
         /// name of the recipe.
         /// </summary>
@@ -78,7 +81,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Gets or sets the list with all Ingredient data.
         /// </summary>
-        public ObservableCollection<Ingredient> Ingredients { get; set; }
+        public  ObservableCollection<Ingredient> Ingredients { get; set; }
+        public virtual Ingredient Ingredientss { get; set; }
 
         /// <summary>
         /// Gets or sets the id of the recipe.

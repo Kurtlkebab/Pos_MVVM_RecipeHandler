@@ -14,7 +14,9 @@
     <UserControl.Resources>
         <converter:Base64ImageConverter x:Key="BTN_CONV"/>
     </UserControl.Resources>
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto" >
+        
         <ItemsControl ItemsSource="{Binding Path=MyRecipeItems}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

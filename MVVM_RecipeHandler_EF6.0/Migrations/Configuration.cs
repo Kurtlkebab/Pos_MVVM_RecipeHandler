@@ -19,10 +19,10 @@
 
         protected override void Seed(MVVM_RecipeHandler_EF6._0.RecipeContext context)
         {
-            if (context.RecipesSet.Any()|| context.UnitsSet.Any()|| context.IngredientsSet.Any())
-            {
-                return;
-            }
+            //if (context.RecipesSet.Any()|| context.UnitsSet.Any()|| context.IngredientsSet.Any())
+            //{
+            //    return;
+            //}
 
            
             
