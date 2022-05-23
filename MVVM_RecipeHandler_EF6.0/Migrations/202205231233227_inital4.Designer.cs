@@ -7,13 +7,13 @@ namespace MVVM_RecipeHandler_EF6._0.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class initial3 : IMigrationMetadata
+    public sealed partial class inital4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(inital4));
         
         string IMigrationMetadata.Id
         {
-            get { return "202205230953428_initial3"; }
+            get { return "202205231233227_inital4"; }
         }
         
         string IMigrationMetadata.Source

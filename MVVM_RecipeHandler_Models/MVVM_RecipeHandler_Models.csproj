@@ -37,6 +37,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\Base64ImageConverter.cs" />
+    <Compile Include="DataClasses\IngredientsRecipes.cs" />
     <Compile Include="DataClasses\Unit.cs" />
     <Compile Include="DataClasses\Ingredient.cs" />
     <Compile Include="DataClasses\Recipe.cs" />

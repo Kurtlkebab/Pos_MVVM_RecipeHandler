@@ -69,6 +69,15 @@
                 Recipe rec10 = new Recipe("Palatschinken", "Für die Palatschinken zuerst Mehl, Milch, Eier, Salz mit dem Schneebesen in einer Schüessel glatt rühren. Ca. 10 Min. stehen lassen, dadurch wird der Teig etwas dicker und danach nochmals gut durchrühren.Sollte der Palatschinkenteig zu dick sein, mit etwas Mineral oder Soda verdünnen.In einer beschichteten Pfanne einen Schuss Öl erhitzen(das Öl sollte ganz heiß sein, dann gelingt die erste Palatschinke sofort).Dann etwas Teig(mit einem Schöpfer) in die heiße Pfanne hineingegeben.Die Pfanne dabei immer wieder schwenken, sodass der Boden gleichmäßig dünn mit Teig bedeckt ist.Mit dem Pfannenwender die Palatschinke mehrmals wenden und von beiden Seiten goldgelb ausbacken.Die Fertig gebackenen Palatschinken halten sie im Backofen bei ca. 60 Grad warm.Mit beliebigen Zutaten(Marmelade, Nutella, Schinken & Käse etc.) die Palatschinken bestreichen und zusammenrollen.", 1, ImageString4);
 
                 // rec2.Ingredients.Add(new Ingredient(""));
+                Ingredient ing1 = new Ingredient("Schlagobers1");
+                Ingredient ing2 = new Ingredient("Fleisch1");
+                rec2.Ings.Add(ing1);
+                rec3.Ings.Add(ing1);
+                rec4.Ings.Add(ing1);
+                rec2.Ings.Add(ing2);
+                rec3.Ings.Add(ing2);
+                rec4.Ings.Add(ing2);
+
 
 
                 RecipeSeed.Add(rec2);
@@ -186,5 +195,6 @@
             Console.WriteLine(ImageString);
             return ImageString;
         }
+        
     }
 }

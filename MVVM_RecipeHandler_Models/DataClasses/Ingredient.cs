@@ -29,10 +29,15 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private string amount;
 
+        // public virtual ICollection<Recipe> recipe { get; set; }
+
+        //public Recipe Recipe { get; set; }
         /// <summary>
         /// Id of the Ingredient.
         /// </summary>
         private int id;
+
+        public virtual ICollection<Recipe> recs { get; set; }
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -44,7 +49,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="ingredientUnit">unit of ingredient</param>
         public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
-            
+            this.recs = new ObservableCollection<Recipe>();
             this.IngredientName = ingredientName;
             this.Amount = amount;
             this.id = -1;
@@ -59,11 +64,13 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName, string amount, int id)
         {
-            
+            this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = amount;
             this.id = id;
         }
+
+       
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
@@ -73,12 +80,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName)
         {
-           
+            this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = -1;
         }
-
         /// <summary>
         /// Initializes a new Instance of the <see cref="Ingredient"/> class.
         /// </summary>
@@ -86,7 +92,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(int id, string ingredientName)
         {
-          
+            this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = id;

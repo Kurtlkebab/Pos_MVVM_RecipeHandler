@@ -25,6 +25,11 @@ namespace MVVM_RecipeHandler.ViewModels
         private UserControl currentViewLeft;
 
         /// <summary>
+        /// View that is currently bound to the left ContentControl.
+        /// </summary>
+        private UserControl currentViewLeftRight;
+
+        /// <summary>
         /// View that is currently bound to the rightContentControl.
         /// </summary>
         private UserControl currentViewRight;
@@ -42,26 +47,29 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public AddAllViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            MainButtonView mView = new MainButtonView();
-            MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
-            mView.DataContext = mVm;
-
-            mView.DataContext = mVm;
-            this.CurrentViewLeft = mView;
-
-            InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
-            InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
-            iView.DataContext = iVm;
 
 
-            this.CurrentViewBottom = iView;
 
-            ShoppingCartView cView = new ShoppingCartView();
-            ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
+            AddUnitsView cView = new AddUnitsView();
+            UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
             cView.DataContext = cVm;
 
 
-            this.CurrentViewRight = cView;
+            this.CurrentViewLeft = cView;
+
+
+
+            AddIngredientsView addIngredientsView = new AddIngredientsView();
+            IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
+            addIngredientsView.DataContext = vm;
+            this.CurrentViewLeftRight = addIngredientsView;
+
+
+            AddRecipeView addRView = new AddRecipeView();
+            AddRecipeViewModel Advm = new AddRecipeViewModel(EventAggregator);
+
+            addRView.DataContext = Advm;
+            this.CurrentViewRight = addRView;
 
             // hookup command to assoiated methode
             this.AddIngredientViewCommand = new ActionCommand(this.AddIngredientViewCommandExecute, this.AddIngredientViewCommandCanExecute);
@@ -132,6 +140,26 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.currentViewLeft = value;
                     this.OnPropertyChanged(nameof(this.CurrentViewLeft));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view that is currently bound to the left ContentControl.
+        /// </summary>
+        public UserControl CurrentViewLeftRight
+        {
+            get
+            {
+                return this.currentViewLeftRight;
+            }
+
+            set
+            {
+                if (this.currentViewLeftRight != value)
+                {
+                    this.currentViewLeftRight = value;
+                    this.OnPropertyChanged(nameof(this.CurrentViewLeftRight));
                 }
             }
         }

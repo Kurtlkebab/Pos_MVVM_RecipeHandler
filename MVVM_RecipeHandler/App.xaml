@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:MVVM_RecipeHandler"
              >
     <Application.Resources>
-         
+        <Style x:Key="greenB">
+            <Setter Property="Button.Background" Value="#98FB98"/>
+        </Style>
     </Application.Resources>
 </Application>

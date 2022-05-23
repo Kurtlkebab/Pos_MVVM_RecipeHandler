@@ -17,8 +17,9 @@ namespace MVVM_RecipeHandler_EF6._0
 
         public DbSet<Recipe> RecipesSet { get; set; }
         public DbSet<Ingredient> IngredientsSet { get; set; }
-      
-      
+        public DbSet<IngredientsRecipes> IngredientsRecipesSet { get; set; }
+
+        
         public DbSet<Unit> UnitsSet { get; set; }
     }
 }

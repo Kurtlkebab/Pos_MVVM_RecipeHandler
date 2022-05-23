@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
 
 namespace MVVM_RecipeHandler_Models.DataClasses
 { /// <summary>
@@ -13,13 +14,16 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     {
         #region ------------- Fields, Constants, Delegates ------------------------
 
-        private ObservableCollection<Ingredient> ingredients;
+        //private ObservableCollection<Ingredient> ingredients;
 
         /// <summary>
         /// name of the recipe.
         /// </summary>
         private string recipeName;
 
+        //public virtual ICollection<Ingredient> ingredient { get; set; }
+
+        public virtual ICollection<Ingredient> Ings { get; set; }
         /// <summary>
         /// short description of the recipe.
         /// </summary>
@@ -43,7 +47,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe()
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-           
+            this.Ings = new ObservableCollection<Ingredient>();
            
         }
 
@@ -56,7 +60,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe(string recipeName, string recipeDescription)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-          
+            this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription= recipeDescription;
             this.id = -1;
@@ -71,7 +75,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe(string recipeName, string recipeDescription, int id, string pictureUrl)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-          
+            this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription = recipeDescription;
             this.id = id;

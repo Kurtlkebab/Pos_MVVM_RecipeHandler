@@ -13,7 +13,7 @@ namespace MVVM_RecipeHandler_EF6._0.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202205230949573_initial2"; }
+            get { return "202205231218063_initial2"; }
         }
         
         string IMigrationMetadata.Source
