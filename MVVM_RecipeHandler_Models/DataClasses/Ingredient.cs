@@ -37,7 +37,10 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private int id;
 
+        private string unit;
+
         public virtual ICollection<Recipe> recs { get; set; }
+        public  string Unit { get; set; }
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------

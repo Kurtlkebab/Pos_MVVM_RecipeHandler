@@ -22,8 +22,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Gray" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderThickness="2" Margin="10" >
-            <ScrollViewer  VerticalScrollBarVisibility="Auto" Background="#faf0e6" >
+        <Border BorderBrush="Gray" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderThickness="2" Margin="10" CornerRadius="10"  Background="#faf0e6">
+            <ScrollViewer  VerticalScrollBarVisibility="Auto" >
                 <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
 
                     <TextBlock Margin="10" TextWrapping="Wrap"  Text="{Binding SelectedRecipe.RecipeName}"></TextBlock>
@@ -46,8 +46,8 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <Border BorderBrush="Gray" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1" BorderThickness="2" Margin="10" >
-            <DockPanel Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1" Background="#faf0e6" >
+        <Border BorderBrush="Gray" Grid.Column="3" Grid.RowSpan="2" Background="#faf0e6" Grid.ColumnSpan="1" BorderThickness="2" Margin="10" CornerRadius="10" >
+            <DockPanel Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1"  >
                 <Image  Source="{Binding SelectedRecipe.PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
 
             </DockPanel>

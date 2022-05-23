@@ -72,6 +72,17 @@
                 Ingredient ing1 = new Ingredient("Schlagobers1");
                 Ingredient ing2 = new Ingredient("Fleisch1");
                 rec2.Ings.Add(ing1);
+               
+                foreach (Ingredient item in rec2.Ings)
+                {
+                   
+                    
+                        context.IngredientsRecipesSet.Add(new IngredientsRecipes(item,rec2,"kg"));
+
+                        context.SaveChanges();
+                    
+                }
+
                 rec3.Ings.Add(ing1);
                 rec4.Ings.Add(ing1);
                 rec2.Ings.Add(ing2);
