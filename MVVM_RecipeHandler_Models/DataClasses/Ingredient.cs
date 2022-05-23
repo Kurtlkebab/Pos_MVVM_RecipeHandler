@@ -1,6 +1,7 @@
 ﻿using MVVM_RecipeHandler_Common.NotifyPropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="ingredientUnit">unit of ingredient</param>
         public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
+            
             this.IngredientName = ingredientName;
             this.Amount = amount;
             this.id = -1;
@@ -57,6 +59,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName, string amount, int id)
         {
+            
             this.ingredientName = ingredientName;
             this.amount = amount;
             this.id = id;
@@ -70,6 +73,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName)
         {
+           
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = -1;
@@ -82,6 +86,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(int id, string ingredientName)
         {
+          
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = id;
@@ -105,7 +110,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.id = value;
                     this.OnPropertyChanged(nameof(this.Id));
-                    this.StudentChanged = true;
+                   
                 }
             }
         }
@@ -129,7 +134,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                     this.ingredientName = value;
                     this.OnPropertyChanged(nameof(this.ingredientName));
                    
-                    this.StudentChanged = true;
+                    
                 }
             }
         }
@@ -151,7 +156,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                     this.ingredientUnit = value;
                     this.OnPropertyChanged(nameof(this.ingredientUnit));
 
-                    this.StudentChanged = true;
+                   
                 }
             }
         }
@@ -173,15 +178,14 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                     this.amount = value;
                     this.OnPropertyChanged(nameof(this.amount));
                    
-                    this.StudentChanged = true;
+                    
                 }
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the properties have changed.
-        /// </summary>
-        public bool StudentChanged { get; private set; }
+        
+
+        
         #endregion
 
         /// <summary>
@@ -190,7 +194,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public void OnStudentDataSaved()
         {
             // Save data.
-            this.StudentChanged = false;
+          
         }
     }
 }

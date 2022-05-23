@@ -52,17 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202205090719466_InitialMigration.cs" />
-    <Compile Include="Migrations\202205090719466_InitialMigration.designer.cs">
-      <DependentUpon>202205090719466_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202205230940233_initial.cs" />
+    <Compile Include="Migrations\202205230940233_initial.designer.cs">
+      <DependentUpon>202205230940233_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205150938469_newMig.cs" />
-    <Compile Include="Migrations\202205150938469_newMig.designer.cs">
-      <DependentUpon>202205150938469_newMig.cs</DependentUpon>
+    <Compile Include="Migrations\202205230946042_initial1.cs" />
+    <Compile Include="Migrations\202205230946042_initial1.designer.cs">
+      <DependentUpon>202205230946042_initial1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205221109242_newMigration.cs" />
-    <Compile Include="Migrations\202205221109242_newMigration.designer.cs">
-      <DependentUpon>202205221109242_newMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202205230949573_initial2.cs" />
+    <Compile Include="Migrations\202205230949573_initial2.designer.cs">
+      <DependentUpon>202205230949573_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205230953428_initial3.cs" />
+    <Compile Include="Migrations\202205230953428_initial3.designer.cs">
+      <DependentUpon>202205230953428_initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205230955294_initial4.cs" />
+    <Compile Include="Migrations\202205230955294_initial4.designer.cs">
+      <DependentUpon>202205230955294_initial4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RecipeContext.cs" />
@@ -83,14 +91,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205090719466_InitialMigration.resx">
-      <DependentUpon>202205090719466_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205230940233_initial.resx">
+      <DependentUpon>202205230940233_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205150938469_newMig.resx">
-      <DependentUpon>202205150938469_newMig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205230946042_initial1.resx">
+      <DependentUpon>202205230946042_initial1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205221109242_newMigration.resx">
-      <DependentUpon>202205221109242_newMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205230949573_initial2.resx">
+      <DependentUpon>202205230949573_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205230953428_initial3.resx">
+      <DependentUpon>202205230953428_initial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205230955294_initial4.resx">
+      <DependentUpon>202205230955294_initial4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

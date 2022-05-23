@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,6 @@
                         IngredientName = c.String(),
                         IngredientUnit = c.String(),
                         Amount = c.String(),
-                        StudentChanged = c.Boolean(nullable: false),
                         Recipe_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -30,7 +29,6 @@
                         RecipeName = c.String(),
                         PictureURL = c.String(),
                         RecipeDescription = c.String(),
-                        StudentChanged = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -43,7 +41,8 @@
                         StudentChanged = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
+           
         }
         
         public override void Down()

@@ -25,7 +25,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private string recipeDescription;
 
-        /// <summary>
+        /// <summaryr
         /// Id of the recipe.
         /// </summary>
         private int id;
@@ -44,6 +44,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
            
+           
         }
 
 
@@ -55,6 +56,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe(string recipeName, string recipeDescription)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
+          
             this.recipeName = recipeName;
             this.recipeDescription= recipeDescription;
             this.id = -1;
@@ -69,6 +71,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe(string recipeName, string recipeDescription, int id, string pictureUrl)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
+          
             this.recipeName = recipeName;
             this.recipeDescription = recipeDescription;
             this.id = id;
@@ -82,7 +85,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// Gets or sets the list with all Ingredient data.
         /// </summary>
         public  ObservableCollection<Ingredient> Ingredients { get; set; }
-        public virtual Ingredient Ingredientss { get; set; }
+      
 
         /// <summary>
         /// Gets or sets the id of the recipe.
@@ -100,7 +103,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.id = value;
                     this.OnPropertyChanged(nameof(this.Id));
-                    this.StudentChanged = true;
+                   
                 }
             }
         }
@@ -121,7 +124,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.recipeName = value;
                     this.OnPropertyChanged(nameof(this.recipeName));
-                    this.StudentChanged = true;
+                 
                 }
             }
         }
@@ -143,7 +146,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                     this.pictureURL = value;
                   //  this.pictureURL= BuildImgString(value);
                     this.OnPropertyChanged(nameof(this.pictureURL));
-                    this.StudentChanged = true;
+                  
                 }
             }
         }
@@ -164,15 +167,12 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.recipeDescription = value;
                     this.OnPropertyChanged(nameof(this.recipeDescription));
-                    this.StudentChanged = true;
+                 
                 }
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the properties have changed.
-        /// </summary>
-        public bool StudentChanged { get; private set; }
+       
         #endregion
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public void OnStudentDataSaved()
         {
             // Save data.
-            this.StudentChanged = false;
+           
         }
 
         public string ImageToBase64String(Image image, ImageFormat format)

@@ -168,10 +168,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddUnitCommandCanExecute(object parameter)
         {
-            if (this.Units.Any(s => s.StudentChanged))
-            {
-                return true;
-            }
+           
 
             return true;
         }

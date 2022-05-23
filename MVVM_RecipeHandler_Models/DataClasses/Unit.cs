@@ -62,7 +62,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                     this.unitName = value;
                     this.OnPropertyChanged(nameof(this.unitName));
 
-                    this.StudentChanged = true;
+                    
                 }
             }
         }
@@ -82,14 +82,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.id = value;
                     this.OnPropertyChanged(nameof(this.Id));
-                    this.StudentChanged = true;
+                   
                 }
             }
         }
-        /// <summary>
-        /// Gets a value indicating whether the properties have changed.
-        /// </summary>
-        public bool StudentChanged { get; private set; }
+       
         #endregion
 
         /// <summary>
@@ -98,7 +95,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public void OnStudentDataSaved()
         {
             // Save data.
-            this.StudentChanged = false;
+           
         }
     }
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newMig : DbMigration
+    public partial class initial4 : DbMigration
     {
         public override void Up()
         {
