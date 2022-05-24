@@ -16,6 +16,12 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     public class Ingredient : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       // public int? RecipeId { get; set; }
+        //public Recipe Recipe { get; set; }
+
+
         /// <summary>
         /// Name of the Ingredient.
         /// </summary>
@@ -31,9 +37,6 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private string amount;
 
-        // public virtual ICollection<Recipe> recipe { get; set; }
-
-        //public Recipe Recipe { get; set; }
         /// <summary>
         /// Id of the Ingredient.
         /// </summary>
@@ -51,6 +54,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="ingredientUnit">unit of ingredient</param>
         public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
+            this.Recipes = new List<Recipe>();
             //this.recs = new ObservableCollection<Recipe>();
             this.IngredientName = ingredientName;
             this.Amount = amount;
@@ -66,6 +70,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName, string amount, int id)
         {
+            this.Recipes = new List<Recipe>();
             //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = amount;
@@ -82,6 +87,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName)
         {
+            this.Recipes = new List<Recipe>();
             //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
@@ -94,7 +100,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(int id, string ingredientName)
         {
-           // this.recs = new ObservableCollection<Recipe>();
+            this.Recipes = new List<Recipe>();
+            // this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = id;
@@ -105,8 +112,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Gets or sets the id of the student.
         /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get
@@ -132,9 +139,9 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         {
             get
             {
-               // asdsasdsad
+               
                 return this.ingredientName;
-                //this iis a comment
+                
             }
 
             set
@@ -193,15 +200,15 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             }
         }
 
-        
 
-        
+        public virtual ICollection<Recipe> Recipes { get; set; }
+
         #endregion
 
         /// <summary>
-        /// Called, when student data is saved.
+        /// Called, when Ingredient data is saved.
         /// </summary>
-        public void OnStudentDataSaved()
+        public void OnIngredientDataChanged()
         {
             // Save data.
           

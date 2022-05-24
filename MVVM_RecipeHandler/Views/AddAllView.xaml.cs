@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interaktionslogik für AddAllView.xaml
+    /// Interaction logic for AddAllView 
     /// </summary>
     public partial class AddAllView : UserControl
     {

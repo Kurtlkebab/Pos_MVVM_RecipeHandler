@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler
 {
     /// <summary>
-    /// Interaktionslogik für WindowAdd.xaml
+    /// Interaction logic for WindowAdd 
     /// </summary>
     public partial class WindowAdd : Window
     {

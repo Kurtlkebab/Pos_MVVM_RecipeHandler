@@ -14,7 +14,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
 
         public IngredientsRecipes(Ingredient ingredient, Recipe recipe,string unit)
         {
-            RecipeID=recipe.Id;
+            //RecipeID=recipe.RecipeId;
             IngredientID = ingredient.Id;
             this.Unit = unit;
             //this.Ingredient = ingredient;

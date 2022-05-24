@@ -31,12 +31,12 @@ namespace MVVM_RecipeHandler.ViewModels
         public string base64String;
         
         /// <summary>
-        /// the selected filepath of openfiledialog
+        /// the selected file path of open file dialog
         /// </summary>
         private string _selectedPath;
 
         /// <summary>
-        /// the initial directory for OpenFileDialog we can specify
+        /// the initial directory for Open File Dialog we can specify
         /// </summary>
         private string _defaultPath;
         #endregion-------------------------------------------------------------------

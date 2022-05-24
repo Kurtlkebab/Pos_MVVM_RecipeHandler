@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interaktionslogik für OpenFileDialogView.xaml
+    /// Interaction logic for OpenFileDialog 
     /// </summary>
     public partial class OpenFileDialogView : UserControl
     {

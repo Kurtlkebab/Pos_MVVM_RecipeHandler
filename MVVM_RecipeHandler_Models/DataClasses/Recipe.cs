@@ -16,16 +16,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     {
         #region ------------- Fields, Constants, Delegates ------------------------
 
-        //private ObservableCollection<Ingredient> ingredients;
-
         /// <summary>
         /// name of the recipe.
         /// </summary>
         private string recipeName;
 
-        //public virtual ICollection<Ingredient> ingredient { get; set; }
-
-        //public virtual ICollection<Ingredient> Ings { get; set; }
         /// <summary>
         /// short description of the recipe.
         /// </summary>
@@ -34,8 +29,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summaryr></summaryr>
         /// Id of the recipe.
         /// </summary>
-        private int id;
+        private int recipeid;
 
+        /// <summary>
+        /// string built from JPG Image.
+        /// </summary>
         private string pictureURL;
 
         #endregion
@@ -48,9 +46,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeName">name of the recipe.</param>
         public Recipe()
         {
-            this.Ingredients = new ObservableCollection<Ingredient>();
-            //this.Ings = new ObservableCollection<Ingredient>();
-           
+            this.Ingredients = new List<Ingredient>();
         }
 
 
@@ -59,14 +55,14 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription, ObservableCollection<Ingredient>ingredients)
+        public Recipe(string recipeName, string recipeDescription, List<Ingredient>ingredients)
         {
-            this.Ingredients = new ObservableCollection<Ingredient>();
+            this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
             //this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription= recipeDescription;
-            this.id = -1;
+            //this.recipeid = -1;
         }
 
         /// <summary>
@@ -75,9 +71,9 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
         /// <param name="id">id of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription, string pictureUrl, ObservableCollection<Ingredient> ingredients)
+        public Recipe(string recipeName, string recipeDescription, string pictureUrl, List<Ingredient> ingredients)
         {
-            this.Ingredients = new ObservableCollection<Ingredient>();
+            this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
             // this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
@@ -92,28 +88,28 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Gets or sets the list with all Ingredient data.
         /// </summary>
-        public  ObservableCollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
 
 
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RecipeId
         {
             get
             {
-                return this.id;
+                return this.recipeid;
             }
 
             set
             {
-                if (this.id != value)
+                if (this.recipeid != value)
                 {
-                    this.id = value;
-                    this.OnPropertyChanged(nameof(this.Id));
-                   
+                    this.recipeid = value;
+                    this.OnPropertyChanged(nameof(this.RecipeId));
+
                 }
             }
         }

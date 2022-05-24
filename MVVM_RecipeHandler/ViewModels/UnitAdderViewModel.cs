@@ -123,7 +123,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Private helper --------------------------------------
         /// <summary>
-        /// Generate Unit data from db.
+        /// Generate Unit data from database.
         /// </summary>
         private void LoadUnits()
         {

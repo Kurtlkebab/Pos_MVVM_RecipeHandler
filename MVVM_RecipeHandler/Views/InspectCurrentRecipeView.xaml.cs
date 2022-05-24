@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interactionlogic for InspectCurrentRecipeView
+    /// Interaction logic for InspectCurrentRecipeView
     /// </summary>
     public partial class InspectCurrentRecipeView : UserControl
     {

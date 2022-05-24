@@ -52,17 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202205240644081_initial.cs" />
-    <Compile Include="Migrations\202205240644081_initial.designer.cs">
-      <DependentUpon>202205240644081_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205240650184_initial1.cs" />
-    <Compile Include="Migrations\202205240650184_initial1.designer.cs">
-      <DependentUpon>202205240650184_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202205240721027_initial2.cs" />
-    <Compile Include="Migrations\202205240721027_initial2.designer.cs">
-      <DependentUpon>202205240721027_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\202205241546217_initial.cs" />
+    <Compile Include="Migrations\202205241546217_initial.designer.cs">
+      <DependentUpon>202205241546217_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RecipeContext.cs" />
@@ -83,14 +75,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202205240644081_initial.resx">
-      <DependentUpon>202205240644081_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205240650184_initial1.resx">
-      <DependentUpon>202205240650184_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205240721027_initial2.resx">
-      <DependentUpon>202205240721027_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205241546217_initial.resx">
+      <DependentUpon>202205241546217_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

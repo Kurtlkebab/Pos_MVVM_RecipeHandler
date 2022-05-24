@@ -107,22 +107,18 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Private helper --------------------------------------
         /// <summary>
-        /// Generate Amount data from db.
+        /// Generate Amount data from database
         /// </summary>
         private void LoadRecipes()
         {
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
-
             using (var context = new RecipeContext())
             {
                var recipes= context.RecipesSet.SqlQuery("SELECT * FROM dbo.Recipes").ToList();
                 MyRecipeItems.AddRange(recipes);
 
             }
-
-        
-
         }
 
 

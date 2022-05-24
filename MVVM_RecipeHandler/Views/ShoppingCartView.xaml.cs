@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interactionlogic for ShoppingCartView 
+    /// Interaction logic for ShoppingCartView 
     /// </summary>
     public partial class ShoppingCartView : UserControl
     {

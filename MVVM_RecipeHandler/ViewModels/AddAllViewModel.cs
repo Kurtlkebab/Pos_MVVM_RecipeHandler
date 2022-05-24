@@ -272,10 +272,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewLeft = memoryView;
             }// init new students view and view model
 
-
-
         }
-
 
         /// <summary>
         /// Determines, whether the student view loading command can be executed.
@@ -299,8 +296,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
                 InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
                 iView.DataContext = iVm;
-
-
                 this.CurrentViewBottom = iView;
 
             }
@@ -311,8 +306,6 @@ namespace MVVM_RecipeHandler.ViewModels
 
         }
 
-
-
         /// <summary>
         /// Determines, whether the student view loading command can be executed.
         /// </summary>
@@ -320,7 +313,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddMainButtonViewCommandCanExecute(object parameter)
         {
-
             return true;
         }
 
@@ -335,10 +327,8 @@ namespace MVVM_RecipeHandler.ViewModels
                 MainButtonView mView = new MainButtonView();
                 MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
                 mView.DataContext = mVm;
-
                 mView.DataContext = mVm;
                 this.CurrentViewLeft = mView;
-
             }
             else
             {
@@ -355,7 +345,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddCartViewCommandCanExecute(object parameter)
         {
-
             return true;
         }
 
@@ -370,10 +359,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 ShoppingCartView cView = new ShoppingCartView();
                 ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
                 cView.DataContext = cVm;
-
-
                 this.CurrentViewRight = cView;
-
             }
             else
             {
@@ -388,7 +374,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddUnitsViewCommandCanExecute(object parameter)
         {
-
             return true;
         }
 
@@ -403,10 +388,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 AddUnitsView cView = new AddUnitsView();
                 UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
                 cView.DataContext = cVm;
-
-
                 this.CurrentViewLeft = cView;
-
             }
             else
             {
@@ -422,7 +404,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddFileDialogViewCommandCanExecute(object parameter)
         {
-
             return true;
         }
 
@@ -437,8 +418,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 OpenFileDialogView cView = new OpenFileDialogView();
                 OpenFileDialogVM cVm = new OpenFileDialogVM(EventAggregator);
                 cView.DataContext = cVm;
-
-
                 this.CurrentViewRight = cView;
 
             }

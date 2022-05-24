@@ -236,7 +236,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Private helper --------------------------------------
         /// <summary>
-        /// Generate Amount data from db.
+        /// Generate Amount data from database.
         /// </summary>
         private void LoadRecipes()
         {
