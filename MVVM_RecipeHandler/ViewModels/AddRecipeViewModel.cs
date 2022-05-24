@@ -1,9 +1,12 @@
-﻿using Microsoft.Practices.Prism.Events;
+﻿using Microsoft.Practices.Prism;
+using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler_Common.Command;
+using MVVM_RecipeHandler_EF6._0;
 using MVVM_RecipeHandler_Models.DataClasses;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 namespace MVVM_RecipeHandler.ViewModels
@@ -119,9 +122,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.newRecipe = value;
                     this.OnPropertyChanged(nameof(this.NewRecipe));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
         public string SelectedUnit
@@ -137,9 +138,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedUnit = value;
                     this.OnPropertyChanged(nameof(this.SelectedUnit));                 
-                   
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+              }
             }
         }
 
@@ -156,8 +155,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeName = value;
                     this.OnPropertyChanged(nameof(this.RecipeName));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -175,9 +172,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeDescription = value;
                     this.OnPropertyChanged(nameof(this.RecipeDescription));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -193,8 +188,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeImageURL = value;
                     this.OnPropertyChanged(nameof(this.RecipeImageURL));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -267,8 +260,16 @@ namespace MVVM_RecipeHandler.ViewModels
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
 
-            //Recipe rez1 = new Recipe("eierspeis", "eier in pfanne hauen");
-            //MyRecipeItems.Add(rez1);
+            using (var context = new RecipeContext())
+            {
+                var Ingredients1 = context.IngredientsSet.SqlQuery("SELECT * FROM dbo.Ingredients").ToList();
+                
+                foreach (var item in Ingredients1)
+                {
+                    Ingredients.Add(item);
+                }
+                
+            }
 
         }
 
@@ -282,7 +283,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 IngredientsForTxt += "Zutatenname: "+ing.IngredientName+"\n";
                 if (ing.IngredientUnit != null)
                 {
-                    IngredientsForTxt += "Zutateneinheit: " + ing.IngredientName + "\n";
+                    IngredientsForTxt += "Zutateneinheit: " + ing.IngredientUnit + "\n";
                 }
                 if (ing.Amount != null)
                 {
@@ -369,7 +370,11 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             EventAggregator.GetEvent<newRecipeEvent>().Publish(NewRecipe);
            string ForTxtFile= ToTxt();
-            
+            using (StreamWriter sw = new StreamWriter(@".\Recipes.txt", true))
+            {
+                sw.Write(ForTxtFile);
+            }
+
         }
         #endregion
     }

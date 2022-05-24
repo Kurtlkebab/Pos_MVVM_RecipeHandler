@@ -9,6 +9,7 @@ using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_Models.DataClasses;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using MVVM_RecipeHandler_EF6._0;
 
 namespace MVVM_RecipeHandler.ViewModels
 {
@@ -39,8 +40,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public InspectCurrentRecipeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-      
-         
+            
 
             // hookup command to assoiated 
             EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Subscribe(this.OnUnitDataChanged);
@@ -214,10 +214,13 @@ namespace MVVM_RecipeHandler.ViewModels
         public void OnUnitDataChanged(Recipe recipe)
         {
            
-            foreach (var item in recipe.Ingredients)
-            {
-                Ingredients.Add(item);
-            }
+                //foreach (var item in recipe.IngredientsEx)
+                //{
+                   
+                //    Ingredients.Add(item);
+                //}
+            
+               
             this.SelectedRecipe = recipe;
             this.recipeImageURL = recipe.PictureURL;
             this.recipeName = recipe.RecipeName;

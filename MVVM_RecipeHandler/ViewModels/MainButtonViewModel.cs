@@ -12,6 +12,7 @@ using System.Windows.Input;
 using MVVM_RecipeHandler_EF6._0;
 using System.Linq;
 using Microsoft.Practices.Prism;
+using System.Collections.Generic;
 
 namespace MVVM_RecipeHandler.ViewModels
 {
@@ -40,7 +41,14 @@ namespace MVVM_RecipeHandler.ViewModels
 
             // load ingredient data from db
             this.LoadRecipes();
-          
+            
+            List<Ingredient> IngredientsPalatschinken = new List<Ingredient>();
+            IngredientsPalatschinken.Add(new Ingredient("Mehl", "250", "g"));
+            IngredientsPalatschinken.Add(new Ingredient("Eier", "2", "Stück"));
+            IngredientsPalatschinken.Add(new Ingredient("Milch", "500", "ml"));
+
+            Recipe rec3 = new Recipe("new", "new", "new", IngredientsPalatschinken);
+
             // hookup commands to assoiated methode
             this.SelectedButtonCommand = new ActionCommand
                 ((value) => { this.SelectedButtonCommandExecute(value);}, this.SelectedButtonCommandCanExecute);
@@ -116,6 +124,10 @@ namespace MVVM_RecipeHandler.ViewModels
             using (var context = new RecipeContext())
             {
                var recipes= context.RecipesSet.SqlQuery("SELECT * FROM dbo.Recipes").ToList();
+                foreach (var item in recipes)
+                {
+                    item.LoadIngredientsEX(item.Ingredients.ToList<Ingredient>());
+                }
                 MyRecipeItems.AddRange(recipes);
 
             }
@@ -150,7 +162,7 @@ namespace MVVM_RecipeHandler.ViewModels
                     SelectedRecipe = item;
                 }
             }
-
+          
             EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Publish(SelectedRecipe);
         }
         #endregion

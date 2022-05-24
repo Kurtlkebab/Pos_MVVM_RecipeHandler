@@ -46,6 +46,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeName">name of the recipe.</param>
         public Recipe()
         {
+            this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
         }
 
@@ -57,6 +58,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeName">name of the recipe.</param>
         public Recipe(string recipeName, string recipeDescription, List<Ingredient>ingredients)
         {
+            this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
             //this.Ings = new ObservableCollection<Ingredient>();
@@ -73,6 +75,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of the recipe.</param>
         public Recipe(string recipeName, string recipeDescription, string pictureUrl, List<Ingredient> ingredients)
         {
+
+            this.LoadIngredientsEX(ingredients);
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
             // this.Ings = new ObservableCollection<Ingredient>();
@@ -85,6 +89,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
 
         public Recipe(string recipeName, string recipeDescription, string pictureUrl, ObservableCollection<Ingredient> ingredients)
         {
+            this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
             // this.Ings = new ObservableCollection<Ingredient>();
@@ -101,11 +106,13 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         public virtual ICollection<Ingredient> Ingredients { get; set; }
 
-       
+        [NotMapped]
+       public ObservableCollection<Ingredient> IngredientsEx { get; set; }
+
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
-        
+
         public int RecipeId
         {
             get
@@ -225,6 +232,15 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             Image img = Image.FromFile(path);
             string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
             return ImageString;
+        }
+        public void LoadIngredientsEX(List<Ingredient>ingredients)
+        {
+            this.IngredientsEx = new ObservableCollection<Ingredient>();
+            foreach (var item in ingredients)
+            {
+                IngredientsEx.Add(item);
+            }
+            
         }
 
     }
