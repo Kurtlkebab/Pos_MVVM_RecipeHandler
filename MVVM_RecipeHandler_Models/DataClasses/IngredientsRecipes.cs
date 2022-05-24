@@ -17,14 +17,16 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             RecipeID=recipe.Id;
             IngredientID = ingredient.Id;
             this.Unit = unit;
+            //this.Ingredient = ingredient;
+            //this.Recipe = recipe;
         }
 
             [Key, Column(Order = 1)]
             public int RecipeID { get; set; }
             [Key, Column(Order = 2)]
             public int IngredientID { get; set; }
-            public Recipe Recipe { get; set; }
-            public Ingredient Ingredient { get; set; }
+          public Recipe Recipe { get; set; }
+           public Ingredient Ingredient { get; set; }
 
             public string Unit { get; set; }
         

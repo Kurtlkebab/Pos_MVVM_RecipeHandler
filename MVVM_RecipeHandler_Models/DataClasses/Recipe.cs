@@ -5,6 +5,8 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVM_RecipeHandler_Models.DataClasses
 { /// <summary>
@@ -23,13 +25,13 @@ namespace MVVM_RecipeHandler_Models.DataClasses
 
         //public virtual ICollection<Ingredient> ingredient { get; set; }
 
-        public virtual ICollection<Ingredient> Ings { get; set; }
+        //public virtual ICollection<Ingredient> Ings { get; set; }
         /// <summary>
         /// short description of the recipe.
         /// </summary>
         private string recipeDescription;
 
-        /// <summaryr
+        /// <summaryr></summaryr>
         /// Id of the recipe.
         /// </summary>
         private int id;
@@ -47,7 +49,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Recipe()
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-            this.Ings = new ObservableCollection<Ingredient>();
+            //this.Ings = new ObservableCollection<Ingredient>();
            
         }
 
@@ -57,10 +59,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription)
+        public Recipe(string recipeName, string recipeDescription, ObservableCollection<Ingredient>ingredients)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-            this.Ings = new ObservableCollection<Ingredient>();
+            this.Ingredients = ingredients;
+            //this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription= recipeDescription;
             this.id = -1;
@@ -72,13 +75,14 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
         /// <param name="id">id of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription, int id, string pictureUrl)
+        public Recipe(string recipeName, string recipeDescription, string pictureUrl, ObservableCollection<Ingredient> ingredients)
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
-            this.Ings = new ObservableCollection<Ingredient>();
+            this.Ingredients = ingredients;
+            // this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription = recipeDescription;
-            this.id = id;
+            
             this.pictureURL = pictureUrl;
         }
 
@@ -89,11 +93,13 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// Gets or sets the list with all Ingredient data.
         /// </summary>
         public  ObservableCollection<Ingredient> Ingredients { get; set; }
-      
+
 
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get

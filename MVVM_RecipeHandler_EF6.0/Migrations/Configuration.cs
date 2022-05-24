@@ -9,6 +9,7 @@
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
+    using System.Collections.ObjectModel;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MVVM_RecipeHandler_EF6._0.RecipeContext>
     {
@@ -55,39 +56,51 @@
                 //// RecipeSeed.Add(new Recipe("Trüffelgnochi2", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken",2," this is text") );
                 //RecipeSeed.Add(new Recipe("Trüffelgnochi3", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken",3," this is text") );
 
-
-                //Recipe rec1= new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", 1, ImageString);
-
-                Recipe rec2 = new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", 1, ImageString8);
-                Recipe rec3 = new Recipe("Eierspeis", "Pfanne auf mittlere bis hohe Hitze aufdrehen, Öl hinzufügen. Eier aufschlagen und mit einer Gabel verquirlen. Bis zum gewünschten Gargrad kochen (10 Sekunden bis 1 Mintue) und mit Salz Pfeffer und Schnittlauch servieren", 2, ImageString3);
-                Recipe rec4 = new Recipe("Chicken Spring Rolls", "Chop the scallions into 3 pieces. Slice 1” ginger into thin slices.Butterfly the chicken breast (See Note 2).First remove the tender (small inner fillet) by cutting away any connective tissue. Turn the breast over and with the edge of a knife parallel to the cutting board,cut the length of the side of the breast. Carefully slice the breast in half widthwise almost to the other edge. Keep the edge intact and open the breast along the fold.In a large pot,add water, 1 tsp. salt and 2 Tbsp. sake that is enough to cover the chicken. Put sliced ginger and scallions and bring it to a boil. Once boiling, put the chicken(breast and tender) in the pot, reduce the heat to the lowest setting, and cover the lid. Cook the chicken for 15 minutes.Meanwhile, juliene carrot and cucumber. I use a juliene slicer but if you don’t have one, cut into thin sheets first and then cut into matchstick size strips.Take out the chicken from the pot onto a plate and immediately cover with the plastic wrap to prevent from drying. Once the chicken has cooled, shred the chicken into small pices with your hands.Rinse the butter lettuce, mint, and cilantro under water and dry completely. Set all the ingredients on the working surface.Pour hot water in a large bowl. Workig with 1 wrapper at a time, soak the wrapper in the hot water and rotate 2-3 times, about 10 seconds. The wrapper will still feel slightly stiff but don’t worry, it will become softer. Place it flat on a working surface.Lay thebutter lettuce, chicken, carrot, and cucumber at bottom 1/3 of the wrapper closest to you, and place the mint and cilantro leaves at the top 1/3 of the wrapper.Pressing firmly down to hold the filling in place, foldthe bottom of the wrapper and start rolling tightly.Around the middle of the wrapper, fold both sides ofthe wrapper in and roll up tightly to the top. Place on a plate and cover loosely with plastic wrapand repeat with the remaining wrappers and fillings. Cut in half or in thirds, and serve with the Sesame Dipping Sauce.If not serving immediately, keep the spring rolls tightly covered with plastic wrap at room temperature for up to 2 hours.", 2, ImageString);
-                Recipe rec5 = new Recipe("Japanische Curry Roux", "In a small saucepan, melt the butter over low heat.When the butter is completely melted, add the flour. Stir to combine the butter and flour.Soon the butter and flour fuse and swell. Keep stirring because the roux will easily burn. Cook for 15-20 minutes on low heat. The roux will become light brown color.Add the garam masala, curry powder, and cayenne pepperCook and stir for 30 seconds and remove from the heat. Use the curry roux in your curry recipe. Make sure to taste and season with salt after you add the roux to the dish (as the roux is not salted). This recipe yields 1/3 cup roux; enough for your curry recipe that requires 4 cups liquid. If youre not sure, make double portion as everyone prefers different consistency for curry and you may like it thicker (requires more curry roux).If you do not use it immediately, let it cool in an airtight container with lid and store in the refrigerator for a month or freezer for 3-4 months.", 2, ImageString2);
-                Recipe rec6 = new Recipe("Klassischer Double Cheeseburger", "Pro Pattie 125 g Hackfleisch zu einer Kugel formen. Diese Hackfleischkugeln kommen dann auf die Gussplatte und werden mit 1-2 Esslöffel fein geschnittenen Zwiebeln gesmashed . (Je nachdem wie dick werden sie ca. 2-3 Minuten gegrillt, dann gedreht und gewürzt, anschließend direkt mit dem Cheddar belegt damit dieser leicht schmelzen kann und schön verläuft. Den Bacon gleichzeitig mit den Patties grillen und auf den geschmolzenen Cheddar legen.Die Buns durchschneiden und von den Innenseiten leicht anrösten.Nun die untere Bunhälfte mit Ketchup, Salat, evtl.karamellisierte Zwiebel und das erste Pattie mit dem Cheddar und Bacon belegen, sowie die Zwiebelringe.Anschließend das zweite Pattie mit Cheddar und Tomatenscheibe, Zwiebelringen und Mayonnaise, zum Schluss die obere Bunhälfte auflegen.", 2, ImageString1);
-                Recipe rec7 = new Recipe("Sesam Dipping Sauce", "For the sauce, grind 2 Tbsp. toasted sesame seeds in your mortar and pestle. Transfer the ground sesame seeds into a small bowl. Then grate the ½” ginger and 1-2 garlic cloves (I used Micropane grater).Add 3 Tbsp. sugar, 3 Tbsp. soy sauce, 2 Tbsp. rice vinegar, 2 tsp. sesame oil, and 1 tsp. la-yu in the bowl and mix well. Set aside.", 2, ImageString6);
-                Recipe rec8 = new Recipe("Japanisches Curry", "Discard the extra fat from the chicken and cut it into bite size pieces. Season with a little bit of salt and pepper.Peel and cut the carrot in rolling wedges (Rangiri) and cut the onions in wedges.Cut the potatoes into 1.5 inch pieces and soak in water for 15 minutes to remove excess starch.Grate the ginger and crush the garlic.Heat the oil in a large pot over medium heat and sauté the onions until they become translucent.Add the ginger and garlic.Add the chicken and cook until the chicken changes color.Add the carrot and mix.Add the chicken broth(or water).Bring the stock to boil and skim the scrum and fat from the surface of the stock.Peel the apple and grate it(use as much as you like to add sweetness)Add the honey and salt and simmer uncovered for 20 minutes, stirring occasionally.Add the potatoes and cook for 15 minutes, or until the potatoes are tender, and turn off the heat.Meanwhile you can make homemade curry roux.When the potatoes are ready, add the curry.If you use the store - bought curry roux, put 1 - 2 blocks of roux in a ladle and slowly let it dissolve with spoon or chopsticks.Continue with the rest of blocks.Then skip the next Step.If you are using homemade curry roux, add a ladleful or two of cooking liquidfrom the stock and mix into the curry paste.Add more cooking liquid if necessary and mix welluntil it’s smooth.Add the roux paste back into thestock in the large pot and stir to combine.Add soy sauce and ketchup.Simmer uncovered on low heat, stirring occasionally,until the curry becomes thick.Serve the curry with Japanese rice on the side and garnish with soft boiled egg and Fukujinzuke.You can store the curry in the refrigerator up to 2 - 3 days and in the freezer for 1 month.Potatoes will change the texture so you can take  them out before freezing.", 2, ImageString5);
-                Recipe rec9 = new Recipe("Yu Xiang Aubergine (chinesisch)", "Aubergine in breite Stäbe schneiden mit einer Priese Salz schwenken,zwischen Küchenrollenpapier auflegen,und beschweren(Schwere Bücher oder Teller etc.) und somit Feuchtigkeit für mind. 30 Minuten entziehen.Auberginen bei 175 Grad frittieren bis sie goldbraun sind.Zucker mit Essig und Suppe vermischen und mit Sojasauce abschmecken.Doubanjiang solange im Öl anbraten bis das Öl rot ist, Ingwer, Knoblauch und Jungzwiebel hinzufügen kurz mitbraten die Sauce von vorhin hinzufügen, zum kochen bringen, AUberginen hinzufügen und je nach Geschmack binden(1, 5 tl Kartoffelstärke / 1El Wasser).Servieren mit Reis und klein geschnittenen Jungzwiebel.", 2, ImageString7);
-                Recipe rec10 = new Recipe("Palatschinken", "Für die Palatschinken zuerst Mehl, Milch, Eier, Salz mit dem Schneebesen in einer Schüessel glatt rühren. Ca. 10 Min. stehen lassen, dadurch wird der Teig etwas dicker und danach nochmals gut durchrühren.Sollte der Palatschinkenteig zu dick sein, mit etwas Mineral oder Soda verdünnen.In einer beschichteten Pfanne einen Schuss Öl erhitzen(das Öl sollte ganz heiß sein, dann gelingt die erste Palatschinke sofort).Dann etwas Teig(mit einem Schöpfer) in die heiße Pfanne hineingegeben.Die Pfanne dabei immer wieder schwenken, sodass der Boden gleichmäßig dünn mit Teig bedeckt ist.Mit dem Pfannenwender die Palatschinke mehrmals wenden und von beiden Seiten goldgelb ausbacken.Die Fertig gebackenen Palatschinken halten sie im Backofen bei ca. 60 Grad warm.Mit beliebigen Zutaten(Marmelade, Nutella, Schinken & Käse etc.) die Palatschinken bestreichen und zusammenrollen.", 1, ImageString4);
-
-                // rec2.Ingredients.Add(new Ingredient(""));
                 Ingredient ing1 = new Ingredient("Schlagobers1");
                 Ingredient ing2 = new Ingredient("Fleisch1");
-                rec2.Ings.Add(ing1);
-               
-                foreach (Ingredient item in rec2.Ings)
-                {
-                   
-                    
-                        context.IngredientsRecipesSet.Add(new IngredientsRecipes(item,rec2,"kg"));
+                Ingredient ing3 = new Ingredient("Suppe1");
+                Ingredient ing4 = new Ingredient("knoblauch1");
+                //Recipe rec1= new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", 1,, ImageString);
+                ObservableCollection<Ingredient> Ingredients = new ObservableCollection<Ingredient>();
+                Ingredients.Add(ing1);
+                Ingredients.Add(ing2);
 
-                        context.SaveChanges();
-                    
+
+                ObservableCollection<Ingredient> Ingredients1 = new ObservableCollection<Ingredient>();
+                Ingredients1.Add(ing3);
+                Ingredients1.Add(ing4);
+
+                Recipe rec2 = new Recipe("Trüffelgnochi", "Schlagobers auf mittlerer Hitze auf die Hälfte einreduzieren mit halbem Rindssuppenwürfel Salz und Pfeffer abschmecken. Gnochi nach Anleitung kochen mit Sauce übergießen und mit bevorzugter Menge Trüffelöl abschmecken", ImageString8, Ingredients);
+                Recipe rec3 = new Recipe("Eierspeis", "Pfanne auf mittlere bis hohe Hitze aufdrehen, Öl hinzufügen. Eier aufschlagen und mit einer Gabel verquirlen. Bis zum gewünschten Gargrad kochen (10 Sekunden bis 1 Mintue) und mit Salz Pfeffer und Schnittlauch servieren", ImageString3, Ingredients);
+                Recipe rec4 = new Recipe("Chicken Spring Rolls", "Chop the scallions into 3 pieces. Slice 1” ginger into thin slices.Butterfly the chicken breast (See Note 2).First remove the tender (small inner fillet) by cutting away any connective tissue. Turn the breast over and with the edge of a knife parallel to the cutting board,cut the length of the side of the breast. Carefully slice the breast in half widthwise almost to the other edge. Keep the edge intact and open the breast along the fold.In a large pot,add water, 1 tsp. salt and 2 Tbsp. sake that is enough to cover the chicken. Put sliced ginger and scallions and bring it to a boil. Once boiling, put the chicken(breast and tender) in the pot, reduce the heat to the lowest setting, and cover the lid. Cook the chicken for 15 minutes.Meanwhile, juliene carrot and cucumber. I use a juliene slicer but if you don’t have one, cut into thin sheets first and then cut into matchstick size strips.Take out the chicken from the pot onto a plate and immediately cover with the plastic wrap to prevent from drying. Once the chicken has cooled, shred the chicken into small pices with your hands.Rinse the butter lettuce, mint, and cilantro under water and dry completely. Set all the ingredients on the working surface.Pour hot water in a large bowl. Workig with 1 wrapper at a time, soak the wrapper in the hot water and rotate 2-3 times, about 10 seconds. The wrapper will still feel slightly stiff but don’t worry, it will become softer. Place it flat on a working surface.Lay thebutter lettuce, chicken, carrot, and cucumber at bottom 1/3 of the wrapper closest to you, and place the mint and cilantro leaves at the top 1/3 of the wrapper.Pressing firmly down to hold the filling in place, foldthe bottom of the wrapper and start rolling tightly.Around the middle of the wrapper, fold both sides ofthe wrapper in and roll up tightly to the top. Place on a plate and cover loosely with plastic wrapand repeat with the remaining wrappers and fillings. Cut in half or in thirds, and serve with the Sesame Dipping Sauce.If not serving immediately, keep the spring rolls tightly covered with plastic wrap at room temperature for up to 2 hours.",  ImageString, Ingredients);
+                Recipe rec5 = new Recipe("Japanische Curry Roux", "In a small saucepan, melt the butter over low heat.When the butter is completely melted, add the flour. Stir to combine the butter and flour.Soon the butter and flour fuse and swell. Keep stirring because the roux will easily burn. Cook for 15-20 minutes on low heat. The roux will become light brown color.Add the garam masala, curry powder, and cayenne pepperCook and stir for 30 seconds and remove from the heat. Use the curry roux in your curry recipe. Make sure to taste and season with salt after you add the roux to the dish (as the roux is not salted). This recipe yields 1/3 cup roux; enough for your curry recipe that requires 4 cups liquid. If youre not sure, make double portion as everyone prefers different consistency for curry and you may like it thicker (requires more curry roux).If you do not use it immediately, let it cool in an airtight container with lid and store in the refrigerator for a month or freezer for 3-4 months.",  ImageString2, Ingredients);
+                Recipe rec6 = new Recipe("Klassischer Double Cheeseburger", "Pro Pattie 125 g Hackfleisch zu einer Kugel formen. Diese Hackfleischkugeln kommen dann auf die Gussplatte und werden mit 1-2 Esslöffel fein geschnittenen Zwiebeln gesmashed . (Je nachdem wie dick werden sie ca. 2-3 Minuten gegrillt, dann gedreht und gewürzt, anschließend direkt mit dem Cheddar belegt damit dieser leicht schmelzen kann und schön verläuft. Den Bacon gleichzeitig mit den Patties grillen und auf den geschmolzenen Cheddar legen.Die Buns durchschneiden und von den Innenseiten leicht anrösten.Nun die untere Bunhälfte mit Ketchup, Salat, evtl.karamellisierte Zwiebel und das erste Pattie mit dem Cheddar und Bacon belegen, sowie die Zwiebelringe.Anschließend das zweite Pattie mit Cheddar und Tomatenscheibe, Zwiebelringen und Mayonnaise, zum Schluss die obere Bunhälfte auflegen.",  ImageString5, Ingredients);
+                Recipe rec7 = new Recipe("Sesam Dipping Sauce", "For the sauce, grind 2 Tbsp. toasted sesame seeds in your mortar and pestle. Transfer the ground sesame seeds into a small bowl. Then grate the ½” ginger and 1-2 garlic cloves (I used Micropane grater).Add 3 Tbsp. sugar, 3 Tbsp. soy sauce, 2 Tbsp. rice vinegar, 2 tsp. sesame oil, and 1 tsp. la-yu in the bowl and mix well. Set aside.",  ImageString6, Ingredients);
+                Recipe rec8 = new Recipe("Japanisches Curry", "Discard the extra fat from the chicken and cut it into bite size pieces. Season with a little bit of salt and pepper.Peel and cut the carrot in rolling wedges (Rangiri) and cut the onions in wedges.Cut the potatoes into 1.5 inch pieces and soak in water for 15 minutes to remove excess starch.Grate the ginger and crush the garlic.Heat the oil in a large pot over medium heat and sauté the onions until they become translucent.Add the ginger and garlic.Add the chicken and cook until the chicken changes color.Add the carrot and mix.Add the chicken broth(or water).Bring the stock to boil and skim the scrum and fat from the surface of the stock.Peel the apple and grate it(use as much as you like to add sweetness)Add the honey and salt and simmer uncovered for 20 minutes, stirring occasionally.Add the potatoes and cook for 15 minutes, or until the potatoes are tender, and turn off the heat.Meanwhile you can make homemade curry roux.When the potatoes are ready, add the curry.If you use the store - bought curry roux, put 1 - 2 blocks of roux in a ladle and slowly let it dissolve with spoon or chopsticks.Continue with the rest of blocks.Then skip the next Step.If you are using homemade curry roux, add a ladleful or two of cooking liquidfrom the stock and mix into the curry paste.Add more cooking liquid if necessary and mix welluntil it’s smooth.Add the roux paste back into thestock in the large pot and stir to combine.Add soy sauce and ketchup.Simmer uncovered on low heat, stirring occasionally,until the curry becomes thick.Serve the curry with Japanese rice on the side and garnish with soft boiled egg and Fukujinzuke.You can store the curry in the refrigerator up to 2 - 3 days and in the freezer for 1 month.Potatoes will change the texture so you can take  them out before freezing.", ImageString5, Ingredients);
+                Recipe rec9 = new Recipe("Yu Xiang Aubergine (chinesisch)", "Aubergine in breite Stäbe schneiden mit einer Priese Salz schwenken,zwischen Küchenrollenpapier auflegen,und beschweren(Schwere Bücher oder Teller etc.) und somit Feuchtigkeit für mind. 30 Minuten entziehen.Auberginen bei 175 Grad frittieren bis sie goldbraun sind.Zucker mit Essig und Suppe vermischen und mit Sojasauce abschmecken.Doubanjiang solange im Öl anbraten bis das Öl rot ist, Ingwer, Knoblauch und Jungzwiebel hinzufügen kurz mitbraten die Sauce von vorhin hinzufügen, zum kochen bringen, AUberginen hinzufügen und je nach Geschmack binden(1, 5 tl Kartoffelstärke / 1El Wasser).Servieren mit Reis und klein geschnittenen Jungzwiebel.", ImageString7, Ingredients1);
+                Recipe rec10 = new Recipe("Palatschinken", "Für die Palatschinken zuerst Mehl, Milch, Eier, Salz mit dem Schneebesen in einer Schüessel glatt rühren. Ca. 10 Min. stehen lassen, dadurch wird der Teig etwas dicker und danach nochmals gut durchrühren.Sollte der Palatschinkenteig zu dick sein, mit etwas Mineral oder Soda verdünnen.In einer beschichteten Pfanne einen Schuss Öl erhitzen(das Öl sollte ganz heiß sein, dann gelingt die erste Palatschinke sofort).Dann etwas Teig(mit einem Schöpfer) in die heiße Pfanne hineingegeben.Die Pfanne dabei immer wieder schwenken, sodass der Boden gleichmäßig dünn mit Teig bedeckt ist.Mit dem Pfannenwender die Palatschinke mehrmals wenden und von beiden Seiten goldgelb ausbacken.Die Fertig gebackenen Palatschinken halten sie im Backofen bei ca. 60 Grad warm.Mit beliebigen Zutaten(Marmelade, Nutella, Schinken & Käse etc.) die Palatschinken bestreichen und zusammenrollen.",  ImageString4, Ingredients1);
+
+                // rec2.Ingredients.Add(new Ingredient(""));
+
+                //rec2.Ings.Add(ing1);
+                //rec2.Ingredients.Add(ing2);
+                //rec2.Ingredients.Add(ing2);
+
+                foreach (Ingredient item in rec2.Ingredients)
+                {
+
+
+                    //context.IngredientsRecipesSet.Add(new IngredientsRecipes(item,rec2,"kg"));
+
+                    // context.SaveChanges();
+
                 }
 
-                rec3.Ings.Add(ing1);
-                rec4.Ings.Add(ing1);
-                rec2.Ings.Add(ing2);
-                rec3.Ings.Add(ing2);
-                rec4.Ings.Add(ing2);
+                ////rec3.Ingredients.Add(ing1);
+                ////rec4.Ingredients.Add(ing1);
+                ////rec2.Ingredients.Add(ing2);
+                ////rec3.Ingredients.Add(ing2);
+                ////rec4.Ingredients.Add(ing2);
 
 
 
@@ -175,10 +188,11 @@
                 IngredientSeed.Add(new Ingredient("Käse"));
 
                 context.IngredientsSet.AddRange(IngredientSeed);
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+               // Console.WriteLine(ex.Message);
             }
 
 
@@ -202,10 +216,12 @@
 
             Image img = Image.FromFile(path);
             string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
-            Console.WriteLine(path);
-            Console.WriteLine(ImageString);
+           // Console.WriteLine(path);
+            //Console.WriteLine(ImageString);
             return ImageString;
         }
-        
+
+
+
     }
 }

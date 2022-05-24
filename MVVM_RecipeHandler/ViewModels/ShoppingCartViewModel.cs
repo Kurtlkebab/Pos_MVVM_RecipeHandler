@@ -49,7 +49,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
             Units.Add(un1);
             Units.Add(un2);
-            newRecipe = new Recipe("adsad", "adsad2123", -1, "adasdadadasdas");
+            newRecipe = new Recipe("adsad", "adsad2123", "url", Ingredients);
             newRecipe.Ingredients.Add(ing1);
             newRecipe.Ingredients.Add(ing2);
             // load ingredient data from db
@@ -243,8 +243,8 @@ namespace MVVM_RecipeHandler.ViewModels
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
 
-            Recipe rez1 = new Recipe("eierspeis", "eier in pfanne hauen");
-            MyRecipeItems.Add(rez1);
+           // Recipe rez1 = new Recipe("eierspeis", "eier in pfanne hauen");
+            //MyRecipeItems.Add(rez1);
 
         }
         #endregion

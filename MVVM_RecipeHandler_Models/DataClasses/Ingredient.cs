@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +39,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private int id;
 
-        private string unit;
-
-        public virtual ICollection<Recipe> recs { get; set; }
-        public  string Unit { get; set; }
+        
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -52,7 +51,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="ingredientUnit">unit of ingredient</param>
         public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
-            this.recs = new ObservableCollection<Recipe>();
+            //this.recs = new ObservableCollection<Recipe>();
             this.IngredientName = ingredientName;
             this.Amount = amount;
             this.id = -1;
@@ -67,7 +66,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName, string amount, int id)
         {
-            this.recs = new ObservableCollection<Recipe>();
+            //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = amount;
             this.id = id;
@@ -83,10 +82,10 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName)
         {
-            this.recs = new ObservableCollection<Recipe>();
+            //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
-            this.id = -1;
+            this.id = 1;
         }
         /// <summary>
         /// Initializes a new Instance of the <see cref="Ingredient"/> class.
@@ -95,7 +94,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="id">id of ingredient</param>
         public Ingredient(int id, string ingredientName)
         {
-            this.recs = new ObservableCollection<Recipe>();
+           // this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = id;
@@ -106,6 +105,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Gets or sets the id of the student.
         /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get
