@@ -39,21 +39,10 @@ namespace MVVM_RecipeHandler.ViewModels
            
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.Units = new ObservableCollection<Unit>();
+            ObservableCollection<Ingredient> newO = new ObservableCollection<Ingredient>();
 
-
-            Ingredient ing1 = new Ingredient("kas");
-            Ingredient ing2 = new Ingredient("kas1");
-            Unit un1 = new Unit("kg");
-            Unit un2 = new Unit("kg1");
-            Ingredients.Add(ing1);
-
-            Ingredients.Add(ing2);
-           
-            Units.Add(un1);
-            Units.Add(un2);
-            newRecipe = new Recipe("adsad", "adsad2123" ,"picturURL",Ingredients);
-            newRecipe.Ingredients.Add(ing1);
-            newRecipe.Ingredients.Add(ing2);
+            newRecipe = new Recipe("adsad", "adsad2123" ,"picturURL",newO);
+          
             // load ingredient data from db
             this.LoadRecipes();
 
@@ -266,7 +255,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 
                 foreach (var item in Ingredients1)
                 {
-                    Ingredients.Add(item);
+                    this.Ingredients.Add(item);
                 }
                 
             }
