@@ -30,7 +30,7 @@
 
                     <TextBlock   Margin="10" TextWrapping="Wrap"  Text="{Binding SelectedRecipe.RecipeDescription}"></TextBlock>
 
-                    <ItemsControl ItemsSource="{Binding SelectedRecipe.Ingredients}" >
+                    <ItemsControl ItemsSource="{Binding Ingredients}" >
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

@@ -62,6 +62,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             this.IngredientUnit = ingredientUnit;
         }
 
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
@@ -92,6 +94,18 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = 1;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Ingredient"/> class.
+        /// </summary>
+        /// <param name="ingredientName"> name of ingredient</param>
+        /// <param name="amount"> amount of ingredient</param>
+        /// <param name="id">id of ingredient</param>
+        public Ingredient()
+        {
+            this.Recipes = new List<Recipe>();
+            
         }
         /// <summary>
         /// Initializes a new Instance of the <see cref="Ingredient"/> class.
@@ -212,6 +226,15 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         {
             // Save data.
           
+        }
+
+        public Ingredient CopyIngredient(string ingredientUnit,string amount)
+        {
+            Ingredient newIngredient = new Ingredient(this.ingredientName, this.amount, this.ingredientUnit);
+            newIngredient.Amount = amount;
+            newIngredient.IngredientUnit = ingredientUnit;
+
+             return newIngredient;
         }
     }
 }

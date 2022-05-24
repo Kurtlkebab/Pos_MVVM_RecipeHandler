@@ -82,6 +82,17 @@ namespace MVVM_RecipeHandler_Models.DataClasses
             this.pictureURL = pictureUrl;
         }
 
+
+        public Recipe(string recipeName, string recipeDescription, string pictureUrl, ObservableCollection<Ingredient> ingredients)
+        {
+            this.Ingredients = new List<Ingredient>();
+            this.Ingredients = ingredients;
+            // this.Ings = new ObservableCollection<Ingredient>();
+            this.recipeName = recipeName;
+            this.recipeDescription = recipeDescription;
+
+            this.pictureURL = pictureUrl;
+        }
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
@@ -90,12 +101,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         public virtual ICollection<Ingredient> Ingredients { get; set; }
 
-
+       
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int RecipeId
         {
             get

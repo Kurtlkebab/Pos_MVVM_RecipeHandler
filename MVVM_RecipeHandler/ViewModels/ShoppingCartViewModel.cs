@@ -49,7 +49,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
             Units.Add(un1);
             Units.Add(un2);
-            newRecipe = new Recipe("adsad", "adsad2123", "url", Ingredients);
+           newRecipe = new Recipe("adsad", "adsad2123", "url", Ingredients);
             newRecipe.Ingredients.Add(ing1);
             newRecipe.Ingredients.Add(ing2);
             // load ingredient data from db

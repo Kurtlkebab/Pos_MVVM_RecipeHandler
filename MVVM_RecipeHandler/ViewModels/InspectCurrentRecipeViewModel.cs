@@ -213,6 +213,11 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="ingredient">Reference to the ingredient data.</param>
         public void OnUnitDataChanged(Recipe recipe)
         {
+           
+            foreach (var item in recipe.Ingredients)
+            {
+                Ingredients.Add(item);
+            }
             this.SelectedRecipe = recipe;
             this.recipeImageURL = recipe.PictureURL;
             this.recipeName = recipe.RecipeName;
