@@ -5,21 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_RecipeHandler.Views" xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UnitAdderViewModel}"
              mc:Ignorable="d" 
-             xmlns:converter="clr-namespace:MVVM_RecipeHandler_Models.Converter;assembly=MVVM_RecipeHandler_Models"
+             xmlns:converter="clr-namespace:MVVM_RecipeHandler_Models.Converter;assembly=MVVM_RecipeHandler_Models" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="800">
-   
+
     <UserControl.Resources>
-        <converter:Base64ImageConverter x:Key="BTN_CONV"/>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Purple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.blue.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Green" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MVVM_RecipeHandler;component/Styles/resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    
     <StackPanel>
-        <Button Height="70" Width="70">
-            <Image Source="{Binding Base64String, Converter={StaticResource BTN_CONV}}"/>
-        </Button>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Text="{Binding NewUnit, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="3,5,3,5"/>
-        </StackPanel>
-        <Button Content="Add Unit" Width="80" Command="{Binding AddUnitCommand}"/>
+       
+      
+            <TextBox Text="{Binding NewUnit, UpdateSourceTrigger=PropertyChanged}" Width="auto" Margin="3,5,3,5"/>
+      
+        <Button Content="Add Unit" Width="auto" Command="{Binding AddUnitCommand}"/>
     </StackPanel>
     
 </UserControl>

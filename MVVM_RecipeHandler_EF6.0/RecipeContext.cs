@@ -11,7 +11,7 @@ namespace MVVM_RecipeHandler_EF6._0
 {
     public class RecipeContext : DbContext
     {
-        public RecipeContext():base("RecipeDatabase1")
+        public RecipeContext():base("RecipeDatabase8")
         {
 
         }

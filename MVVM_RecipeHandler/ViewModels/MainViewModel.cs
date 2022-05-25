@@ -35,6 +35,28 @@ namespace MVVM_RecipeHandler.ViewModels
         /// View that is currently bound to the bottom ContentControl.
         /// </summary>
         private UserControl currentViewBottom;
+
+
+        /// <summary>
+        /// View that is currently bound to the left ContentControl.
+        /// </summary>
+        private UserControl currentViewLeftAdd;
+
+        /// <summary>
+        /// View that is currently bound to the left ContentControl.
+        /// </summary>
+        private UserControl currentViewLeftRightAdd;
+
+        /// <summary>
+        /// View that is currently bound to the rightContentControl.
+        /// </summary>
+        private UserControl currentViewRightAdd;
+
+        /// <summary>
+        /// View that is currently bound to the bottom ContentControl.
+        /// </summary>
+        private UserControl currentViewBottomAdd;
+
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -73,6 +95,7 @@ namespace MVVM_RecipeHandler.ViewModels
             this.AddCartViewCommand = new ActionCommand(this.AddCartViewCommandExecute, this.AddCartViewCommandCanExecute);
             this.AddUnitsViewCommand = new ActionCommand(this.AddUnitsViewCommandExecute, this.AddUnitsViewCommandCanExecute);
             this.AddFileDialogViewCommand = new ActionCommand(this.AddFileDialogViewCommandExecute, this.AddFileDialogViewCommandCanExecute);
+            this.AddAllViewCommand = new ActionCommand(this.AddAllViewCommandExecute, this.AddAllViewCommandCanExecute);
 
         }
         #endregion
@@ -87,6 +110,11 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Gets the student view loading button command.
         /// </summary>
         public ICommand AddCartViewCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the student view loading button command.
+        /// </summary>
+        public ICommand AddAllViewCommand { get; private set; }
 
         /// <summary>
         /// Gets the student view loading button command.
@@ -141,6 +169,26 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Gets or sets the view that is currently bound to the left ContentControl.
         /// </summary>
+        public UserControl CurrentViewLeftAdd
+        {
+            get
+            {
+                return this.currentViewLeftAdd;
+            }
+
+            set
+            {
+                if (this.currentViewLeftAdd != value)
+                {
+                    this.currentViewLeftAdd = value;
+                    this.OnPropertyChanged(nameof(this.currentViewLeftAdd));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view that is currently bound to the left ContentControl.
+        /// </summary>
         public UserControl CurrentViewRight
         {
             get
@@ -154,6 +202,46 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.currentViewRight = value;
                     this.OnPropertyChanged(nameof(this.CurrentViewRight));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view that is currently bound to the left ContentControl.
+        /// </summary>
+        public UserControl CurrentViewRightAdd
+        {
+            get
+            {
+                return this.currentViewRightAdd;
+            }
+
+            set
+            {
+                if (this.currentViewRightAdd != value)
+                {
+                    this.currentViewRightAdd = value;
+                    this.OnPropertyChanged(nameof(this.CurrentViewRightAdd));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view that is currently bound to the left ContentControl.
+        /// </summary>
+        public UserControl CurrentViewLeftRightAdd
+        {
+            get
+            {
+                return this.currentViewLeftRightAdd;
+            }
+
+            set
+            {
+                if (this.currentViewLeftRightAdd != value)
+                {
+                    this.currentViewLeftRightAdd = value;
+                    this.OnPropertyChanged(nameof(this.CurrentViewLeftRightAdd));
                 }
             }
         }
@@ -173,6 +261,26 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.currentViewBottom = value;
                     this.OnPropertyChanged(nameof(this.CurrentViewBottom));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the view that is currently bound to the right ContentControl.
+        /// </summary>
+        public UserControl CurrentViewBottomAdd
+        {
+            get
+            {
+                return this.currentViewBottomAdd;
+            }
+
+            set
+            {
+                if (this.currentViewBottomAdd != value)
+                {
+                    this.currentViewBottomAdd = value;
+                    this.OnPropertyChanged(nameof(this.CurrentViewBottomAdd));
                 }
             }
         }
@@ -420,6 +528,50 @@ namespace MVVM_RecipeHandler.ViewModels
             {
                 this.CurrentViewLeft = memoryView;
             }// init new students view and view model
+
+        }
+
+        /// <summary>
+        /// Determines, whether the student view loading command can be executed.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
+        private bool AddAllViewCommandCanExecute(object parameter)
+        {
+
+            return true;
+        }
+
+        /// <summary>
+        /// Occurs, when the user clicks the "Student View" button.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        private void AddAllViewCommandExecute(object parameter)
+        {
+            this.CurrentViewBottom = null;
+            this.CurrentViewLeft = null;
+            this.CurrentViewRight = null;
+
+            AddUnitsView cView = new AddUnitsView();
+            UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
+            cView.DataContext = cVm;
+
+
+            this.CurrentViewLeftAdd = cView;
+
+
+
+            AddIngredientsView addIngredientsView = new AddIngredientsView();
+            IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
+            addIngredientsView.DataContext = vm;
+            this.CurrentViewLeftRightAdd = addIngredientsView;
+
+
+            AddRecipeView addRView = new AddRecipeView();
+            AddRecipeViewModel Advm = new AddRecipeViewModel(EventAggregator);
+
+            addRView.DataContext = Advm;
+            this.CurrentViewRightAdd = addRView;
 
         }
         #endregion

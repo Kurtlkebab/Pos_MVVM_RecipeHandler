@@ -18,9 +18,9 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                        <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                        <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                        <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+                        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
 
                     </StackPanel>
                 </DataTemplate>

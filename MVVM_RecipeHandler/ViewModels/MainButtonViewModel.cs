@@ -27,7 +27,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Selected Recipe from Button
         /// </summary>
         public Recipe selectedRecipe;
-     
+
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -41,7 +41,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
             // load ingredient data from db
             this.LoadRecipes();
-            
+
             List<Ingredient> IngredientsPalatschinken = new List<Ingredient>();
             IngredientsPalatschinken.Add(new Ingredient("Mehl", "250", "g"));
             IngredientsPalatschinken.Add(new Ingredient("Eier", "2", "Stück"));
@@ -50,9 +50,8 @@ namespace MVVM_RecipeHandler.ViewModels
             Recipe rec3 = new Recipe("new", "new", "new", IngredientsPalatschinken);
 
             // hookup commands to assoiated methode
-            this.SelectedButtonCommand = new ActionCommand
-                ((value) => { this.SelectedButtonCommandExecute(value);}, this.SelectedButtonCommandCanExecute);
-           
+            this.SelectedButtonCommand = new ActionCommand((value) => { this.SelectedButtonCommandExecute(value); }, this.SelectedButtonCommandCanExecute);
+
         }
         #endregion
 
@@ -74,7 +73,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedRecipe = value;
                     this.OnPropertyChanged(nameof(this.SelectedRecipe));
-                
+
                 }
             }
         }
@@ -89,7 +88,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         public ICommand SelectedButtonCommand { get; }
 
-       
+
         #endregion
 
         #region ------------- Events ----------------------------------------------
@@ -99,7 +98,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="student">Reference to the student data.</param>
         public void OnIngredientDataChanged(Ingredient ingredient)
         {
-            
+
         }
 
         /// <summary>
@@ -123,7 +122,7 @@ namespace MVVM_RecipeHandler.ViewModels
             this.MyRecipeItems = new ObservableCollection<Recipe>();
             using (var context = new RecipeContext())
             {
-               var recipes= context.RecipesSet.SqlQuery("SELECT * FROM dbo.Recipes").ToList();
+                var recipes = context.RecipesSet.SqlQuery("SELECT * FROM dbo.Recipes").ToList();
                 foreach (var item in recipes)
                 {
                     item.LoadIngredientsEX(item.Ingredients.ToList<Ingredient>());
@@ -145,7 +144,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool SelectedButtonCommandCanExecute(object parameter)
         {
-           
+
             return true;
         }
 
@@ -162,7 +161,7 @@ namespace MVVM_RecipeHandler.ViewModels
                     SelectedRecipe = item;
                 }
             }
-          
+
             EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Publish(SelectedRecipe);
         }
         #endregion
