@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+
 namespace MVVM_RecipeHandler.ViewModels
 {
     /// <summary>
@@ -23,11 +24,31 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// new Ingredient from textbox.
         /// </summary>
-        public Recipe newRecipe;
-        public string selectedIngredient;
-        public string selectedUnit;
+        private Recipe newRecipe;
+
+        /// <summary>
+        /// selected ingredient
+        /// </summary>
+        private string selectedIngredient;
+
+        /// <summary>
+        /// selected unit
+        /// </summary>
+        private string selectedUnit;
+
+        /// <summary>
+        /// recipe name
+        /// </summary>
         private string recipeName;
+
+        /// <summary>
+        /// recipe description
+        /// </summary>
         private string recipeDescription;
+
+        /// <summary>
+        /// recipe image url
+        /// </summary>
         private string recipeImageURL;
         #endregion
 
@@ -38,18 +59,16 @@ namespace MVVM_RecipeHandler.ViewModels
         /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public AddRecipeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-           
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.Units = new ObservableCollection<Unit>();
             ObservableCollection<Ingredient> newO = new ObservableCollection<Ingredient>();
 
-            newRecipe = new Recipe("Rezeptname", "Rezeptbeschreibung" ,"pictureURL",newO);
+            this.newRecipe = new Recipe("Rezeptname", "Rezeptbeschreibung", "pictureURL", newO);
           
             // load ingredient data from db
             this.LoadRecipesIngredients();
 
             // hookup command to assoiated methode
-
             this.AddRecipeIngredientCommand = new ActionCommand(this.AddToRecipeButtonCommandExecute, this.AddToRecipeButtonCommandCanExecute);
 
             this.AddRecipeDescriptionNameCommand = new ActionCommand(this.AddToRecipeDescriptionNameCommandExecute, this.AddToRecipeDescriptionNameCommandCanExecute);
@@ -63,8 +82,6 @@ namespace MVVM_RecipeHandler.ViewModels
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Subscribe(this.OnIngredientDataChanged);
 
             EventAggregator.GetEvent<ImageStringDataChangedEvent>().Subscribe(this.OnImageStringDataChanged);
-
-
         }
         #endregion
 
@@ -88,10 +105,12 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Gets the Add recipe ingredient command.
         /// </summary>
         public ICommand AddRecipeIngredientCommand { get; }
+
         /// <summary>
         /// Gets the Add recipe ingredient command.
         /// </summary>
         public ICommand AddRecipeCommand { get; }
+
         /// <summary>
         /// Gets the Add recipe description+name command.
         /// </summary>
@@ -116,6 +135,10 @@ namespace MVVM_RecipeHandler.ViewModels
                }
             }
         }
+
+        /// <summary>
+        /// Gets or sets selected unit
+        /// </summary>
         public string SelectedUnit
         {
             get
@@ -133,6 +156,9 @@ namespace MVVM_RecipeHandler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets recipe name
+        /// </summary>
         public string RecipeName
         {
             get
@@ -150,6 +176,9 @@ namespace MVVM_RecipeHandler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets recipe description
+        /// </summary>
         public string RecipeDescription
         {
             get
@@ -167,7 +196,11 @@ namespace MVVM_RecipeHandler.ViewModels
             }
         }
 
-        public string RecipeImageURL {
+        /// <summary>
+        /// Gets or sets recipe Image url
+        /// </summary>
+        public string RecipeImageURL 
+        {
             get
             {
                 return this.recipeImageURL;
@@ -183,6 +216,9 @@ namespace MVVM_RecipeHandler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets string amount
+        /// </summary>
         public string Amount { get; set; }
 
         /// <summary>
@@ -191,8 +227,7 @@ namespace MVVM_RecipeHandler.ViewModels
         public string SelectedIngredient
         {
             get
-            {
-             
+            {           
                 return this.selectedIngredient;
             }
 
@@ -202,9 +237,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedIngredient = value;
                     this.OnPropertyChanged(nameof(this.SelectedIngredient));
-                    //this.selectedIngredient.Amount = Amount;
-                    //this.selectedIngredient.IngredientUnit = SelectedUnit;
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -218,12 +250,8 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="ingredient">Reference to the ingredient data.</param>
         public void OnIngredientDataChanged(Ingredient ingredient)
         {
-            this.Ingredients.Add(ingredient);
-            
-           
-            
+            this.Ingredients.Add(ingredient);       
         }
-
 
         /// <summary>
         /// Event handler to notice changes in the current Unit data.
@@ -235,62 +263,65 @@ namespace MVVM_RecipeHandler.ViewModels
         }
 
         /// <summary>
-        /// Event handler to notice changes in the current Unit data.
+        /// Event handler to notice changes in the current image string data.
         /// </summary>
-        /// <param name="unit">Reference to the unit data.</param>
-        public void OnImageStringDataChanged(string ImageString)
+        /// <param name="imageString">Reference to the image string data.</param>
+        public void OnImageStringDataChanged(string imageString)
         {
-            this.RecipeImageURL=ImageString;
-            NewRecipe.PictureURL = this.RecipeImageURL;
+            this.RecipeImageURL = imageString;
+            this.NewRecipe.PictureURL = this.RecipeImageURL;
         }
         #endregion
 
         #region ------------- Private helper --------------------------------------
         /// <summary>
-        /// Generate Amount data from db.
+        /// Generate Amount data from database.
         /// </summary>
         private void LoadRecipesIngredients()
         {
-            // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
-
             using (var context = new RecipeContext())
             {
-                var Ingredients1 = context.IngredientsSet.SqlQuery("SELECT * FROM dbo.Ingredients").ToList();
+                var ingredients = context.IngredientsSet.SqlQuery("SELECT * FROM dbo.Ingredients").ToList();
                 
-                foreach (var item in Ingredients1)
+                foreach (var item in ingredients)
                 {
                     this.Ingredients.Add(item);
                 }
 
-                var Units1 = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
+                var units = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
 
-                foreach (var item in Units1)
+                foreach (var item in units)
                 {
                     this.Units.Add(item);
                 }
             }
-
         }
 
-        public string ToTxt()
+        /// <summary>
+        /// Builds an string from <see cref="Recipe"/> object.
+        /// </summary>
+        /// <returns> string to write to text file</returns>
+        private string ToTxt()
         {
             string forTxtFile;
-            forTxtFile = "Rezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + NewRecipe.PictureURL+"\n\n";
-            string IngredientsForTxt="Zutaten: " + Environment.NewLine;
-            foreach (Ingredient ing in NewRecipe.Ingredients)
+            forTxtFile = "Rezeptname: " + this.NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + this.NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + this.NewRecipe.PictureURL + "\n\n";
+            string ingredientsForTxt = "Zutaten: " + Environment.NewLine;
+            foreach (Ingredient ing in this.NewRecipe.Ingredients)
             {
-                IngredientsForTxt += "Zutatenname: "+ing.IngredientName+"\n";
+                ingredientsForTxt += "Zutatenname: " + ing.IngredientName + "\n";
                 if (ing.IngredientUnit != null)
                 {
-                    IngredientsForTxt += "Zutateneinheit: " + ing.IngredientUnit + "\n";
+                    ingredientsForTxt += "Zutateneinheit: " + ing.IngredientUnit + "\n";
                 }
+
                 if (ing.Amount != null)
                 {
-                    IngredientsForTxt += "Menge: " + ing.Amount + "\n";
+                    ingredientsForTxt += "Menge: " + ing.Amount + "\n";
                 }
             }
-            forTxtFile=forTxtFile + IngredientsForTxt;
+
+            forTxtFile = forTxtFile + ingredientsForTxt;
             return forTxtFile;
         }
         #endregion
@@ -312,15 +343,12 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddToRecipeDescriptionNameCommandExecute(object parameter)
         {
-            NewRecipe.RecipeDescription = this.RecipeDescription;
+            this.NewRecipe.RecipeDescription = this.RecipeDescription;
             this.OnPropertyChanged(nameof(this.RecipeDescription));
-            NewRecipe.RecipeName = this.RecipeName;
-            NewRecipe.PictureURL = this.RecipeImageURL;
-            this.OnPropertyChanged(nameof(this.newRecipe.RecipeDescription));
-          
+            this.NewRecipe.RecipeName = this.RecipeName;
+            this.NewRecipe.PictureURL = this.RecipeImageURL;
+            this.OnPropertyChanged(nameof(this.newRecipe.RecipeDescription));         
         }
-
-
 
         /// <summary>
         /// Determines, whether the add Recipe command can be executed.
@@ -328,9 +356,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddToRecipeButtonCommandCanExecute(object parameter)
-        {
-
-           
+        {        
             return true;
         }
 
@@ -339,9 +365,8 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         /// <param name="parameter">Data used by the command.</param>
         private void AddToRecipeButtonCommandExecute(object parameter)
-        {
-          
-            NewRecipe.Ingredients.Add(new Ingredient(SelectedIngredient, Amount, SelectedUnit));
+        {        
+            this.NewRecipe.Ingredients.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
         }
 
         /// <summary>
@@ -351,17 +376,14 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddRecipeButtonCommandCanExecute(object parameter)
         {
-            if (NewRecipe.PictureURL != null)
+            if (this.NewRecipe.PictureURL != null)
             {
-                if (NewRecipe.PictureURL.Length != 0)
+                if (this.NewRecipe.PictureURL.Length != 0)
                 {
-
-
                     return true;
-
                 }
-            }
-           
+            }   
+            
             return false;
         }
 
@@ -371,15 +393,16 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddRecipeButtonCommandExecute(object parameter)
         {
-            EventAggregator.GetEvent<newRecipeEvent>().Publish(NewRecipe);
-           string ForTxtFile= ToTxt();
+            EventAggregator.GetEvent<newRecipeEvent>().Publish(this.NewRecipe);
+            string forTxtFile = this.ToTxt();
             using (StreamWriter sw = new StreamWriter(@".\Recipes.txt", true))
             {
-                sw.Write(ForTxtFile);
+                sw.Write(forTxtFile);
             }
+
             using (var context = new RecipeContext())
             {
-                context.RecipesSet.Add(NewRecipe);
+                context.RecipesSet.Add(this.NewRecipe);
                 context.SaveChanges();
             }
         }
