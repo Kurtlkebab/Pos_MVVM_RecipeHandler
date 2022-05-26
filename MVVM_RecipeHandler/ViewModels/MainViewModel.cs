@@ -21,8 +21,7 @@ namespace MVVM_RecipeHandler.ViewModels
     public class MainViewModel : ViewModelBase
     {
         #region ------------- Fields, Constants, Delegates ------------------------
-        
-
+    
         /// <summary>
         /// memoryView for switching Pages
         /// </summary>
@@ -102,36 +101,24 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public MainViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-           
-            MainButtonView mView = new MainButtonView();
-            MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
-            mView.DataContext = mVm;
+            MainButtonView mainButtonView = new MainButtonView();
+            MainButtonViewModel mainButtonVM = new MainButtonViewModel(EventAggregator);
+            mainButtonView.DataContext = mainButtonVM;
+            this.CurrentViewLeft = mainButtonView;
 
+            InspectCurrentRecipeView inspectView = new InspectCurrentRecipeView();
+            InspectCurrentRecipeViewModel inspectVM = new InspectCurrentRecipeViewModel(EventAggregator);
+            inspectView.DataContext = inspectVM;
+            this.CurrentViewBottom = inspectView;
 
-           
+            ShoppingCartView shoppingView = new ShoppingCartView();
+            ShoppingCartViewModel shoppingVM = new ShoppingCartViewModel(EventAggregator);
+            shoppingView.DataContext = shoppingVM;
+            this.CurrentViewRight = shoppingView;
 
-            this.CurrentViewLeft = mView;
-
-            InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
-            InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
-            iView.DataContext = iVm;
-
-            this.CurrentViewBottom = iView;
-
-            ShoppingCartView cView = new ShoppingCartView();
-            ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
-            cView.DataContext = cVm;
-
-            this.CurrentViewRight = cView;
-
-            // hookup command to assoiated methode
-          
             this.AddAllViewCommand = new ActionCommand(this.AddAllViewCommandExecute, this.AddAllViewCommandCanExecute);
             this.AddMainViewCommand = new ActionCommand(this.AddMainViewCommandExecute, this.AddMainViewCommandCanExecute);
-
         }
-
-        
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
@@ -245,6 +232,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the view that is currently bound to the right ContentControl.
         /// </summary>
@@ -288,7 +276,6 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Commands --------------------------------------------
    
-
         /// <summary>
         /// Determines, whether the add all view loading command can be executed.
         /// </summary>
@@ -300,7 +287,7 @@ namespace MVVM_RecipeHandler.ViewModels
         }
 
         /// <summary>
-        /// Occurs, when the user clicks the "Rezept erstellen" button.
+        /// Occurs, when the user clicks the add recipe button.
         /// </summary>
         /// <param name="parameter">Data used by the command.</param>
         private void AddAllViewCommandExecute(object parameter)
@@ -311,17 +298,16 @@ namespace MVVM_RecipeHandler.ViewModels
 
             if (this.CurrentViewLeftAdd == null)
             {
-                AddUnitsView cView = new AddUnitsView();
-                UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
-                cView.DataContext = cVm;
-                this.CurrentViewLeftAdd = cView;
-                this.memoryViewLeftAdd = cView;
+                AddUnitsView addUView = new AddUnitsView();
+                UnitAdderViewModel addUVM = new UnitAdderViewModel(EventAggregator);
+                addUView.DataContext = addUVM;
+                this.CurrentViewLeftAdd = addUView;
+                this.memoryViewLeftAdd = addUView;
             }
             else
             {
-                this.CurrentViewLeftAdd = memoryViewLeftAdd;
+                this.CurrentViewLeftAdd = this.memoryViewLeftAdd;
             }
-
 
             if (this.CurrentViewLeftRightAdd == null)
             {
@@ -333,20 +319,20 @@ namespace MVVM_RecipeHandler.ViewModels
             }
             else
             {
-                this.CurrentViewLeftRightAdd = memoryViewLeftRightAdd;
+                this.CurrentViewLeftRightAdd = this.memoryViewLeftRightAdd;
             }
 
             if (this.CurrentViewRightAdd == null)
             {
                 AddRecipeView addRView = new AddRecipeView();
-                AddRecipeViewModel Advm = new AddRecipeViewModel(EventAggregator);
-                addRView.DataContext = Advm;
+                AddRecipeViewModel addRVM = new AddRecipeViewModel(EventAggregator);
+                addRView.DataContext = addRVM;
                 this.CurrentViewRightAdd = addRView;
                 this.memoryViewRightAdd = addRView;
             }
             else
             {
-                this.CurrentViewRightAdd = memoryViewRightAdd;
+                this.CurrentViewRightAdd = this.memoryViewRightAdd;
             }
 
             if (this.CurrentViewBottomAdd == null)
@@ -359,9 +345,8 @@ namespace MVVM_RecipeHandler.ViewModels
             }
             else
             {
-                this.CurrentViewBottomAdd = memoryViewBottomAdd;
-            }
-          
+                this.CurrentViewBottomAdd = this.memoryViewBottomAdd;
+            }     
         }
 
         /// <summary>
@@ -387,43 +372,42 @@ namespace MVVM_RecipeHandler.ViewModels
 
             if (this.CurrentViewLeft == null)
             {
-                MainButtonView mView = new MainButtonView();
-                MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
-                mView.DataContext = mVm;
-                this.CurrentViewLeft = mView;
-                this.memoryViewLeft = mView;
+                MainButtonView mainButtonView = new MainButtonView();
+                MainButtonViewModel mainButtonVM = new MainButtonViewModel(EventAggregator);
+                mainButtonView.DataContext = mainButtonVM;
+                this.CurrentViewLeft = mainButtonView;
+                this.memoryViewLeft = mainButtonView;
             }
             else
             {
-                this.CurrentViewLeft = memoryViewLeft;
+                this.CurrentViewLeft = this.memoryViewLeft;
             }
 
             if (this.CurrentViewBottom == null)
             {
-                InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
-                InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
-                iView.DataContext = iVm;
-                this.CurrentViewBottom = iView;
-                this.memoryViewBottom = iView;
+                InspectCurrentRecipeView inspectView = new InspectCurrentRecipeView();
+                InspectCurrentRecipeViewModel inspectVM = new InspectCurrentRecipeViewModel(EventAggregator);
+                inspectView.DataContext = inspectVM;
+                this.CurrentViewBottom = inspectView;
+                this.memoryViewBottom = inspectView;
             }
             else
             {
-                this.CurrentViewBottom = memoryViewBottom;
+                this.CurrentViewBottom = this.memoryViewBottom;
             }
 
             if (this.CurrentViewRight == null)
             {
-                ShoppingCartView cView = new ShoppingCartView();
-                ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
-                cView.DataContext = cVm;
-                this.CurrentViewRight = cView;
-                this.memoryViewRight = cView;
+                ShoppingCartView shoppingView = new ShoppingCartView();
+                ShoppingCartViewModel shoppingVM = new ShoppingCartViewModel(EventAggregator);
+                shoppingView.DataContext = shoppingVM;
+                this.CurrentViewRight = shoppingView;
+                this.memoryViewRight = shoppingView;
             }
             else
             {
-                this.CurrentViewRight = memoryViewRight;
-            }
-             
+                this.CurrentViewRight = this.memoryViewRight;
+            }          
         }        
         #endregion
     }

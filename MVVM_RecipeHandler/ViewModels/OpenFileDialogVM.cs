@@ -20,11 +20,7 @@ namespace MVVM_RecipeHandler.ViewModels
     public class OpenFileDialogVM : ViewModelBase
     {
         #region ------------- Fields, Constants, Delegates ------------------------
-        /// <summary>
-        /// Gets or sets Open file Dialog Command
-        /// </summary>
-        public static RelayCommand OpenCommand { get; set; }
-
+       
         /// <summary>
         /// Image converted to String
         /// </summary>
@@ -44,63 +40,84 @@ namespace MVVM_RecipeHandler.ViewModels
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="OpenFileDialogVM"/> class.
+        /// </summary>
+        /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
+        public OpenFileDialogVM(IEventAggregator eventAggregator) : base(eventAggregator)
+        {
+            this.RegisterCommands();
+        }
+
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="OpenFileDialogVM"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">the initial directory for open file dialog</param>
+        /// <param name="defaultPath">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
+        public OpenFileDialogVM(IEventAggregator eventAggregator, string defaultPath) : base(eventAggregator)
+        {
+            this.defaultPath = defaultPath;
+            this.RegisterCommands();
+        }
+
+        #endregion-------------------------------------------------------------------
+
+        #region ------------- Properties, Indexer ---------------------------------
+        /// <summary>
+        /// Gets or sets Open file Dialog Command
+        /// </summary>
+        public static RelayCommand OpenCommand { get; set; }
+       
+        /// <summary>
         /// Gets or sets the Base64string built from image
         /// </summary>
-        public string Base64String {get {return base64String ;} set { this.OnPropertyChanged(nameof(this.Base64String)); ; } }
+        public string Base64String
+        {
+            get
+            {
+                return this.base64String;
+            }
+            
+            set
+            {
+                this.OnPropertyChanged(nameof(this.Base64String)); 
+            }
+        }
 
         /// <summary>
         /// Gets or sets the SelectedPatch from Open file Dialog
         /// </summary>
         public string SelectedPath
         {
-            get { return selectedPath; }
+            get
+            {
+                return this.selectedPath;
+            }
+            
             set
             {
-                selectedPath = value;
-              
+                this.selectedPath = value;
                 this.OnPropertyChanged(nameof(this.SelectedPath));
             }
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpenFileDialogVM"/> class.
-        /// </summary>
-        /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
-        public OpenFileDialogVM(IEventAggregator eventAggregator) : base(eventAggregator)
-        {
-            RegisterCommands();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpenFileDialogVM"/> class.
-        /// </summary>
-        /// <param name="defaultPath"> the initial directory for OpenfileDialgog</param>
-        /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
-        public OpenFileDialogVM(IEventAggregator eventAggregator,string defaultPath) : base(eventAggregator)
-        {
-            this.defaultPath = defaultPath;
-            RegisterCommands();
-        }
-
-        #endregion-------------------------------------------------------------------
+        #endregion -------------------------------------------------------------
 
         #region ------------- Private helper --------------------------------------
-        
+        /// <summary>
+        /// Fires <see cref="ImageStringDataChangedEvent"/> event with image string
+        /// </summary>
         private void PublishImgString()
         {
             try
             {
-                Image img = Image.FromFile(selectedPath);
-                string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
-                EventAggregator.GetEvent<ImageStringDataChangedEvent>().Publish(ImageString);
-                base64String = ImageString;
+                Image img = Image.FromFile(this.selectedPath);
+                string imageString = this.ImageToBase64String(img, ImageFormat.Jpeg);
+                EventAggregator.GetEvent<ImageStringDataChangedEvent>().Publish(imageString);
+                this.base64String = imageString;
                 this.OnPropertyChanged(nameof(this.Base64String));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
             }
-          
         }
 
         /// <summary>
@@ -108,28 +125,28 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         private void RegisterCommands()
         {
-            OpenCommand = new RelayCommand(ExecuteOpenFileDialog);
+            OpenCommand = new RelayCommand(this.ExecuteOpenFileDialog);
         }
 
         /// <summary>
-        /// creates new OpenFileDialog and sets selectedPatch
+        /// creates new OpenFileDialog and sets selected Path and calls Publish Image String to Publish the Image string with selected file path
         /// </summary>
         private void ExecuteOpenFileDialog()
         {
-            var dialog = new OpenFileDialog { InitialDirectory = defaultPath };
-            dialog.Filter= "Image Files|*.jpg;*.jpeg";
+            var dialog = new OpenFileDialog { InitialDirectory = this.defaultPath };
+            dialog.Filter = "Image Files|*.jpg;*.jpeg";
             dialog.ShowDialog();
-            SelectedPath = dialog.FileName;
-            PublishImgString();
+            this.SelectedPath = dialog.FileName;
+            this.PublishImgString();
         }
 
         /// <summary>
         /// Converts an image to string
         /// </summary>
         /// <param name="image"> image to convert to string</param>
-        /// <param name="format"> defines the dataformat of the image</param>
+        /// <param name="format"> defines the data format of the image</param>
         /// <returns>Image as a string</returns>
-        public string ImageToBase64String(Image image, ImageFormat format)
+        private string ImageToBase64String(Image image, ImageFormat format)
         {
             MemoryStream memory = new MemoryStream();
             image.Save(memory, format);
@@ -142,9 +159,9 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Converts a string to image
         /// </summary>
-        /// <param name="base64"> string to convert to image/param>
-        /// <returns> Image built from base64 string</returns>
-        public Image ImageFromBase64String(string base64)
+        /// <param name="base64">string to convert to image</param>
+        /// <returns>Image built from base64 string</returns>
+        private Image ImageFromBase64String(string base64)
         {
             MemoryStream memory = new MemoryStream(Convert.FromBase64String(base64));
             Image result = Image.FromStream(memory);
@@ -153,6 +170,5 @@ namespace MVVM_RecipeHandler.ViewModels
             return result;
         }
         #endregion-------------------------------------------------------------------
-
     }
 }

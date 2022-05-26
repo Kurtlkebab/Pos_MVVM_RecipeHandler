@@ -28,7 +28,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// new Unit from textbox.
         /// </summary>
-        public string newUnit;
+        private string newUnit;
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -75,13 +75,14 @@ namespace MVVM_RecipeHandler.ViewModels
         public void OnUnitDataChanged(Unit unit)
         {
             bool isNew = false;
-            foreach (var item in Units)
+            foreach (var item in this.Units)
             {
-                if (unit.UnitName !=item.UnitName)
+                if (unit.UnitName != item.UnitName)
                 {
                     isNew = true;
                 }
             }
+
             if (isNew)
             {
                 this.Units.Add(unit);
@@ -102,9 +103,6 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             this.Units = new ObservableCollection<Unit>();
         }
-
-        
-
         #endregion
 
         #region ------------- Commands --------------------------------------------

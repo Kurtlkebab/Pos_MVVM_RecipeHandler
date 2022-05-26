@@ -25,7 +25,7 @@ namespace MVVM_RecipeHandler.Views
         /// </summary>
         public ShoppingCartView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

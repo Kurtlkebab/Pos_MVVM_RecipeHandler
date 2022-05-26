@@ -18,6 +18,7 @@ namespace MVVM_RecipeHandler.ViewModels
     public class ViewModelBase : NotifyPropertyChanged
     {
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelBase"/> class.
         /// </summary>
@@ -30,11 +31,18 @@ namespace MVVM_RecipeHandler.ViewModels
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
+        
         /// <summary>
         /// Gets access to the event aggregator for communication.
         /// </summary>
         protected IEventAggregator EventAggregator { get; }
 
+        /// <summary>
+        /// Converts an image to string
+        /// </summary>
+        /// <param name="image">image to convert to string</param>
+        /// <param name="format">defines the data format of the image</param>
+        /// <returns>Image as a string</returns>
         private string ImageToBase64String(Image image, ImageFormat format)
         {
             MemoryStream memory = new MemoryStream();
@@ -44,6 +52,11 @@ namespace MVVM_RecipeHandler.ViewModels
             return base64;
         }
 
+        /// <summary>
+        /// Builds Image from base64 string
+        /// </summary>
+        /// <param name="base64">string to convert to image</param>
+        /// <returns> Image from string</returns>
         private Image ImageFromBase64String(string base64)
         {
             MemoryStream memory = new MemoryStream(Convert.FromBase64String(base64));
@@ -51,6 +64,12 @@ namespace MVVM_RecipeHandler.ViewModels
             memory.Close();
             return result;
         }
+
+        /// <summary>
+        /// Builds and returns an image string created from Path
+        /// </summary>
+        /// <param name="path"> Path to jpg for string creation</param>
+        /// <returns> string Image string built from path</returns>
         private string BuildImgString(string path)
         {
             Image img = Image.FromFile(path);
