@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_RecipeHandler.Views"
-             xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:converter="clr-namespace:MVVM_RecipeHandler_Models.Converter;assembly=MVVM_RecipeHandler_Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewmodels:AddRecipeViewModel}"
@@ -12,7 +12,7 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-
+            <converter:Base64ImageConverter x:Key="BTN_CONV"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
@@ -58,28 +58,41 @@
                   SelectedValuePath="UnitName"
                   SelectedValue="{Binding SelectedUnit}"/>
             <Button Content="Add Ingredient to Current Recipe" Command="{Binding AddRecipeIngredientCommand}"/>
-            <Label Content="{Binding SelectedIngredient}"/>
+            <!--<Label Content="{Binding SelectedIngredient}"/> -->
+            <Button Margin="0,10,0,0"  Grid.Column="1" Grid.Row="1" Height="30" Content="Add Recipe" Command="{Binding AddRecipeCommand}"></Button>
          
+
         </StackPanel>
-        <StackPanel Grid.Row="0">
-            <Label>RecipeName</Label>
-            <Label Content="{Binding NewRecipe.RecipeName}"></Label>
+        <Border VerticalAlignment="Top" Grid.RowSpan="2"  Grid.Row="0" MaxHeight="390"    BorderBrush="Green" BorderThickness="5"  >
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#faf0e6"   >
+                <StackPanel Grid.Row="0" Grid.RowSpan="2" >
 
-            <ItemsControl ItemsSource="{Binding NewRecipe.Ingredients}" Grid.Column="0" Grid.Row="1">
+                    <Label Margin="10,0,0,0" FontSize="20" FontWeight="Bold">Rezept Name:</Label>
+                    <Label Margin="10,0,0,0" Content="{Binding NewRecipe.RecipeName}"></Label>
+                    <Label></Label>
+                    <Label Margin="10,0,0,0" FontSize="20" FontWeight="Bold">Rezept Beschreibung:</Label>
+                    <Label Margin="10,0,0,0" Content="{Binding NewRecipe.RecipeDescription}"></Label>
+                    <Label></Label>
+                    <Label Margin="10,0,0,0" FontSize="20" FontWeight="Bold">Zutaten: </Label>
+                    <ItemsControl ItemsSource="{Binding NewRecipe.Ingredients}" Grid.Column="0" Grid.Row="1">
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                            <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                            <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                    <TextBox  Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                                    <TextBox Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-        <Button  Grid.Column="1" Grid.Row="1" Height="30" Content="Add Recipe" Command="{Binding AddRecipeCommand}"></Button>
+                                    <TextBox  Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                                    
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Image Margin="10"  Source="{Binding RecipeImageURL, Converter={StaticResource BTN_CONV}}"></Image>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        
     </Grid>
    
 </UserControl>

@@ -39,12 +39,22 @@ namespace MVVM_RecipeHandler_Models.DataClasses
           
         }
 
-              
+        /// <summary>
+        /// Initializes a new Instance of the <see cref="Unit"/> class.
+        /// </summary>
+        /// <param name="unitname"> amount of ingredient</param>
+        /// <param name="id">id of ingredient</param>
+        public Unit()
+        {
+
+         
+        }
+
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
-        
-        
+
+
         /// <summary>
         /// Gets or sets the amount of the ingredient.
         /// </summary>

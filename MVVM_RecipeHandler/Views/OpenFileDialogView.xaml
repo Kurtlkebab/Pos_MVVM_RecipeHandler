@@ -7,15 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
               xmlns:converter="clr-namespace:MVVM_RecipeHandler_Models.Converter;assembly=MVVM_RecipeHandler_Models"
-             xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:OpenFileDialogVM}">
+             xmlns:viewmodels="clr-namespace:MVVM_RecipeHandler.ViewModels" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=viewmodels:OpenFileDialogVM}">
     <UserControl.Resources>
-        <converter:Base64ImageConverter x:Key="BTN_CONV"/>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Purple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.blue.xaml" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Green" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MVVM_RecipeHandler;component/Styles/resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <TextBox Text="{Binding SelectedPath}" />
-        <Button Command="{Binding OpenCommand}" >Browse</Button>
-        <Button Height="70" Width="70">
-            <Image Source="{Binding Base64String, Converter={StaticResource BTN_CONV}}"/>
-        </Button>
+        <Button Command="{Binding OpenCommand}" >Bild auswählen</Button>
+        
     </Grid>
 </UserControl>

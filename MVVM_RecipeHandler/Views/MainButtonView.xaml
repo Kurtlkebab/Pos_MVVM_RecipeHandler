@@ -15,7 +15,7 @@
         <ResourceDictionary>
             <converter:Base64ImageConverter x:Key="BTN_CONV"/>
             <ResourceDictionary.MergedDictionaries>
-             
+                <ResourceDictionary Source="/Styles/Scrollviewer.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Purple.xaml" />
@@ -25,10 +25,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-  
-  
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#faf0e6"  >
+
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#faf0e6"   >
         
         <ItemsControl ItemsSource="{Binding Path=MyRecipeItems}" >
             <ItemsControl.ItemsPanel>
@@ -39,12 +39,12 @@
             <ItemsControl.ItemTemplate >
                 <DataTemplate>
 
-                    <StackPanel Orientation="Vertical" Width="100" Height="120"  >
-                        <Button CommandParameter="{Binding RecipeName}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectedButtonCommand}" Width="80" Height="80" ToolTip="{Binding RecipeName}" Margin="0,0,5,5">
-                            <Image Width="80" Height="80" Source="{Binding PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
+                    <StackPanel Orientation="Vertical" Width="200" Height="220" Margin="15" >
+                        <Button CommandParameter="{Binding RecipeName}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectedButtonCommand}" Width="200" Height="200" ToolTip="{Binding RecipeName}" Margin="0,0,5,5">
+                            <Image Width="auto" Height="auto" Source="{Binding PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
                          
                         </Button>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding RecipeName}"></TextBlock>
+                        <!-- <TextBlock HorizontalAlignment="Center" Text="{Binding RecipeName}"></TextBlock>--> 
                     </StackPanel>
 
                 </DataTemplate>

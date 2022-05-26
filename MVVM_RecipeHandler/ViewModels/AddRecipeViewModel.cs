@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Events;
+using MVVM_RecipeHandler.Views;
 using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_EF6._0;
 using MVVM_RecipeHandler_Models.DataClasses;
@@ -217,6 +218,9 @@ namespace MVVM_RecipeHandler.ViewModels
         public void OnIngredientDataChanged(Ingredient ingredient)
         {
             this.Ingredients.Add(ingredient);
+            
+           
+            
         }
 
 
@@ -257,7 +261,13 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.Ingredients.Add(item);
                 }
-                
+
+                var Units1 = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
+
+                foreach (var item in Units1)
+                {
+                    this.Units.Add(item);
+                }
             }
 
         }

@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\Base64ImageConverter.cs" />
-    <Compile Include="DataClasses\IngredientsRecipes.cs" />
     <Compile Include="DataClasses\Unit.cs" />
     <Compile Include="DataClasses\Ingredient.cs" />
     <Compile Include="DataClasses\Recipe.cs" />

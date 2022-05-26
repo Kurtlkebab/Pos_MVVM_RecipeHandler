@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Events;
+using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler.Views;
 using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_Models.DataClasses;
@@ -66,24 +67,25 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public MainViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+           
             MainButtonView mView = new MainButtonView();
             MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
             mView.DataContext = mVm;
 
-            mView.DataContext = mVm;
+
+           
+
             this.CurrentViewLeft = mView;
 
             InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
             InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
             iView.DataContext = iVm;
 
-
             this.CurrentViewBottom = iView;
 
             ShoppingCartView cView = new ShoppingCartView();
             ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
             cView.DataContext = cVm;
-
 
             this.CurrentViewRight = cView;
 
@@ -96,8 +98,11 @@ namespace MVVM_RecipeHandler.ViewModels
             this.AddUnitsViewCommand = new ActionCommand(this.AddUnitsViewCommandExecute, this.AddUnitsViewCommandCanExecute);
             this.AddFileDialogViewCommand = new ActionCommand(this.AddFileDialogViewCommandExecute, this.AddFileDialogViewCommandCanExecute);
             this.AddAllViewCommand = new ActionCommand(this.AddAllViewCommandExecute, this.AddAllViewCommandCanExecute);
+            this.AddMainViewCommand = new ActionCommand(this.AddMainViewCommandExecute, this.AddMainViewCommandCanExecute);
 
         }
+
+        
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
@@ -111,6 +116,13 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         public ICommand AddCartViewCommand { get; private set; }
 
+
+
+        /// <summary>
+        /// Gets the student view loading button command.
+        /// </summary>
+        public ICommand AddMainViewCommand { get; private set; }
+    
         /// <summary>
         /// Gets the student view loading button command.
         /// </summary>
@@ -417,8 +429,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 MainButtonView mView = new MainButtonView();
                 MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
                 mView.DataContext = mVm;
-
-                mView.DataContext = mVm;
                 this.CurrentViewLeft = mView;
 
             }
@@ -484,9 +494,7 @@ namespace MVVM_RecipeHandler.ViewModels
             {
                 AddUnitsView cView = new AddUnitsView();
                 UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
-                cView.DataContext = cVm;
-                
-
+                cView.DataContext = cVm;               
                 this.CurrentViewLeft = cView;
 
             }
@@ -504,7 +512,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddFileDialogViewCommandCanExecute(object parameter)
         {
-
             return true;
         }
 
@@ -556,10 +563,7 @@ namespace MVVM_RecipeHandler.ViewModels
             UnitAdderViewModel cVm = new UnitAdderViewModel(EventAggregator);
             cView.DataContext = cVm;
 
-
             this.CurrentViewLeftAdd = cView;
-
-
 
             AddIngredientsView addIngredientsView = new AddIngredientsView();
             IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
@@ -573,7 +577,56 @@ namespace MVVM_RecipeHandler.ViewModels
             addRView.DataContext = Advm;
             this.CurrentViewRightAdd = addRView;
 
+
+            OpenFileDialogView openV = new OpenFileDialogView();
+            OpenFileDialogVM openVM = new OpenFileDialogVM(EventAggregator);
+            openV.DataContext = openVM;
+            this.CurrentViewBottomAdd = openV;
+
+
+
         }
+
+        /// <summary>
+        /// Determines, whether the student view loading command can be executed.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
+        private bool AddMainViewCommandCanExecute(object parameter)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Occurs, when the user clicks the "Main View" button.
+        /// </summary>
+        /// <param name="parameter">Data used by the command.</param>
+        private void AddMainViewCommandExecute(object parameter)
+        {
+
+            this.CurrentViewLeftAdd = null;
+            this.CurrentViewLeftRightAdd = null;
+            this.CurrentViewRightAdd = null;
+
+            MainButtonView mView = new MainButtonView();
+            MainButtonViewModel mVm = new MainButtonViewModel(EventAggregator);
+            mView.DataContext = mVm;
+
+            this.CurrentViewLeft = mView;
+
+            InspectCurrentRecipeView iView = new InspectCurrentRecipeView();
+            InspectCurrentRecipeViewModel iVm = new InspectCurrentRecipeViewModel(EventAggregator);
+            iView.DataContext = iVm;
+
+            this.CurrentViewBottom = iView;
+
+            ShoppingCartView cView = new ShoppingCartView();
+            ShoppingCartViewModel cVm = new ShoppingCartViewModel(EventAggregator);
+            cView.DataContext = cVm;
+
+            this.CurrentViewRight = cView;           
+        }
+        
         #endregion
     }
 }

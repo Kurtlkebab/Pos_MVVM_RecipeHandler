@@ -9,6 +9,7 @@ using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_Models.DataClasses;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.IO;
 
 namespace MVVM_RecipeHandler.ViewModels
 {
@@ -57,7 +58,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
             // hookup command to assoiated methode
 
-            this.AddRecipeIngredientCommand = new ActionCommand(this.AddToCartCommandExecute, this.AddToCartCommandCanExecute);
+            this.AddToCartCommand = new ActionCommand(this.AddToCartCommandExecute, this.AddToCartCommandCanExecute);
 
 
             //CHANGE TO Selected Recipe ADDED TO CART EVENT
@@ -82,7 +83,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         public ObservableCollection<Unit> Units { get; set; }
 
-        public ICommand AddRecipeIngredientCommand { get; }
+        public ICommand AddToCartCommand { get; }
         public ICommand AddRecipeDescriptionNameCommand { get; }
 
         /// <summary>
@@ -179,7 +180,6 @@ namespace MVVM_RecipeHandler.ViewModels
                     this.recipeImageURL = value;
                     this.OnPropertyChanged(nameof(this.RecipeImageURL));
 
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -247,40 +247,31 @@ namespace MVVM_RecipeHandler.ViewModels
             //MyRecipeItems.Add(rez1);
 
         }
+        public string ToTxt()
+        {
+            string forTxtFile;
+            forTxtFile = "\n --------------------------\nRezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + NewRecipe.PictureURL + "---------------\n\n";
+            string IngredientsForTxt = "Zutaten:\n --------------------- " + Environment.NewLine;
+            foreach (Ingredient ing in NewRecipe.Ingredients)
+            {
+                IngredientsForTxt += "Zutatenname: " + ing.IngredientName + "\n";
+                if (ing.IngredientUnit != null)
+                {
+                    IngredientsForTxt += "Zutateneinheit: " + ing.IngredientUnit + "\n";
+                }
+                if (ing.Amount != null)
+                {
+                    IngredientsForTxt += "Menge: " + ing.Amount + "\n----------------\n";
+                }
+            }
+            forTxtFile = forTxtFile + IngredientsForTxt;
+            return forTxtFile;
+        }
+
         #endregion
 
         #region ------------- Commands --------------------------------------------
-        /// <summary>
-        /// Determines, whether the add amount command can be executed.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
-        private bool AddToRecipeDescriptionNameCommandCanExecute(object parameter)
-        {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
-
-            return true;
-        }
-
-        /// <summary>
-        /// Occurs, when the user clicks the "Add to recipe" button.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        private void AddToRecipeDescriptionNameCommandExecute(object parameter)
-        {
-            newRecipe.RecipeDescription = this.RecipeDescription;
-            this.OnPropertyChanged(nameof(this.RecipeDescription));
-            newRecipe.RecipeName = this.RecipeName;
-            newRecipe.PictureURL = this.RecipeImageURL;
-            this.OnPropertyChanged(nameof(this.newRecipe.RecipeDescription));
-
-        }
-
-
-
+      
         /// <summary>
         /// Determines, whether the add amount command can be executed.
         /// </summary>
@@ -288,10 +279,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddToCartCommandCanExecute(object parameter)
         {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
+           
 
             return true;
         }
@@ -302,9 +290,14 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddToCartCommandExecute(object parameter)
         {
-
-            newRecipe.Ingredients.Add(new Ingredient(selectedIngredient, Amount, selectedUnit));
-            //Ingredients.Add(new Ingredient(selectedIngredient, Amount, selectedUnit));
+          string ForTxtFile=ToTxt();
+           string path= @".\"+ NewRecipe.RecipeName +".txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {               
+                sw.Write(ForTxtFile);
+            }
+           
+         
         }
         #endregion
     }
