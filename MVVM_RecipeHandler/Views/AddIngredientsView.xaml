@@ -23,6 +23,6 @@
        
             <TextBox Text="{Binding NewIngredient, UpdateSourceTrigger=PropertyChanged}" Width="auto" Margin="3,5,3,5"/>
                  
-        <Button Content="Add Ingredient" Width="auto" Command="{Binding AddIngredientCommand}"/>
+        <Button Content="Zutat hinzufügen" Width="auto" Command="{Binding AddIngredientCommand}"/>
     </StackPanel>
 </UserControl>

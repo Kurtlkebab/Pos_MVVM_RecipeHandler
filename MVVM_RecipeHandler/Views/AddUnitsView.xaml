@@ -26,7 +26,7 @@
       
             <TextBox Text="{Binding NewUnit, UpdateSourceTrigger=PropertyChanged}" Width="auto" Margin="3,5,3,5"/>
       
-        <Button Content="Add Unit" Width="auto" Command="{Binding AddUnitCommand}"/>
+        <Button Content="Einheit hinzufügen" Width="auto" Command="{Binding AddUnitCommand}"/>
     </StackPanel>
     
 </UserControl>

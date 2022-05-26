@@ -41,7 +41,7 @@
             <TextBox Text="{Binding RecipeDescription, Mode=TwoWay}">
 
             </TextBox>
-            <Button Margin="0,10,0,10" Content="Zu aktellem Rezept hinzufügen" Command="{Binding AddRecipeDescriptionNameCommand}"/>
+            <Button Margin="0,10,0,10" Content="Zu aktuellem Rezept hinzufügen" Command="{Binding AddRecipeDescriptionNameCommand}"/>
 
             <Label>Menge</Label>
             <TextBox Text="{Binding Amount, Mode=TwoWay}">
