@@ -24,18 +24,11 @@ namespace MVVM_RecipeHandler.ViewModels
     /// </summary>
     public class UnitAdderViewModel : ViewModelBase
     {
-        #region ------------- Fields, Constants, Delegates ------------------------
-        /// <summary>
-        /// new Unit from textbox.
-        /// </summary>
-        private string newUnit;
-        #endregion
-
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitAdderViewModel"/> class.
         /// </summary>
-        /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
+        /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public UnitAdderViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             // load ingredient data from db
@@ -126,6 +119,17 @@ namespace MVVM_RecipeHandler.ViewModels
             unit = new Unit(this.NewUnit);
             this.Units.Add(unit);
             EventAggregator.GetEvent<UnitDataChangedEvent>().Publish(unit);
+            using (var context = new RecipeContext())
+            {
+                Unit checkIfUnitExists = this.Units.FirstOrDefault(s => s.UnitName == unit.UnitName);
+
+                if (checkIfUnitExists == null)
+                {
+                    context.UnitsSet.Add(unit);
+
+                    context.SaveChanges();
+                }
+            }
         }
         #endregion
     } 

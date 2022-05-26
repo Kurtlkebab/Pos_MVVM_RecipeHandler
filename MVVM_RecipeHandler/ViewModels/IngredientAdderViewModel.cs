@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler_Common.Command;
+using MVVM_RecipeHandler_EF6._0;
 using MVVM_RecipeHandler_Models.DataClasses;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,6 @@ namespace MVVM_RecipeHandler.ViewModels
     /// </summary>
     public class IngredientAdderViewModel : ViewModelBase
     {
-        #region ------------- Fields, Constants, Delegates ------------------------
-        /// <summary>
-        /// new Ingredient from textbox.
-        /// </summary>
-        public string newIngredient;
-        #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
@@ -51,14 +46,14 @@ namespace MVVM_RecipeHandler.ViewModels
         public ObservableCollection<Ingredient> Ingredients { get; set; }
 
         /// <summary>
-        /// Gets or sets the Add Ingredient button command.
+        /// Gets the Add Ingredient button command.
         /// </summary>
         public ICommand AddIngredientCommand { get; private set; }
 
         /// <summary>
         /// Gets or sets the NewIngredient from Textbox
         /// </summary>
-        public string NewIngredient { get;set; }
+        public string NewIngredient { get; set; }
         #endregion
 
         #region ------------- Events ----------------------------------------------
@@ -89,8 +84,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void LoadIngredients()
         {
             // init collection and add data from db
-            this.Ingredients = new ObservableCollection<Ingredient>();
-           
+            this.Ingredients = new ObservableCollection<Ingredient>();        
         }
         #endregion
 
@@ -121,14 +115,17 @@ namespace MVVM_RecipeHandler.ViewModels
             Ingredients.Add(ingredient);
             // publish event when new ingredient is added
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
-          //  DbSet.Add(RecipeContext);
-
-         //   using (var context = new RecipeContext())
+            using (var context = new RecipeContext())
             {
-             
-                //context.Ingredients.Add(ingredient);
+                Ingredient checkIfIngExists = this.Ingredients.FirstOrDefault(s => s.IngredientName == ingredient.IngredientName);
 
-                //context.SaveChanges();
+                if (checkIfIngExists == null)
+                {
+                    context.IngredientsSet.Add(ingredient);
+
+                    context.SaveChanges();
+                }
+              
             }
         }
         #endregion

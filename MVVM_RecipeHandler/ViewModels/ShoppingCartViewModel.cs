@@ -94,9 +94,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.newRecipe = value;
                     this.OnPropertyChanged(nameof(this.NewRecipe));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
         public string SelectedUnit
@@ -112,8 +110,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedUnit = value;
                     this.OnPropertyChanged(nameof(this.SelectedUnit));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -131,9 +127,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeName = value;
                     this.OnPropertyChanged(nameof(this.RecipeName));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -150,9 +144,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeDescription = value;
                     this.OnPropertyChanged(nameof(this.RecipeDescription));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -169,7 +161,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeImageURL = value;
                     this.OnPropertyChanged(nameof(this.RecipeImageURL));
-
                 }
             }
         }
@@ -193,9 +184,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedIngredient = value;
                     this.OnPropertyChanged(nameof(this.SelectedIngredient));
-                    //this.selectedIngredient.Amount = Amount;
-                    //this.selectedIngredient.IngredientUnit = SelectedUnit;
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -232,10 +220,6 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
-
-           // Recipe rez1 = new Recipe("eierspeis", "eier in pfanne hauen");
-            //MyRecipeItems.Add(rez1);
-
         }
         public string ToTxt()
         {
@@ -269,8 +253,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddToCartCommandCanExecute(object parameter)
         {
-           
-
             return true;
         }
 

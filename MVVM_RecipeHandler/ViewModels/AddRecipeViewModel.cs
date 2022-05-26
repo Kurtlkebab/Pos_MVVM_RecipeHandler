@@ -244,13 +244,18 @@ namespace MVVM_RecipeHandler.ViewModels
         #endregion
 
         #region ------------- Events ----------------------------------------------
+
         /// <summary>
         /// Event handler to notice changes in the current ingredient data.
         /// </summary>
         /// <param name="ingredient">Reference to the ingredient data.</param>
         public void OnIngredientDataChanged(Ingredient ingredient)
         {
-            this.Ingredients.Add(ingredient);       
+            Ingredient checkIfIngExists = this.Ingredients.FirstOrDefault(s => s.IngredientName == ingredient.IngredientName);
+            if (checkIfIngExists == null)
+            {
+                this.Ingredients.Add(ingredient);
+            }         
         }
 
         /// <summary>
@@ -259,7 +264,11 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="unit">Reference to the unit data.</param>
         public void OnUnitDataChanged(Unit unit)
         {
-            this.Units.Add(unit);
+            Unit checkIfUnitExists = this.Units.FirstOrDefault(s => s.UnitName == unit.UnitName);
+            if (checkIfUnitExists == null)
+            {
+                this.Units.Add(unit);
+            }             
         }
 
         /// <summary>

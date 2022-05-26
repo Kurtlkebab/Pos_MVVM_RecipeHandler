@@ -87,8 +87,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.newRecipe = value;
                     this.OnPropertyChanged(nameof(this.NewRecipe));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -105,9 +103,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedRecipe = value;
                     this.OnPropertyChanged(nameof(this.SelectedRecipe));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -124,9 +120,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeName = value;
                     this.OnPropertyChanged(nameof(this.RecipeName));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -143,8 +137,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeDescription = value;
                     this.OnPropertyChanged(nameof(this.RecipeDescription));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
                 }
             }
         }
@@ -162,9 +154,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeImageURL = value;
                     this.OnPropertyChanged(nameof(this.RecipeImageURL));
-
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+               }
             }
         }
 
@@ -187,10 +177,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedIngredient = value;
                     this.OnPropertyChanged(nameof(this.SelectedIngredient));
-                    //this.selectedIngredient.Amount = Amount;
-                    //this.selectedIngredient.IngredientUnit = SelectedUnit;
-                    //EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(SelectedIngredient);
-                }
+              }
             }
         }
 
@@ -212,15 +199,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         /// <param name="ingredient">Reference to the ingredient data.</param>
         public void OnUnitDataChanged(Recipe recipe)
-        {
-           
-                //foreach (var item in recipe.IngredientsEx)
-                //{
-                   
-                //    Ingredients.Add(item);
-                //}
-            
-               
+        {          
             this.SelectedRecipe = recipe;
             this.recipeImageURL = recipe.PictureURL;
             this.recipeName = recipe.RecipeName;
@@ -236,70 +215,11 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
-
-            //Recipe rez1 = new Recipe("eierspeis", "eier in pfanne hauen");
-            //MyRecipeItems.Add(rez1);
-
         }
         #endregion
 
         #region ------------- Commands --------------------------------------------
-        /// <summary>
-        /// Determines, whether the add amount command can be executed.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
-        private bool AddToRecipeDescriptionNameCommandCanExecute(object parameter)
-        {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
-
-            return true;
-        }
-
-        /// <summary>
-        /// Occurs, when the user clicks the "Add to recipe" button.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        private void AddToRecipeDescriptionNameCommandExecute(object parameter)
-        {
-            newRecipe.RecipeDescription = this.RecipeDescription;
-            this.OnPropertyChanged(nameof(this.RecipeDescription));
-            newRecipe.RecipeName = this.RecipeName;
-            newRecipe.PictureURL = this.RecipeImageURL;
-            this.OnPropertyChanged(nameof(this.newRecipe.RecipeDescription));
-
-        }
-
-
-
-        /// <summary>
-        /// Determines, whether the add amount command can be executed.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
-        private bool AddToRecipeButtonCommandCanExecute(object parameter)
-        {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
-
-            return true;
-        }
-
-        /// <summary>
-        /// Occurs, when the user clicks the "Add to recipe" button.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.</param>
-        private void AddToRecipeButtonCommandExecute(object parameter)
-        {
-
-            newRecipe.Ingredients.Add(new Ingredient(selectedIngredient, Amount, selectedUnit));
-            //Ingredients.Add(new Ingredient(selectedIngredient, Amount, selectedUnit));
-        }
+       
         #endregion
     }
 }
