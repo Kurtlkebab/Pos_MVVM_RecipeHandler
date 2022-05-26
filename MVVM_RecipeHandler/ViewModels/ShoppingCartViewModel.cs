@@ -40,19 +40,9 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.Units = new ObservableCollection<Unit>();
-            Ingredient ing1 = new Ingredient("kas");
-            Ingredient ing2 = new Ingredient("kas1");
-            Unit un1 = new Unit("kg");
-            Unit un2 = new Unit("kg1");
-            Ingredients.Add(ing1);
-
-            Ingredients.Add(ing2);
-
-            Units.Add(un1);
-            Units.Add(un2);
-           newRecipe = new Recipe("adsad", "adsad2123", "url", Ingredients);
-            newRecipe.Ingredients.Add(ing1);
-            newRecipe.Ingredients.Add(ing2);
+          
+            newRecipe = new Recipe("Einkaufswagen", "adsad2123", "url", Ingredients);
+         
             // load ingredient data from db
             this.LoadRecipes();
 
@@ -250,7 +240,7 @@ namespace MVVM_RecipeHandler.ViewModels
         public string ToTxt()
         {
             string forTxtFile;
-            forTxtFile = "\n --------------------------\nRezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + NewRecipe.PictureURL + "---------------\n\n";
+            forTxtFile = "\n --------------------------\nRezeptname: " + NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + NewRecipe.RecipeDescription + "\n" +"---------------\n\n";
             string IngredientsForTxt = "Zutaten:\n --------------------- " + Environment.NewLine;
             foreach (Ingredient ing in NewRecipe.Ingredients)
             {
@@ -291,7 +281,8 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddToCartCommandExecute(object parameter)
         {
           string ForTxtFile=ToTxt();
-           string path= @".\"+ NewRecipe.RecipeName +".txt";
+            DateTime dateOnly = DateTime.Today.Date;
+            string path= @".\" + dateOnly.ToString("d") + "_Einkaufsliste.txt";
             using (StreamWriter sw = new StreamWriter(path, true))
             {               
                 sw.Write(ForTxtFile);

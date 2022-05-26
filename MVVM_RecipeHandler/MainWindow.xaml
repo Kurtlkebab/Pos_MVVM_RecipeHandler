@@ -46,8 +46,8 @@
             <Button Style="{StaticResource MenuButtonStyle}" Content="Add UnitadderView" Height="auto" Command="{Binding AddUnitsViewCommand}"/>
             <Button Style="{StaticResource MenuButtonStyle}" Content="Add MainButtonView" Height="auto" Command="{Binding AddMainButtonViewCommand}"/>
             <Button Style="{StaticResource MenuButtonStyle}" Content="Add InspectCurrentRecipeView" Height="auto" Command="{Binding AddInspectCurrentRecipeViewCommand}"/>-->
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Add AllView" Height="auto" Command="{Binding AddAllViewCommand}"/>
-            <Button Style="{StaticResource MenuButtonStyle}" Content="Add Main" Height="auto" Command="{Binding AddMainViewCommand}"/>
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Home" Height="auto" Command="{Binding AddAllViewCommand}"/>
+            <Button Style="{StaticResource MenuButtonStyle}" Content="Rezept erstellen" Height="auto" Command="{Binding AddMainViewCommand}"/>
                  </StackPanel>
                 
                 

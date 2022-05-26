@@ -9,6 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 namespace MVVM_RecipeHandler.ViewModels
 {
@@ -42,10 +43,10 @@ namespace MVVM_RecipeHandler.ViewModels
             this.Units = new ObservableCollection<Unit>();
             ObservableCollection<Ingredient> newO = new ObservableCollection<Ingredient>();
 
-            newRecipe = new Recipe("adsad", "adsad2123" ,"picturURL",newO);
+            newRecipe = new Recipe("Rezeptname", "Rezeptbeschreibung" ,"pictureURL",newO);
           
             // load ingredient data from db
-            this.LoadRecipes();
+            this.LoadRecipesIngredients();
 
             // hookup command to assoiated methode
 
@@ -248,7 +249,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Generate Amount data from db.
         /// </summary>
-        private void LoadRecipes()
+        private void LoadRecipesIngredients()
         {
             // init collection and add data from db
             this.MyRecipeItems = new ObservableCollection<Recipe>();
@@ -301,12 +302,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddToRecipeDescriptionNameCommandCanExecute(object parameter)
-        {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
-
+        {         
             return true;
         }
 
@@ -333,11 +329,8 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddToRecipeButtonCommandCanExecute(object parameter)
         {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
 
+           
             return true;
         }
 
@@ -358,7 +351,18 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddRecipeButtonCommandCanExecute(object parameter)
         {
-            return true;
+            if (NewRecipe.PictureURL != null)
+            {
+                if (NewRecipe.PictureURL.Length != 0)
+                {
+
+
+                    return true;
+
+                }
+            }
+           
+            return false;
         }
 
         /// <summary>
@@ -373,7 +377,11 @@ namespace MVVM_RecipeHandler.ViewModels
             {
                 sw.Write(ForTxtFile);
             }
-
+            using (var context = new RecipeContext())
+            {
+                context.RecipesSet.Add(NewRecipe);
+                context.SaveChanges();
+            }
         }
         #endregion
     }

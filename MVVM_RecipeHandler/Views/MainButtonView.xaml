@@ -30,7 +30,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#faf0e6"   >
         
-        <ItemsControl ItemsSource="{Binding Path=MyRecipeItems}" >
+        <ItemsControl ItemsSource="{Binding Path=MyRecipeItems}" Margin="40,0,0,0" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -39,9 +39,9 @@
             <ItemsControl.ItemTemplate >
                 <DataTemplate>
 
-                    <StackPanel Orientation="Vertical" Width="200" Height="220" Margin="15" >
-                        <Button CommandParameter="{Binding RecipeName}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectedButtonCommand}" Width="200" Height="200" ToolTip="{Binding RecipeName}" Margin="0,0,5,5">
-                            <Image Width="auto" Height="auto" Source="{Binding PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
+                    <StackPanel Orientation="Vertical" Width="180" Height="200" Margin="15" >
+                        <Button HorizontalContentAlignment="Center" CommandParameter="{Binding RecipeName}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectedButtonCommand}" Width="180" Height="200" ToolTip="{Binding RecipeName}" Margin="0,0,5,5">
+                            <Image Stretch="Uniform"  Width="auto" Height="auto" Source="{Binding PictureURL, Converter={StaticResource BTN_CONV}}"></Image>
                          
                         </Button>
                         <!-- <TextBlock HorizontalAlignment="Center" Text="{Binding RecipeName}"></TextBlock>--> 
