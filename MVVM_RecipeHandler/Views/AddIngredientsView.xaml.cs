@@ -16,13 +16,16 @@ using System.Windows.Shapes;
 namespace MVVM_RecipeHandler.Views
 {
     /// <summary>
-    /// Interaction logic für AddIngredientsView
+    /// Interaction logic for AddIngredientsView
     /// </summary>
     public partial class AddIngredientsView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddIngredientsView"/> class
+        /// </summary>
         public AddIngredientsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

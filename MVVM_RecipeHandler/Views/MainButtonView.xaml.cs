@@ -20,14 +20,12 @@ namespace MVVM_RecipeHandler.Views
     /// </summary>
     public partial class MainButtonView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainButtonView"/> class
+        /// </summary>
         public MainButtonView()
         {
-            InitializeComponent();
-        }
-
-        private void Button_Selected(object sender, RoutedEventArgs e)
-        {
-
+            this.InitializeComponent();
         }
     }
 }

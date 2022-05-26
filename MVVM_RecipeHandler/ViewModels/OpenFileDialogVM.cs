@@ -28,17 +28,17 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Image converted to String
         /// </summary>
-        public string base64String;
+        private string base64String;
         
         /// <summary>
         /// the selected file path of open file dialog
         /// </summary>
-        private string _selectedPath;
+        private string selectedPath;
 
         /// <summary>
         /// the initial directory for Open File Dialog we can specify
         /// </summary>
-        private string _defaultPath;
+        private string defaultPath;
         #endregion-------------------------------------------------------------------
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -53,10 +53,10 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         public string SelectedPath
         {
-            get { return _selectedPath; }
+            get { return selectedPath; }
             set
             {
-                _selectedPath = value;
+                selectedPath = value;
               
                 this.OnPropertyChanged(nameof(this.SelectedPath));
             }
@@ -78,7 +78,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public OpenFileDialogVM(IEventAggregator eventAggregator,string defaultPath) : base(eventAggregator)
         {
-            _defaultPath = defaultPath;
+            this.defaultPath = defaultPath;
             RegisterCommands();
         }
 
@@ -90,7 +90,7 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             try
             {
-                Image img = Image.FromFile(_selectedPath);
+                Image img = Image.FromFile(selectedPath);
                 string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
                 EventAggregator.GetEvent<ImageStringDataChangedEvent>().Publish(ImageString);
                 base64String = ImageString;
@@ -116,10 +116,9 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         private void ExecuteOpenFileDialog()
         {
-            var dialog = new OpenFileDialog { InitialDirectory = _defaultPath };
+            var dialog = new OpenFileDialog { InitialDirectory = defaultPath };
             dialog.Filter= "Image Files|*.jpg;*.jpeg";
             dialog.ShowDialog();
-
             SelectedPath = dialog.FileName;
             PublishImgString();
         }

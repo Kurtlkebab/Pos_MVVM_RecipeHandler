@@ -20,9 +20,12 @@ namespace MVVM_RecipeHandler.Views
     /// </summary>
     public partial class InspectCurrentRecipeView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InspectCurrentRecipeView"/> class
+        /// </summary>
         public InspectCurrentRecipeView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

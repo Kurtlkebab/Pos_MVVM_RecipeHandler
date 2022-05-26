@@ -20,9 +20,12 @@ namespace MVVM_RecipeHandler.Views
     /// </summary>
     public partial class OpenFileDialogView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenFileDialogView"/> class
+        /// </summary>
         public OpenFileDialogView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

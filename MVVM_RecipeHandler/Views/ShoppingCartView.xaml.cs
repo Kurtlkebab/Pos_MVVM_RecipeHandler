@@ -20,6 +20,9 @@ namespace MVVM_RecipeHandler.Views
     /// </summary>
     public partial class ShoppingCartView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShoppingCartView"/> class
+        /// </summary>
         public ShoppingCartView()
         {
             InitializeComponent();

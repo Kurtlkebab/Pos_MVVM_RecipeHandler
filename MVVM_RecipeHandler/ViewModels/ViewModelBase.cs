@@ -2,6 +2,9 @@
 using MVVM_RecipeHandler_Common.NotifyPropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +34,29 @@ namespace MVVM_RecipeHandler.ViewModels
         /// Gets access to the event aggregator for communication.
         /// </summary>
         protected IEventAggregator EventAggregator { get; }
+
+        private string ImageToBase64String(Image image, ImageFormat format)
+        {
+            MemoryStream memory = new MemoryStream();
+            image.Save(memory, format);
+            string base64 = Convert.ToBase64String(memory.ToArray());
+            memory.Close();
+            return base64;
+        }
+
+        private Image ImageFromBase64String(string base64)
+        {
+            MemoryStream memory = new MemoryStream(Convert.FromBase64String(base64));
+            Image result = Image.FromStream(memory);
+            memory.Close();
+            return result;
+        }
+        private string BuildImgString(string path)
+        {
+            Image img = Image.FromFile(path);
+            string imageString = this.ImageToBase64String(img, ImageFormat.Jpeg);
+            return imageString;
+        }
         #endregion
     }
 }

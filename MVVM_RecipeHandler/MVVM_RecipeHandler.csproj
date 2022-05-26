@@ -105,7 +105,6 @@
     <Compile Include="Events\SelectedRecipeChangedEvent.cs" />
     <Compile Include="Events\UnitDataChangedEvent.cs" />
     <Compile Include="Events\IngredientDataChangedEvent.cs" />
-    <Compile Include="ViewModels\AddAllViewModel.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
     <Compile Include="ViewModels\InspectCurrentRecipeViewModel.cs" />
     <Compile Include="ViewModels\MainButtonViewModel.cs" />
@@ -115,9 +114,6 @@
     <Compile Include="ViewModels\IngredientAdderViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\AddAllView.xaml.cs">
-      <DependentUpon>AddAllView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddIngredientsView.xaml.cs">
       <DependentUpon>AddIngredientsView.xaml</DependentUpon>
     </Compile>
@@ -139,9 +135,6 @@
     <Compile Include="Views\ShoppingCartView.xaml.cs">
       <DependentUpon>ShoppingCartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowAdd.xaml.cs">
-      <DependentUpon>WindowAdd.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,10 +152,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Scrollviewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,10 +181,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShoppingCartView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,9 +20,12 @@ namespace MVVM_RecipeHandler.Views
     /// </summary>
     public partial class AddUnitsView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddUnitsView"/> class
+        /// </summary>
         public AddUnitsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

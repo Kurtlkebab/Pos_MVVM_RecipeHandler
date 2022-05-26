@@ -16,12 +16,6 @@ namespace MVVM_RecipeHandler_Models.DataClasses
     public class Ingredient : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-       // public int? RecipeId { get; set; }
-        //public Recipe Recipe { get; set; }
-
-
         /// <summary>
         /// Name of the Ingredient.
         /// </summary>
@@ -126,8 +120,6 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Gets or sets the id of the student.
         /// </summary>
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id
         {
             get
@@ -218,16 +210,12 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public virtual ICollection<Recipe> Recipes { get; set; }
 
         #endregion
-
         /// <summary>
-        /// Called, when Ingredient data is saved.
+        /// Creates and return new ingredient with unit and amount
         /// </summary>
-        public void OnIngredientDataChanged()
-        {
-            // Save data.
-          
-        }
-
+        /// <param name="ingredientUnit"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         public Ingredient CopyIngredient(string ingredientUnit,string amount)
         {
             Ingredient newIngredient = new Ingredient(this.ingredientName, this.amount, this.ingredientUnit);

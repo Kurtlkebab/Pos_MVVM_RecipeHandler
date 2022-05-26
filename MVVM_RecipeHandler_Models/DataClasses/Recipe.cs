@@ -167,9 +167,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.pictureURL != value)
                 {
                     this.pictureURL = value;
-                  //  this.pictureURL= BuildImgString(value);
                     this.OnPropertyChanged(nameof(this.pictureURL));
-                  
                 }
             }
         }
@@ -194,45 +192,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 }
             }
         }
-
-       
+     
         #endregion
-
-        /// <summary>
-        /// Called, when student data is saved.
-        /// </summary>
-        public void OnStudentDataSaved()
-        {
-            // Save data.
-           
-        }
-
-        public string ImageToBase64String(Image image, ImageFormat format)
-        {
-            MemoryStream memory = new MemoryStream();
-            image.Save(memory, format);
-            string base64 = Convert.ToBase64String(memory.ToArray());
-            memory.Close();
-
-            return base64;
-        }
-
-        public Image ImageFromBase64String(string base64)
-        {
-            MemoryStream memory = new MemoryStream(Convert.FromBase64String(base64));
-            Image result = Image.FromStream(memory);
-            memory.Close();
-
-            return result;
-        }
-       
-        public string BuildImgString(string path)
-        {
-
-            Image img = Image.FromFile(path);
-            string ImageString = ImageToBase64String(img, ImageFormat.Jpeg);
-            return ImageString;
-        }
         public void LoadIngredientsEX(List<Ingredient>ingredients)
         {
             this.IngredientsEx = new ObservableCollection<Ingredient>();
