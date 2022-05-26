@@ -28,32 +28,24 @@ namespace MVVM_RecipeHandler_Models.DataClasses
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Unit"/> class.
+        /// Initializes a new instance of the <see cref="Unit"/> class.
         /// </summary>
         /// <param name="unitname"> amount of ingredient</param>
-        /// <param name="id">id of ingredient</param>
         public Unit(string unitname)
-        {
-          
-            this.unitName = unitname;
-          
+        {     
+            this.unitName = unitname;       
         }
 
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Unit"/> class.
+        /// Initializes a new instance of the <see cref="Unit"/> class.
         /// </summary>
-        /// <param name="unitname"> amount of ingredient</param>
-        /// <param name="id">id of ingredient</param>
         public Unit()
-        {
-
-         
+        {        
         }
 
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
-
 
         /// <summary>
         /// Gets or sets the amount of the ingredient.
@@ -70,12 +62,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.unitName != value)
                 {
                     this.unitName = value;
-                    this.OnPropertyChanged(nameof(this.unitName));
-
-                    
+                    this.OnPropertyChanged(nameof(this.unitName));                    
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
@@ -91,21 +82,10 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.id != value)
                 {
                     this.id = value;
-                    this.OnPropertyChanged(nameof(this.Id));
-                   
+                    this.OnPropertyChanged(nameof(this.Id));                  
                 }
             }
-        }
-       
+        }     
         #endregion
-
-        /// <summary>
-        /// Called, when student data is saved.
-        /// </summary>
-        public void OnStudentDataSaved()
-        {
-            // Save data.
-           
-        }
     }
 }

@@ -9,10 +9,9 @@ using MVVM_RecipeHandler_Models.DataClasses;
 namespace MVVM_RecipeHandler.Events
 {
     /// <summary>
-    /// Event signalizing a change in selected student data.
+    /// Event signalizing a change in Ingredient data.
     /// </summary>
     public class IngredientDataChangedEvent : CompositePresentationEvent<Ingredient>
     {
     }
 }
- 

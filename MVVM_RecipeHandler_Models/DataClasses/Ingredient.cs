@@ -35,8 +35,6 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// Id of the Ingredient.
         /// </summary>
         private int id;
-
-        
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -49,14 +47,11 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Ingredient(string ingredientName, string amount, string ingredientUnit)
         {
             this.Recipes = new List<Recipe>();
-            //this.recs = new ObservableCollection<Recipe>();
             this.IngredientName = ingredientName;
             this.Amount = amount;
             this.id = -1;
             this.IngredientUnit = ingredientUnit;
         }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
@@ -67,24 +62,18 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public Ingredient(string ingredientName, string amount, int id)
         {
             this.Recipes = new List<Recipe>();
-            //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = amount;
             this.id = id;
         }
 
-       
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
         /// <param name="ingredientName"> name of ingredient</param>
-        /// <param name="amount"> amount of ingredient</param>
-        /// <param name="id">id of ingredient</param>
         public Ingredient(string ingredientName)
         {
             this.Recipes = new List<Recipe>();
-            //this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = 1;
@@ -93,23 +82,19 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
-        /// <param name="ingredientName"> name of ingredient</param>
-        /// <param name="amount"> amount of ingredient</param>
-        /// <param name="id">id of ingredient</param>
         public Ingredient()
         {
-            this.Recipes = new List<Recipe>();
-            
+            this.Recipes = new List<Recipe>();           
         }
+
         /// <summary>
-        /// Initializes a new Instance of the <see cref="Ingredient"/> class.
+        /// Initializes a new instance of the <see cref="Ingredient"/> class.
         /// </summary>
-        /// <param name="ingredientName"> name of ingredient</param>
         /// <param name="id">id of ingredient</param>
+        /// <param name="ingredientName"> name of ingredient</param>
         public Ingredient(int id, string ingredientName)
         {
             this.Recipes = new List<Recipe>();
-            // this.recs = new ObservableCollection<Recipe>();
             this.ingredientName = ingredientName;
             this.amount = " ";
             this.id = id;
@@ -132,8 +117,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.id != value)
                 {
                     this.id = value;
-                    this.OnPropertyChanged(nameof(this.Id));
-                   
+                    this.OnPropertyChanged(nameof(this.Id));                  
                 }
             }
         }
@@ -144,10 +128,8 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         public string IngredientName
         {
             get
-            {
-               
-                return this.ingredientName;
-                
+            {              
+                return this.ingredientName;               
             }
 
             set
@@ -155,9 +137,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.ingredientName != value)
                 {
                     this.ingredientName = value;
-                    this.OnPropertyChanged(nameof(this.ingredientName));
-                   
-                    
+                    this.OnPropertyChanged(nameof(this.ingredientName));                   
                 }
             }
         }
@@ -177,9 +157,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.ingredientUnit != value)
                 {
                     this.ingredientUnit = value;
-                    this.OnPropertyChanged(nameof(this.ingredientUnit));
-
-                   
+                    this.OnPropertyChanged(nameof(this.ingredientUnit));                   
                 }
             }
         }
@@ -199,24 +177,24 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.amount != value)
                 {
                     this.amount = value;
-                    this.OnPropertyChanged(nameof(this.amount));
-                   
-                    
+                    this.OnPropertyChanged(nameof(this.amount));                                   
                 }
             }
         }
 
-
+        /// <summary>
+        /// Gets or sets the property for many to many relationship to recipe for entity framework
+        /// </summary>
         public virtual ICollection<Recipe> Recipes { get; set; }
 
         #endregion
         /// <summary>
         /// Creates and return new ingredient with unit and amount
         /// </summary>
-        /// <param name="ingredientUnit"></param>
-        /// <param name="amount"></param>
-        /// <returns></returns>
-        public Ingredient CopyIngredient(string ingredientUnit,string amount)
+        /// <param name="ingredientUnit"> unit for new ingredient</param>
+        /// <param name="amount"> amount for new ingredient</param>
+        /// <returns> Ingredient built with unit and amount</returns>
+        public Ingredient CopyIngredient(string ingredientUnit, string amount)
         {
             Ingredient newIngredient = new Ingredient(this.ingredientName, this.amount, this.ingredientUnit);
             newIngredient.Amount = amount;

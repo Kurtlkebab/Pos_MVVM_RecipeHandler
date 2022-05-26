@@ -52,17 +52,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202205241915335_initial.cs" />
+    <Compile Include="Migrations\202205241915335_initial.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\202205241915335_initial.designer.cs">
       <DependentUpon>202205241915335_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205242006526_initial1.cs" />
+    <Compile Include="Migrations\202205242006526_initial1.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Migrations\202205242006526_initial1.designer.cs">
       <DependentUpon>202205242006526_initial1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="RecipeContext.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Migrations\Configuration.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="RecipeContext.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

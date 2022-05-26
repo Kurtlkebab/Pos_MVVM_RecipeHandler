@@ -9,9 +9,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVM_RecipeHandler_Models.DataClasses
-{ /// <summary>
-  /// Derives from the <see cref="NotifyPropertyChanged"/> class.
-  /// </summary>
+{
+    /// <summary>
+    /// Derives from the <see cref="NotifyPropertyChanged"/> class.
+    /// </summary>
     public class Recipe : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------
@@ -26,7 +27,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         private string recipeDescription;
 
-        /// <summaryr></summaryr>
+        /// <summary>
         /// Id of the recipe.
         /// </summary>
         private int recipeid;
@@ -39,63 +40,62 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Recipe"/> class.
         /// </summary>
-        /// <param name="recipeDescription">short description of the recipe..</param>
-        /// <param name="recipeName">name of the recipe.</param>
         public Recipe()
         {
             this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
         }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Recipe"/> class.
         /// </summary>
-        /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
-        public Recipe(string recipeName, string recipeDescription, List<Ingredient>ingredients)
+        /// <param name="recipeDescription">short description of the recipe..</param>    
+        /// <param name="ingredients"> observable collection of ingredients</param>
+        public Recipe(string recipeName, string recipeDescription, List<Ingredient> ingredients)
         {
             this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
-            //this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
-            this.recipeDescription= recipeDescription;
-            //this.recipeid = -1;
+            this.recipeDescription = recipeDescription;       
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Recipe"/> class.
         /// </summary>
-        /// <param name="recipeDescription">short description of the recipe..</param>
         /// <param name="recipeName">name of the recipe.</param>
-        /// <param name="id">id of the recipe.</param>
+        /// <param name="recipeDescription">short description of the recipe..</param>    
+        /// <param name="pictureUrl"> Image as string from recipe</param>
+        /// <param name="ingredients"> list of ingredients</param>
         public Recipe(string recipeName, string recipeDescription, string pictureUrl, List<Ingredient> ingredients)
         {
-
             this.LoadIngredientsEX(ingredients);
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
-            // this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
-            this.recipeDescription = recipeDescription;
-            
+            this.recipeDescription = recipeDescription;          
             this.pictureURL = pictureUrl;
         }
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recipe"/> class.
+        /// </summary>
+        /// <param name="recipeName">name of the recipe.</param>
+        /// <param name="recipeDescription">short description of the recipe..</param>    
+        /// <param name="pictureUrl"> Image as string from recipe</param>
+        /// <param name="ingredients"> observable collection of ingredients</param>
         public Recipe(string recipeName, string recipeDescription, string pictureUrl, ObservableCollection<Ingredient> ingredients)
         {
             this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;
-            // this.Ings = new ObservableCollection<Ingredient>();
             this.recipeName = recipeName;
             this.recipeDescription = recipeDescription;
-
             this.pictureURL = pictureUrl;
         }
         #endregion
@@ -106,13 +106,15 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// </summary>
         public virtual ICollection<Ingredient> Ingredients { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Observable collection IngredientsEX 
+        /// </summary>
         [NotMapped]
        public ObservableCollection<Ingredient> IngredientsEx { get; set; }
 
         /// <summary>
         /// Gets or sets the id of the recipe.
         /// </summary>
-
         public int RecipeId
         {
             get
@@ -126,7 +128,6 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 {
                     this.recipeid = value;
                     this.OnPropertyChanged(nameof(this.RecipeId));
-
                 }
             }
         }
@@ -146,8 +147,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.recipeName != value)
                 {
                     this.recipeName = value;
-                    this.OnPropertyChanged(nameof(this.recipeName));
-                 
+                    this.OnPropertyChanged(nameof(this.recipeName));               
                 }
             }
         }
@@ -187,22 +187,26 @@ namespace MVVM_RecipeHandler_Models.DataClasses
                 if (this.recipeDescription != value)
                 {
                     this.recipeDescription = value;
-                    this.OnPropertyChanged(nameof(this.recipeDescription));
-                 
+                    this.OnPropertyChanged(nameof(this.recipeDescription));           
                 }
             }
         }
-     
+
         #endregion
-        public void LoadIngredientsEX(List<Ingredient>ingredients)
+
+        #region ------------- Private helper --------------------------------------
+        /// <summary>
+        /// Loads ingredients from list to observable collection
+        /// </summary>
+        /// <param name="ingredients"> list to insert into observable collection</param>
+        public virtual void LoadIngredientsEX(List<Ingredient> ingredients)
         {
             this.IngredientsEx = new ObservableCollection<Ingredient>();
             foreach (var item in ingredients)
             {
-                IngredientsEx.Add(item);
-            }
-            
+                this.IngredientsEx.Add(item);
+            }         
         }
-
+        #endregion--------------------------------------------------------------------
     }
 }

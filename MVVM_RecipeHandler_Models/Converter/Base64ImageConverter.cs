@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 namespace MVVM_RecipeHandler_Models.Converter
 {
     /// <summary>
-    /// Converts Imagestring to Image and returns Image
+    /// Converts image string to Image and returns Image
     /// </summary>
     public class Base64ImageConverter : IValueConverter
     {
@@ -19,8 +19,10 @@ namespace MVVM_RecipeHandler_Models.Converter
         {
             string s = value as string;
             if (s == null)
+            {
                 return null;
-
+            }
+               
             BitmapImage bi = new BitmapImage();
             try
             {               
@@ -30,7 +32,6 @@ namespace MVVM_RecipeHandler_Models.Converter
             }
             catch (Exception ex)
             {
-
             }
           
             return bi;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MVVM_RecipeHandler.Events
 {
+    /// <summary>
+    /// Event signalizing a change in image string data.
+    /// </summary>
     public class ImageStringDataChangedEvent : CompositePresentationEvent<string>
     {
     }

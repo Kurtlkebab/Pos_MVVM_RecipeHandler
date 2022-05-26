@@ -101,7 +101,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Events\ImageStringDataChangedEvent.cs" />
-    <Compile Include="Events\newRecipeEvent.cs" />
+    <Compile Include="Events\newRecipeEvent.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Events\SelectedRecipeChangedEvent.cs" />
     <Compile Include="Events\UnitDataChangedEvent.cs" />
     <Compile Include="Events\IngredientDataChangedEvent.cs" />
@@ -188,6 +190,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

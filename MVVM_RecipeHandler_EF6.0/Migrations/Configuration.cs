@@ -38,11 +38,6 @@
                 string ImageString7 = BuildImgString("../../MVVM_RecipeHandler/Images/yuxiang_eggplant_cut.jpg");
                 string ImageString8 = BuildImgString("../../MVVM_RecipeHandler/Images/Gnochi.jpg");
 
-
-
-
-
-
                 List<Unit> UnitSeed = new List<Unit>();
                 UnitSeed.Add(new Unit("kg"));
                 UnitSeed.Add(new Unit("dag"));

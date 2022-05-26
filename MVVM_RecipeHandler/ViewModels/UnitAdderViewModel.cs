@@ -97,8 +97,8 @@ namespace MVVM_RecipeHandler.ViewModels
             this.Units = new ObservableCollection<Unit>();
             using (var context = new RecipeContext())
             {
-                var ingredients = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
-                foreach (var item in ingredients)
+                var units = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
+                foreach (var item in units)
                 {
                     this.Units.Add(item);
                 }
@@ -108,7 +108,7 @@ namespace MVVM_RecipeHandler.ViewModels
 
         #region ------------- Commands --------------------------------------------
         /// <summary>
-        /// Determines, whether the add amount command can be executed.
+        /// Determines, whether the add unit command can be executed.
         /// </summary>
         /// <param name="parameter">Data used by the command.</param>
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>

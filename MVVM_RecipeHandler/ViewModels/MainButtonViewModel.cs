@@ -85,11 +85,11 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Event handler to notice changes in the current Recipe data.
         /// </summary>
-        /// <param name="student">Reference to the student data.</param>
+        /// <param name="recipe">Reference to the recipe data.</param>
         public void OnNewRecipe(Recipe recipe)
         {
-            MyRecipeItems.Add(recipe);
-            this.OnPropertyChanged(nameof(MyRecipeItems));
+            this.MyRecipeItems.Add(recipe);
+            this.OnPropertyChanged(nameof(this.MyRecipeItems));
         }
         #endregion
 
@@ -108,11 +108,10 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     item.LoadIngredientsEX(item.Ingredients.ToList<Ingredient>());
                 }
-                MyRecipeItems.AddRange(recipes);
+
+                this.MyRecipeItems.AddRange(recipes);
             }
         }
-
-
         #endregion
 
         #region ------------- Commands --------------------------------------------
@@ -128,20 +127,20 @@ namespace MVVM_RecipeHandler.ViewModels
         }
 
         /// <summary>
-        /// Occurs, when the user clicks a specific "Recipe" button.
+        /// Occurs, when the user clicks a specific "recipe" button.
         /// </summary>
-        /// <param name="parameter">Data used by the command is Recipename of chossen recipe.</param>
+        /// <param name="parameter">Data used by the command is recipe name of chosen recipe.</param>
         private void SelectedButtonCommandExecute(object parameter)
         {
-            foreach (var item in MyRecipeItems)
+            foreach (var item in this.MyRecipeItems)
             {
                 if ((string)parameter == item.RecipeName)
                 {
-                    SelectedRecipe = item;
+                    this.SelectedRecipe = item;
                 }
             }
 
-            EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Publish(SelectedRecipe);
+            EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Publish(this.SelectedRecipe);
         }
         #endregion
     }
