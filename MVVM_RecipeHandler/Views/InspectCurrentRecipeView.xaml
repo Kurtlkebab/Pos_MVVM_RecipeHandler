@@ -35,9 +35,9 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="5,0,5,0" Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock Margin="5,0,5,0" Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock Margin="5,0,5,0" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Margin="10,0,5,0" Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Margin="10,0,5,0" Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Margin="10,0,5,0" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 </StackPanel>
                             </DataTemplate>

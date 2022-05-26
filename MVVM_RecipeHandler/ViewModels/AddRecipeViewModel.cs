@@ -50,6 +50,12 @@ namespace MVVM_RecipeHandler.ViewModels
         /// recipe image url
         /// </summary>
         private string recipeImageURL;
+
+        /// <summary>
+        /// recipe image url
+        /// </summary>
+        private string selectedSave;
+
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
@@ -59,11 +65,14 @@ namespace MVVM_RecipeHandler.ViewModels
         /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public AddRecipeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
+            this.FileSaveModes = new ObservableCollection<string>();
+            this.FileSaveModes.Add("In Datenbank speichern");
+            this.FileSaveModes.Add("In Text Datei speichern");
             this.Ingredients = new ObservableCollection<Ingredient>();
             this.Units = new ObservableCollection<Unit>();
             ObservableCollection<Ingredient> newO = new ObservableCollection<Ingredient>();
 
-            this.newRecipe = new Recipe("Rezeptname", "Rezeptbeschreibung", "pictureURL", newO);
+            this.newRecipe = new Recipe(string.Empty, string.Empty, string.Empty, newO);
           
             // load ingredient data from db
             this.LoadRecipesIngredients();
@@ -86,6 +95,12 @@ namespace MVVM_RecipeHandler.ViewModels
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
+
+        /// <summary>
+        /// Gets or sets the list of file save modes
+        /// </summary>
+        public ObservableCollection<string> FileSaveModes { get; set; }
+
         /// <summary>
         /// Gets or sets the list with all Recipe data.
         /// </summary>
@@ -172,6 +187,26 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.recipeName = value;
                     this.OnPropertyChanged(nameof(this.RecipeName));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets recipe name
+        /// </summary>
+        public string SelectedSave
+        {
+            get
+            {
+                return this.selectedSave;
+            }
+
+            set
+            {
+                if (this.selectedSave != value)
+                {
+                    this.selectedSave = value;
+                    this.OnPropertyChanged(nameof(this.SelectedSave));
                 }
             }
         }
@@ -383,6 +418,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddToRecipeButtonCommandExecute(object parameter)
         {        
             this.NewRecipe.Ingredients.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
+            this.OnPropertyChanged(nameof(this.NewRecipe.Ingredients));
         }
 
         /// <summary>
@@ -398,7 +434,7 @@ namespace MVVM_RecipeHandler.ViewModels
             {
                 if (this.NewRecipe.PictureURL != null)
                 {
-                    if (this.NewRecipe.PictureURL.Length != 0 && this.NewRecipe.RecipeDescription != null && this.NewRecipe.RecipeName != null)
+                    if (this.NewRecipe.PictureURL.Length > 20 && this.NewRecipe.RecipeDescription != null && this.NewRecipe.RecipeName != null)
                     {
                         return true;
                     }
@@ -417,16 +453,22 @@ namespace MVVM_RecipeHandler.ViewModels
             EventAggregator.GetEvent<newRecipeEvent>().Publish(this.NewRecipe);
             string forTxtFile = this.ToTxt();
             string path = @".\" + this.NewRecipe.RecipeName + "_Einkaufsliste.txt";
-            using (StreamWriter sw = new StreamWriter(path, true))
-            {
-                sw.Write(forTxtFile);
-            }
 
-            using (var context = new RecipeContext())
+            if (this.selectedSave == "In Text Datei speichern")
             {
-                context.RecipesSet.Add(this.NewRecipe);
-                context.SaveChanges();
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    sw.Write(forTxtFile);
+                }
             }
+            else
+            {
+                using (var context = new RecipeContext())
+                {
+                    context.RecipesSet.Add(this.NewRecipe);
+                    context.SaveChanges();
+                }
+            }   
         }
         #endregion
     }

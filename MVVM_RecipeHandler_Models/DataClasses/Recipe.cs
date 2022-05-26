@@ -74,6 +74,7 @@ namespace MVVM_RecipeHandler_Models.DataClasses
         /// <param name="ingredients"> list of ingredients</param>
         public Recipe(string recipeName, string recipeDescription, string pictureUrl, List<Ingredient> ingredients)
         {
+            this.IngredientsEx = new ObservableCollection<Ingredient>();
             this.LoadIngredientsEX(ingredients);
             this.Ingredients = new List<Ingredient>();
             this.Ingredients = ingredients;

@@ -17,7 +17,7 @@ namespace MVVM_RecipeHandler_EF6._0
         /// <summary>
         /// Initializes a new instance of <see cref="RecipeContext"/> class
         /// </summary>
-        public RecipeContext():base("RecipeDatabase8")
+        public RecipeContext():base("RecipeDatabase9")
         {
 
         }

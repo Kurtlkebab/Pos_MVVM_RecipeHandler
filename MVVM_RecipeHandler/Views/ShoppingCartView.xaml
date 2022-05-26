@@ -22,7 +22,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Grid.Row="1" >
+    <StackPanel Grid.Row="1" HorizontalAlignment="Left">
 
         <Label HorizontalContentAlignment="Center" FontSize="18" FontFamily="Bold" Content="{Binding NewRecipe.RecipeName}"></Label>
 
@@ -30,12 +30,12 @@
 
             <ItemsControl.ItemTemplate >
                 <DataTemplate >
-                    <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
-                        <TextBox  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"  Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="10,0,0,0" Width="auto">
+                        <TextBox Width="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5"  Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBox HorizontalContentAlignment="Center"  Margin="5" Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                        <TextBox Width="80"  HorizontalContentAlignment="Center"  Margin="5" Text="{Binding IngredientUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <TextBox  HorizontalContentAlignment="Center" Margin="5" Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                        <TextBox Width="100"   HorizontalContentAlignment="Center" Margin="5" Text="{Binding IngredientName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
