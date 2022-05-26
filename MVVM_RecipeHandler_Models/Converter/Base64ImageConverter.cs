@@ -22,9 +22,17 @@ namespace MVVM_RecipeHandler_Models.Converter
                 return null;
 
             BitmapImage bi = new BitmapImage();
-            bi.BeginInit();
-            bi.StreamSource = new MemoryStream(System.Convert.FromBase64String(s));
-            bi.EndInit();
+            try
+            {               
+                bi.BeginInit();
+                bi.StreamSource = new MemoryStream(System.Convert.FromBase64String(s));
+                bi.EndInit();
+            }
+            catch (Exception ex)
+            {
+
+            }
+          
             return bi;
         }
         /// <summary>

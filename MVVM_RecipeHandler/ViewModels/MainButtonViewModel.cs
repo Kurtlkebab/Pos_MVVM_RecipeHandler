@@ -26,7 +26,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <summary>
         /// Selected Recipe from Button
         /// </summary>
-        public Recipe selectedRecipe;
+        private Recipe selectedRecipe;
 
         #endregion
 
@@ -41,17 +41,8 @@ namespace MVVM_RecipeHandler.ViewModels
 
             // load ingredient data from db
             this.LoadRecipes();
-
-            List<Ingredient> IngredientsPalatschinken = new List<Ingredient>();
-            IngredientsPalatschinken.Add(new Ingredient("Mehl", "250", "g"));
-            IngredientsPalatschinken.Add(new Ingredient("Eier", "2", "Stück"));
-            IngredientsPalatschinken.Add(new Ingredient("Milch", "500", "ml"));
-
-            Recipe rec3 = new Recipe("new", "new", "new", IngredientsPalatschinken);
-
-            // hookup commands to assoiated methode
+           
             this.SelectedButtonCommand = new ActionCommand((value) => { this.SelectedButtonCommandExecute(value); }, this.SelectedButtonCommandCanExecute);
-
         }
         #endregion
 
@@ -73,7 +64,6 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.selectedRecipe = value;
                     this.OnPropertyChanged(nameof(this.SelectedRecipe));
-
                 }
             }
         }
@@ -88,19 +78,10 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         public ICommand SelectedButtonCommand { get; }
 
-
         #endregion
 
         #region ------------- Events ----------------------------------------------
-        /// <summary>
-        /// Event handler to notice changes in the current ingredient data.
-        /// </summary>
-        /// <param name="student">Reference to the student data.</param>
-        public void OnIngredientDataChanged(Ingredient ingredient)
-        {
-
-        }
-
+   
         /// <summary>
         /// Event handler to notice changes in the current Recipe data.
         /// </summary>
@@ -128,7 +109,6 @@ namespace MVVM_RecipeHandler.ViewModels
                     item.LoadIngredientsEX(item.Ingredients.ToList<Ingredient>());
                 }
                 MyRecipeItems.AddRange(recipes);
-
             }
         }
 
@@ -144,7 +124,6 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool SelectedButtonCommandCanExecute(object parameter)
         {
-
             return true;
         }
 

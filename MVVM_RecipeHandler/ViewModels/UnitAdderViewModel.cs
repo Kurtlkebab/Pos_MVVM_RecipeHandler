@@ -95,6 +95,14 @@ namespace MVVM_RecipeHandler.ViewModels
         private void LoadUnits()
         {
             this.Units = new ObservableCollection<Unit>();
+            using (var context = new RecipeContext())
+            {
+                var ingredients = context.UnitsSet.SqlQuery("SELECT * FROM dbo.Units").ToList();
+                foreach (var item in ingredients)
+                {
+                    this.Units.Add(item);
+                }
+            }
         }
         #endregion
 
@@ -106,7 +114,16 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddUnitCommandCanExecute(object parameter)
         {
-            return true;
+            Unit unit;
+            unit = new Unit(this.NewUnit);
+            Unit checkIfUnitExists = this.Units.FirstOrDefault(s => s.UnitName == unit.UnitName);
+
+            if (checkIfUnitExists == null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -120,15 +137,9 @@ namespace MVVM_RecipeHandler.ViewModels
             this.Units.Add(unit);
             EventAggregator.GetEvent<UnitDataChangedEvent>().Publish(unit);
             using (var context = new RecipeContext())
-            {
-                Unit checkIfUnitExists = this.Units.FirstOrDefault(s => s.UnitName == unit.UnitName);
-
-                if (checkIfUnitExists == null)
-                {
+            {               
                     context.UnitsSet.Add(unit);
-
                     context.SaveChanges();
-                }
             }
         }
         #endregion

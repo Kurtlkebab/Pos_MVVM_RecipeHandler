@@ -20,76 +20,30 @@ namespace MVVM_RecipeHandler.ViewModels
     public class InspectCurrentRecipeViewModel : ViewModelBase
     {
         #region ------------- Fields, Constants, Delegates ------------------------
+        
         /// <summary>
-        /// new Ingredient from textbox.
-        /// </summary>
-       
-        public Recipe newRecipe;
-        public Recipe selectedRecipe;
-        public string selectedIngredient;
-        public string selectedUnit;
-        private string recipeName;
-        private string recipeDescription;
-        private string recipeImageURL;
+        /// selected recipe set from main button view event .
+        /// </summary>       
+        private Recipe selectedRecipe;
         #endregion
 
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainButtonViewModel"/> class.
+        /// Initializes a new instance of the <see cref="InspectCurrentRecipeViewModel"/> class.
         /// </summary>
         /// /// <param name="eventAggregator">Event aggregator to communicate with other views via <see cref="Microsoft.Practices.Prism.Events"/> event types.</param>
         public InspectCurrentRecipeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            
-
-            // hookup command to assoiated 
-            EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Subscribe(this.OnUnitDataChanged);
-
-
             // subscribe to event
+            EventAggregator.GetEvent<SelectedRecipeChangedEvent>().Subscribe(this.OnRecipeDataChanged);
         }
         #endregion
 
         #region ------------- Properties, Indexer ---------------------------------
+   
         /// <summary>
-        /// Gets or sets the list with all student data.
+        /// Gets or sets the selected recipe.
         /// </summary>
-        public ObservableCollection<Recipe> MyRecipeItems { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list with all student data.
-        /// </summary>
-        public ObservableCollection<Ingredient> Ingredients { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list with all Unit data.
-        /// </summary>
-        public ObservableCollection<Unit> Units { get; set; }
-
-        public ICommand AddRecipeIngredientCommand { get; }
-        public ICommand AddRecipeDescriptionNameCommand { get; }
-
-        /// <summary>
-        /// Gets the save students button command.
-        /// </summary>
-        public ICommand AddUnitCommand { get; private set; }
-
-        public Recipe NewRecipe
-        {
-            get
-            {
-                return this.newRecipe;
-            }
-
-            set
-            {
-                if (this.newRecipe != value)
-                {
-                    this.newRecipe = value;
-                    this.OnPropertyChanged(nameof(this.NewRecipe));
-                }
-            }
-        }
         public Recipe SelectedRecipe
         {
             get
@@ -107,119 +61,18 @@ namespace MVVM_RecipeHandler.ViewModels
             }
         }
 
-        public string RecipeName
-        {
-            get
-            {
-                return this.recipeName;
-            }
-
-            set
-            {
-                if (this.recipeName != value)
-                {
-                    this.recipeName = value;
-                    this.OnPropertyChanged(nameof(this.RecipeName));
-               }
-            }
-        }
-
-        public string RecipeDescription
-        {
-            get
-            {
-                return this.recipeDescription;
-            }
-
-            set
-            {
-                if (this.recipeDescription != value)
-                {
-                    this.recipeDescription = value;
-                    this.OnPropertyChanged(nameof(this.RecipeDescription));
-                }
-            }
-        }
-
-        public string RecipeImageURL
-        {
-            get
-            {
-                return this.recipeImageURL;
-            }
-
-            set
-            {
-                if (this.recipeImageURL != value)
-                {
-                    this.recipeImageURL = value;
-                    this.OnPropertyChanged(nameof(this.RecipeImageURL));
-               }
-            }
-        }
-
-        public string Amount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the selected student full name from combo box.
-        /// </summary>
-        public string SelectedIngredient
-        {
-            get
-            {
-
-                return this.selectedIngredient;
-            }
-
-            set
-            {
-                if (this.selectedIngredient != value)
-                {
-                    this.selectedIngredient = value;
-                    this.OnPropertyChanged(nameof(this.SelectedIngredient));
-              }
-            }
-        }
-
         #endregion
 
         #region ------------- Events ----------------------------------------------
+  
         /// <summary>
-        /// Event handler to notice changes in the current ingredient data.
+        /// Event handler to notice changes in the current recipe data.
         /// </summary>
-        /// <param name="ingredient">Reference to the ingredient data.</param>
-        public void OnIngredientDataChanged(Ingredient ingredient)
-        {
-            this.Ingredients.Add(ingredient);
-        }
-
-
-        /// <summary>
-        /// Event handler to notice changes in the current ingredient data.
-        /// </summary>
-        /// <param name="ingredient">Reference to the ingredient data.</param>
-        public void OnUnitDataChanged(Recipe recipe)
+        /// <param name="recipe">Reference to the recipe data.</param>
+        public void OnRecipeDataChanged(Recipe recipe)
         {          
             this.SelectedRecipe = recipe;
-            this.recipeImageURL = recipe.PictureURL;
-            this.recipeName = recipe.RecipeName;
-            this.recipeDescription = recipe.RecipeDescription;
         }
-        #endregion
-
-        #region ------------- Private helper --------------------------------------
-        /// <summary>
-        /// Generate Amount data from db.
-        /// </summary>
-        private void LoadRecipes()
-        {
-            // init collection and add data from db
-            this.MyRecipeItems = new ObservableCollection<Recipe>();
-        }
-        #endregion
-
-        #region ------------- Commands --------------------------------------------
-       
         #endregion
     }
 }

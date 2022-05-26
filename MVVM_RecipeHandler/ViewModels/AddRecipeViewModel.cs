@@ -304,6 +304,13 @@ namespace MVVM_RecipeHandler.ViewModels
                 {
                     this.Units.Add(item);
                 }
+
+                var recipes = context.RecipesSet.SqlQuery("SELECT * FROM dbo.Recipes").ToList();
+
+                foreach (var item in recipes)
+                {
+                    this.MyRecipeItems.Add(item);
+                }
             }
         }
 
@@ -384,14 +391,19 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddRecipeButtonCommandCanExecute(object parameter)
-        {
-            if (this.NewRecipe.PictureURL != null)
+        {           
+            Recipe checkIfRecExists = this.MyRecipeItems.FirstOrDefault(s => s.RecipeName == this.NewRecipe.RecipeName);
+
+            if (checkIfRecExists == null)
             {
-                if (this.NewRecipe.PictureURL.Length != 0)
+                if (this.NewRecipe.PictureURL != null)
                 {
-                    return true;
-                }
-            }   
+                    if (this.NewRecipe.PictureURL.Length != 0 && this.NewRecipe.RecipeDescription != null && this.NewRecipe.RecipeName != null)
+                    {
+                        return true;
+                    }
+                }              
+            }  
             
             return false;
         }
@@ -404,7 +416,8 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             EventAggregator.GetEvent<newRecipeEvent>().Publish(this.NewRecipe);
             string forTxtFile = this.ToTxt();
-            using (StreamWriter sw = new StreamWriter(@".\Recipes.txt", true))
+            string path = @".\" + this.NewRecipe.RecipeName + "_Einkaufsliste.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
             {
                 sw.Write(forTxtFile);
             }

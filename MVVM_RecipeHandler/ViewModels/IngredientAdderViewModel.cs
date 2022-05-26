@@ -20,7 +20,6 @@ namespace MVVM_RecipeHandler.ViewModels
     /// </summary>
     public class IngredientAdderViewModel : ViewModelBase
     {
-
         #region ------------- Constructor, Destructor, Dispose, Clone -------------
         /// <summary>
         /// Initializes a new instance of the <see cref="IngredientAdderViewModel"/> class.
@@ -83,8 +82,15 @@ namespace MVVM_RecipeHandler.ViewModels
         /// </summary>
         private void LoadIngredients()
         {
-            // init collection and add data from db
-            this.Ingredients = new ObservableCollection<Ingredient>();        
+            this.Ingredients = new ObservableCollection<Ingredient>();
+            using (var context = new RecipeContext())
+            {
+                var ingredients = context.IngredientsSet.SqlQuery("SELECT * FROM dbo.Ingredients").ToList();
+                foreach (var item in ingredients)
+                {
+                    this.Ingredients.Add(item);
+                }             
+            }   
         }
         #endregion
 
@@ -96,12 +102,16 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <returns><c>true</c> if the command can be executed, otherwise <c>false</c></returns>
         private bool AddIngredientCommandCanExecute(object parameter)
         {
-            //if (this.Ingredients.Any(s => s.StudentChanged))
-            //{
-            //    return true;
-            //}
+            Ingredient ingredient;
+            ingredient = new Ingredient(this.NewIngredient);
+            Ingredient checkIfIngExists = this.Ingredients.FirstOrDefault(s => s.IngredientName == ingredient.IngredientName);
 
-            return true;
+            if (checkIfIngExists == null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -112,22 +122,16 @@ namespace MVVM_RecipeHandler.ViewModels
         {
             Ingredient ingredient;                     
             ingredient = new Ingredient(this.NewIngredient);
-            Ingredients.Add(ingredient);
+            this.Ingredients.Add(ingredient);
+
             // publish event when new ingredient is added
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
             using (var context = new RecipeContext())
             {
-                Ingredient checkIfIngExists = this.Ingredients.FirstOrDefault(s => s.IngredientName == ingredient.IngredientName);
-
-                if (checkIfIngExists == null)
-                {
                     context.IngredientsSet.Add(ingredient);
-
                     context.SaveChanges();
-                }
-              
+            }             
             }
         }
         #endregion
     }
-}
