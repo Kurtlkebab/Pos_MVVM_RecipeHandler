@@ -89,7 +89,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private string ToTxt()
         {
             string forTxtFile;
-            forTxtFile = "Rezeptname: " + this.NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + this.NewRecipe.RecipeDescription + "\n" + "PictureUrl: " + this.NewRecipe.PictureURL + "\n\n";
+            forTxtFile = "Rezeptname: " + this.NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + this.NewRecipe.RecipeDescription + "\n" + "PictureUrl: " +  "\n\n";
             string ingredientsForTxt = "Zutaten: " + Environment.NewLine;
             foreach (Ingredient ing in this.NewRecipe.Ingredients)
             {

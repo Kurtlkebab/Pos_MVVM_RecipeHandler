@@ -418,6 +418,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private void AddToRecipeButtonCommandExecute(object parameter)
         {        
             this.NewRecipe.IngredientsEx.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
+            this.NewRecipe.Ingredients.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
             this.OnPropertyChanged(nameof(this.NewRecipe.Ingredients));
         }
 
