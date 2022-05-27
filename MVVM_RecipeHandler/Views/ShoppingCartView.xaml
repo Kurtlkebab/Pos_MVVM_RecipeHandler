@@ -22,11 +22,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+    <StackPanel >
 
         <Label HorizontalContentAlignment="Center" FontSize="18" FontFamily="Bold" Content="{Binding NewRecipe.RecipeName}"></Label>
 
-        <ItemsControl ItemsSource="{Binding NewRecipe.Ingredients}" Grid.Column="0" Grid.Row="1" >
+        <ItemsControl ItemsSource="{Binding NewRecipe.IngredientsEx}" Grid.Column="0" Grid.Row="1" >
 
             <ItemsControl.ItemTemplate >
                 <DataTemplate >

@@ -73,7 +73,7 @@
                     <Label Margin="10,0,0,0" Content="{Binding NewRecipe.RecipeDescription}"></Label>
                     <Label></Label>
                     <Label Margin="10,0,0,0" FontSize="20" FontWeight="Bold">Zutaten: </Label>
-                    <ItemsControl ItemsSource="{Binding NewRecipe.Ingredients,Mode=TwoWay}" Grid.Column="0" Grid.Row="1">
+                    <ItemsControl ItemsSource="{Binding NewRecipe.IngredientsEx}" Grid.Column="0" Grid.Row="1">
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

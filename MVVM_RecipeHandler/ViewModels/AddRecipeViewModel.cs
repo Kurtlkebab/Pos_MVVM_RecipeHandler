@@ -412,12 +412,12 @@ namespace MVVM_RecipeHandler.ViewModels
         }
 
         /// <summary>
-        /// Occurs, when the user clicks the "Add recipe" button.
+        /// Occurs, when the user clicks the "Add to recipe" button.
         /// </summary>
         /// <param name="parameter">Data used by the command.</param>
         private void AddToRecipeButtonCommandExecute(object parameter)
         {        
-            this.NewRecipe.Ingredients.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
+            this.NewRecipe.IngredientsEx.Add(new Ingredient(this.SelectedIngredient, this.Amount, this.SelectedUnit));
             this.OnPropertyChanged(nameof(this.NewRecipe.Ingredients));
         }
 

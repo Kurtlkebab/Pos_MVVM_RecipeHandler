@@ -292,11 +292,15 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddAllViewCommandExecute(object parameter)
         {
+            this.memoryViewLeft = this.CurrentViewLeft;
+            this.memoryViewRight = this.CurrentViewRight;
+            this.memoryViewBottom = this.CurrentViewBottomAdd;
+
             this.CurrentViewBottom = null;
             this.CurrentViewLeft = null;
             this.CurrentViewRight = null;
 
-            if (this.CurrentViewLeftAdd == null)
+            if (this.memoryViewLeftAdd == null)
             {
                 AddUnitsView addUView = new AddUnitsView();
                 UnitAdderViewModel addUVM = new UnitAdderViewModel(EventAggregator);
@@ -309,7 +313,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewLeftAdd = this.memoryViewLeftAdd;
             }
 
-            if (this.CurrentViewLeftRightAdd == null)
+            if (this.memoryViewLeftRightAdd == null)
             {
                 AddIngredientsView addIngredientsView = new AddIngredientsView();
                 IngredientAdderViewModel vm = new IngredientAdderViewModel(EventAggregator);
@@ -322,7 +326,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewLeftRightAdd = this.memoryViewLeftRightAdd;
             }
 
-            if (this.CurrentViewRightAdd == null)
+            if (this.memoryViewRightAdd == null)
             {
                 AddRecipeView addRView = new AddRecipeView();
                 AddRecipeViewModel addRVM = new AddRecipeViewModel(EventAggregator);
@@ -335,7 +339,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewRightAdd = this.memoryViewRightAdd;
             }
 
-            if (this.CurrentViewBottomAdd == null)
+            if (this.memoryViewBottomAdd == null)
             {
                 OpenFileDialogView openV = new OpenFileDialogView();
                 OpenFileDialogVM openVM = new OpenFileDialogVM(EventAggregator);
@@ -365,12 +369,17 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddMainViewCommandExecute(object parameter)
         {
+           this.memoryViewLeftAdd = this.CurrentViewLeftAdd;
+           this.memoryViewLeftRightAdd = this.CurrentViewLeftRightAdd;
+           this.memoryViewRightAdd = this.CurrentViewRightAdd;
+            this.memoryViewBottomAdd = this.CurrentViewBottomAdd;
+
             this.CurrentViewLeftAdd = null;
             this.CurrentViewLeftRightAdd = null;
             this.CurrentViewRightAdd = null;
             this.CurrentViewBottomAdd = null;
 
-            if (this.CurrentViewLeft == null)
+            if (this.memoryViewLeft == null)
             {
                 MainButtonView mainButtonView = new MainButtonView();
                 MainButtonViewModel mainButtonVM = new MainButtonViewModel(EventAggregator);
@@ -383,7 +392,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewLeft = this.memoryViewLeft;
             }
 
-            if (this.CurrentViewBottom == null)
+            if (this.memoryViewBottom == null)
             {
                 InspectCurrentRecipeView inspectView = new InspectCurrentRecipeView();
                 InspectCurrentRecipeViewModel inspectVM = new InspectCurrentRecipeViewModel(EventAggregator);
@@ -396,7 +405,7 @@ namespace MVVM_RecipeHandler.ViewModels
                 this.CurrentViewBottom = this.memoryViewBottom;
             }
 
-            if (this.CurrentViewRight == null)
+            if (this.memoryViewRight == null)
             {
                 ShoppingCartView shoppingView = new ShoppingCartView();
                 ShoppingCartViewModel shoppingVM = new ShoppingCartViewModel(EventAggregator);
