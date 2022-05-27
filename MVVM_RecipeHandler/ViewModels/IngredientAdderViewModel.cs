@@ -126,12 +126,17 @@ namespace MVVM_RecipeHandler.ViewModels
 
             // publish event when new ingredient is added
             EventAggregator.GetEvent<IngredientDataChangedEvent>().Publish(ingredient);
-            using (var context = new RecipeContext())
+            try
             {
+                using (var context = new RecipeContext())
+                {
                     context.IngredientsSet.Add(ingredient);
                     context.SaveChanges();
-            }             
+                }
+            }catch (Exception ex)
+            {
             }
+        }
         }
         #endregion
     }

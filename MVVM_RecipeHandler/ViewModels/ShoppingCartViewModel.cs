@@ -89,7 +89,7 @@ namespace MVVM_RecipeHandler.ViewModels
         private string ToTxt()
         {
             string forTxtFile;
-            forTxtFile = "\n Rezeptname: " + this.NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + this.NewRecipe.RecipeDescription + "\n" +  "\n\n";
+            forTxtFile = "\n Rezeptname: " + this.NewRecipe.RecipeName + "\n" + "Rezeptbeschreibung: " + this.NewRecipe.RecipeDescription + "\n" + "\n\n";
             string ingredientsForTxt = "Zutaten: " + Environment.NewLine;
             foreach (Ingredient ing in this.NewRecipe.Ingredients)
             {
@@ -129,7 +129,7 @@ namespace MVVM_RecipeHandler.ViewModels
         /// <param name="parameter">Data used by the command.</param>
         private void AddToCartCommandExecute(object parameter)
         {
-          string forTextFile = this.ToTxt();
+            string forTextFile = this.ToTxt();
             DateTime dateOnly = DateTime.Today.Date;
             string path = @".\" + dateOnly.ToString("d") + "_Einkaufsliste.txt";
             using (StreamWriter sw = new StreamWriter(path, true))

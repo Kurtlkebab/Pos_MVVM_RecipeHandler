@@ -136,10 +136,16 @@ namespace MVVM_RecipeHandler.ViewModels
             unit = new Unit(this.NewUnit);
             this.Units.Add(unit);
             EventAggregator.GetEvent<UnitDataChangedEvent>().Publish(unit);
-            using (var context = new RecipeContext())
-            {               
+            try
+            {
+                using (var context = new RecipeContext())
+                {
                     context.UnitsSet.Add(unit);
                     context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
         #endregion

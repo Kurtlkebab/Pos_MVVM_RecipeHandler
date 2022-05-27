@@ -464,10 +464,16 @@ namespace MVVM_RecipeHandler.ViewModels
             }
             else
             {
-                using (var context = new RecipeContext())
+                try
                 {
-                    context.RecipesSet.Add(this.NewRecipe);
-                    context.SaveChanges();
+                    using (var context = new RecipeContext())
+                    {
+                        context.RecipesSet.Add(this.NewRecipe);
+                        context.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
                 }
             }   
         }
