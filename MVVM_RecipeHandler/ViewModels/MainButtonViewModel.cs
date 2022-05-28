@@ -1,18 +1,12 @@
-﻿using Microsoft.Practices.Prism.Events;
+﻿using Microsoft.Practices.Prism;
+using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler_Common.Command;
-using MVVM_RecipeHandler_Models.DataClasses;
-using System;
-using System.Collections.ObjectModel;
-using System.Drawing.Imaging;
-using System.Drawing;
-using System.IO;
-
-using System.Windows.Input;
 using MVVM_RecipeHandler_EF6._0;
+using MVVM_RecipeHandler_Models.DataClasses;
+using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.Practices.Prism;
-using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace MVVM_RecipeHandler.ViewModels
 {

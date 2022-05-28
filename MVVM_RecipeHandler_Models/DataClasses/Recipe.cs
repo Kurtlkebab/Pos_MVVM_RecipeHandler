@@ -1,11 +1,6 @@
 ﻿using MVVM_RecipeHandler_Common.NotifyPropertyChanged;
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVVM_RecipeHandler_Models.DataClasses

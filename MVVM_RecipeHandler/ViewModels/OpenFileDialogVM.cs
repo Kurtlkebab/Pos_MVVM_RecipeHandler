@@ -3,13 +3,9 @@ using Microsoft.Practices.Prism.Events;
 using Microsoft.Win32;
 using MVVM_RecipeHandler.Events;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MVVM_RecipeHandler.ViewModels
 {

@@ -133,7 +133,8 @@ namespace MVVM_RecipeHandler.ViewModels
                     context.IngredientsSet.Add(ingredient);
                     context.SaveChanges();
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
             }
         }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.Prism.Events;
+﻿using Microsoft.Practices.Prism.Events;
 using MVVM_RecipeHandler.Events;
 using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_Models.DataClasses;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System;
 using System.IO;
+using System.Windows.Input;
 
 namespace MVVM_RecipeHandler.ViewModels
 {

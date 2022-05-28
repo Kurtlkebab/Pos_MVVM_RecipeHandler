@@ -1,18 +1,11 @@
 ﻿using MVVM_RecipeHandler_Common.NotifyPropertyChanged;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MVVM_RecipeHandler_Models.DataClasses
 {
- /// <summary>
- /// Derives from the <see cref="NotifyPropertyChanged"/> class.
- /// </summary>
+    /// <summary>
+    /// Derives from the <see cref="NotifyPropertyChanged"/> class.
+    /// </summary>
     public class Ingredient : NotifyPropertyChanged
     {
         #region ------------- Fields, Constants, Delegates ------------------------

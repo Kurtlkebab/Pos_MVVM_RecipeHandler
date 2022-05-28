@@ -4,17 +4,9 @@ using MVVM_RecipeHandler_Common.Command;
 using MVVM_RecipeHandler_EF6._0;
 using MVVM_RecipeHandler_Models.DataClasses;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace MVVM_RecipeHandler.ViewModels
 {
