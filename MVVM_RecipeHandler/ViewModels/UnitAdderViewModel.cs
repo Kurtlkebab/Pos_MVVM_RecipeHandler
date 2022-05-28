@@ -11,7 +11,7 @@ using System.Windows.Input;
 namespace MVVM_RecipeHandler.ViewModels
 {
     /// <summary>
-    /// Displays the students data in a list.
+    /// Displays the add units view, to add units.
     /// Derives from <see cref="ViewModelBase"/> class.
     /// </summary>
     public class UnitAdderViewModel : ViewModelBase

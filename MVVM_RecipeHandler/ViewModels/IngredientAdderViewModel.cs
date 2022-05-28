@@ -15,7 +15,7 @@ using System.Windows.Input;
 namespace MVVM_RecipeHandler.ViewModels
 {
     /// <summary>
-    /// Displays the students data in a list.
+    /// Displays the add ingredient
     /// Derives from <see cref="ViewModelBase"/> class.
     /// </summary>
     public class IngredientAdderViewModel : ViewModelBase

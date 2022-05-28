@@ -5,7 +5,7 @@ using MVVM_RecipeHandler_Models.DataClasses;
 namespace MVVM_RecipeHandler.ViewModels
 {
     /// <summary>
-    /// Displays the students data in a list.
+    /// Displays the inspect current recipe view.
     /// Derives from <see cref="ViewModelBase"/> class.
     /// </summary>
     public class InspectCurrentRecipeViewModel : ViewModelBase
